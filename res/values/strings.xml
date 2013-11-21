@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Singing In The Rain</string>
+    <string name="dummy_section_text">Section is just a dummy section. Current city is %s.</string>
+    <string name="nowSectionLabel">Now</string>
+    <string name="t48HSectionLabel">48h</string>
+    <string name="weekSectionLabel">Week</string>
+    <string name="windTempLabel">Real: %.2f C</string>
+    <string name="feelsTempLabel">Feels: %.2f C</string>
+    <string name="realTempLabel">Wind: %.2f km/h</string>
+</resources>
