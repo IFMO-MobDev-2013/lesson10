@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Global Weather 1.0</string>
+    <string name="tomorrowLabel">Завтра</string>
+    <string name="inadayLabel">Послезавтра</string>
+    <string name="in2daysLabel">Через 2 дня</string>
+    <string name="morningLabel">Утро</string>
+    <string name="dayLabel">День</string>
+    <string name="eveningLabel">Вечер</string>
+    <string name="nightLabel">Ночь</string>
+    <string name="citiesHeader">List of cities</string>
+    <string name="addnewcityButton">Add new city</string>
+    <string name="updateallButton">Update all</string>
+    <string name="choosecitiesHeader">Choose cities:</string>
+    <string name="loadButton">Load</string>
+    <string name="temperatureLabel">Температура</string>
+    <string name="humidityLabel">Влажность</string>
+    <string name="windspeedLabel">Скорость ветра</string>
+</resources>
