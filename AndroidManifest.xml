@@ -20,5 +20,13 @@
         <activity android:name=".ChooseCityActivity"
                   android:label="@string/app_name">
         </activity>
+        <service android:name=".MyService" android:enabled="true">
+
+        </service>
+        <receiver android:name=".Reloader">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>

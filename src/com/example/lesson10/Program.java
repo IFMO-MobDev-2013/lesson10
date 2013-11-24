@@ -29,6 +29,8 @@ public class Program extends Activity implements IEventHadler {
 
         ListView list_view = (ListView) findViewById(R.id.cities_citiesList);
         list_view.setAdapter(adapter);
+
+        new Reloader().start(this);
     }
 
     public void syncAll(View v)
@@ -62,13 +64,13 @@ public class Program extends Activity implements IEventHadler {
              {
                  count = 0;
                  runOnUiThread(new Runnable()
-                 {
-                     @Override
-                     public void run() {
-                         Toast.makeText(fix, "Data is updated", 3000).show();
-                         adapter.notifyDataSetChanged();
-                     }
-                 });
+             {
+                 @Override
+                 public void run() {
+                     Toast.makeText(fix, "Data is updated", 3000).show();
+                     adapter.notifyDataSetChanged();
+                 }
+             });
              }
          }
          else if (e.type == Event.ERROR)
