@@ -15,7 +15,9 @@ import com.polarnick.day09.entities.ForecastData;
 import com.polarnick.day09.entities.ForecastForCity;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Callable;
 
 /**
@@ -25,9 +27,12 @@ import java.util.concurrent.Callable;
  */
 public class WeatherUpdaterService extends IntentService {
 
+    private static final Map<Integer, Long> lastUpdateTimeByCityId = new HashMap<Integer, Long>();
+
     public static final String FORECAST_UPDATE_TAG = "forecast updated notification";
 
     private static final int PERIOD_OF_REFRESH = 30 * 60 * 1000;//30 minutes
+    private static final int TIME_OF_ACTUALNESS = 5 * 60 * 1000;//5 minutes
 
     public WeatherUpdaterService() {
         super("Forecast updater service");
@@ -44,13 +49,17 @@ public class WeatherUpdaterService extends IntentService {
             boolean somethingWasUpdated = false;
             if (Utils.isOnline(getApplicationContext())) {
                 for (City city : cities) {
-                    if (Utils.isOnline(getApplicationContext())) {
-                        ForecastForCity forecast = WeatherProvider.getForecastForCity(city);
-                        if (forecast != null) {
-                            Log.i(WeatherUpdaterService.class.getName(), "Forecast downloading was success for city with name=" + city.getName() + " and id=" + city.getId() + "!");
-                            somethingWasUpdated = updateForecastForCity(city, forecast);
-                        } else {
-                            Log.i(WeatherUpdaterService.class.getName(), "Forecast downloading was failed for city with name=" + city.getName() + " and id=" + city.getId() + "!");
+                    Long timeOfLastUpdate = lastUpdateTimeByCityId.get(city.getId());
+                    if (timeOfLastUpdate == null || timeOfLastUpdate < System.currentTimeMillis() - TIME_OF_ACTUALNESS) {
+                        if (Utils.isOnline(getApplicationContext())) {
+                            ForecastForCity forecast = WeatherProvider.getForecastForCity(city);
+                            if (forecast != null) {
+                                Log.i(WeatherUpdaterService.class.getName(), "Forecast downloading was success for city with name=" + city.getName() + " and id=" + city.getId() + "!");
+                                somethingWasUpdated = updateForecastForCity(city, forecast);
+                                lastUpdateTimeByCityId.put(city.getId(), System.currentTimeMillis());
+                            } else {
+                                Log.i(WeatherUpdaterService.class.getName(), "Forecast downloading was failed for city with name=" + city.getName() + " and id=" + city.getId() + "!");
+                            }
                         }
                     }
                 }

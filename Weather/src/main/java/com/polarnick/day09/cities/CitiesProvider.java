@@ -5,6 +5,7 @@ import com.google.code.geocoder.GeocoderRequestBuilder;
 import com.google.code.geocoder.model.GeocodeResponse;
 import com.google.code.geocoder.model.GeocoderRequest;
 import com.google.code.geocoder.model.GeocoderResult;
+import com.google.code.geocoder.model.LatLng;
 import com.google.common.base.Preconditions;
 import com.polarnick.day09.entities.City;
 
@@ -26,6 +27,22 @@ public class CitiesProvider {
             return cities;
         }
         GeocoderRequest geocoderRequest = new GeocoderRequestBuilder().setAddress(address).getGeocoderRequest();
+        GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
+        for (GeocoderResult geocoderResult : geocoderResponse.getResults()) {
+            City city = new City();
+            city.setName(geocoderResult.getFormattedAddress());
+            city.setLatitude(geocoderResult.getGeometry().getLocation().getLat().toString());
+            city.setLongitude(geocoderResult.getGeometry().getLocation().getLng().toString());
+            cities.add(city);
+        }
+        return cities;
+    }
+
+    public static synchronized ArrayList<City> getCities(String latitude, String longitude) {
+        Preconditions.checkNotNull(latitude);
+        Preconditions.checkNotNull(longitude);
+        ArrayList<City> cities = new ArrayList<City>();
+        GeocoderRequest geocoderRequest = new GeocoderRequestBuilder().setLocation(new LatLng(latitude, longitude)).getGeocoderRequest();
         GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
         for (GeocoderResult geocoderResult : geocoderResponse.getResults()) {
             City city = new City();
