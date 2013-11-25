@@ -57,7 +57,9 @@ public class CitiesManagementActivity extends Activity {
         });
         citiesListView.setAdapter(citiesListAdapter);
 
-        EditText cityToAdd = (EditText) findViewById(R.id.nameOfCityToAdd);
+        AutoCompleteTextView cityToAdd = (AutoCompleteTextView) findViewById(R.id.nameOfCityToAdd);
+        cityToAdd.setThreshold(3);
+        cityToAdd.setAdapter(new CityAutoCompleteAdapter(this, android.R.layout.simple_dropdown_item_1line));
         cityToAdd.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
