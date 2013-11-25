@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="citiesNameSize">22dp</dimen>
+    <dimen name="labelsTextSize">20dp</dimen>
+
+    <dimen name="todayDate">20dp</dimen>
+    <dimen name="todayMainImageWidth">100dp</dimen>
+    <dimen name="todayTemperature">45dp</dimen>
+    <dimen name="todaySummary">18dp</dimen>
+    <!--<dimen name="todaySummaryWidth">190dp</dimen>-->
+    <dimen name="todayWindIcon">30dp</dimen>
+    <dimen name="todayWindSpeed">20dp</dimen>
+    <dimen name="todayWindVectorIcon">30dp</dimen>
+
+    <dimen name="dayDate">21dp</dimen>
+    <dimen name="dayMainImageWidth">70dp</dimen>
+    <dimen name="dayTemperature">23dp</dimen>
+    <dimen name="daySummary">17dp</dimen>
+    <!--<dimen name="daySummaryWidth">190dp</dimen>-->
+    <dimen name="dayWindIcon">28dp</dimen>
+    <dimen name="dayWindSpeed">19dp</dimen>
+    <dimen name="dayWindVectorIcon">28dp</dimen>
+
+    <dimen name="hourDate">21dp</dimen>
+    <dimen name="hourMainImageWidth">70dp</dimen>
+    <dimen name="hourTemperature">23dp</dimen>
+    <dimen name="hourSummary">17dp</dimen>
+    <!--<dimen name="hourSummaryWidth">190dp</dimen>-->
+    <dimen name="hourWindIcon">28dp</dimen>
+    <dimen name="hourWindSpeed">19dp</dimen>
+    <dimen name="hourWindVectorIcon">28dp</dimen>
+
+    <dimen name="precipIcon">40dp</dimen>
+    <dimen name="precipProbability">15dp</dimen>
+    <dimen name="precipPercent">22dp</dimen>
+    <dimen name="precipIntencity">15dp</dimen>
+    <dimen name="precipBiceps">22dp</dimen>
+
+    <dimen name="todayHeader">22dp</dimen>
+    <dimen name="hoursHeader">22dp</dimen>
+    <dimen name="daysHeader">22dp</dimen>
+    <dimen name="hoursSummary">17dp</dimen>
+    <dimen name="daysSummary">17dp</dimen>
+</resources>
