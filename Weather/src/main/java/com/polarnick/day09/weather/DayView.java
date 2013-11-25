@@ -1,6 +1,7 @@
 package com.polarnick.day09.weather;
 
 import android.content.Context;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -38,7 +39,7 @@ public class DayView extends RelativeLayout {
         TextView date = new TextView(context);
         date.setId(++lastId);
         date.setText(DAYS_FORMATTER.format(new Date(forecast.getTime())));
-        date.setTextSize(getResources().getDimension(R.dimen.dayDate));
+        date.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.dayDate));
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         date.setLayoutParams(params);
         date.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -56,7 +57,7 @@ public class DayView extends RelativeLayout {
         TextView temperature = new TextView(context);
         temperature.setId(++lastId);
         temperature.setText(" " + Utils.formatTemperature(forecast.getMaxTemperature()) + "... " + Utils.formatTemperature(forecast.getMinTemperature()));
-        temperature.setTextSize(getResources().getDimension(R.dimen.dayTemperature));
+        temperature.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.dayTemperature));
         params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.addRule(RIGHT_OF, mainImage.getId());
         params.addRule(ALIGN_TOP, mainImage.getId());
@@ -78,7 +79,7 @@ public class DayView extends RelativeLayout {
             TextView windSpeed = new TextView(context);
             windSpeed.setId(++lastId);
             windSpeed.setText(" " + forecast.getWindSpeed() + " " + getResources().getString(R.string.WIND_SPEED_SUFFIX));
-            windSpeed.setTextSize(getResources().getDimension(R.dimen.dayWindSpeed));
+            windSpeed.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.dayWindSpeed));
             params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             params.addRule(RIGHT_OF, windImage.getId());
             params.addRule(ALIGN_TOP, windImage.getId());
@@ -112,7 +113,7 @@ public class DayView extends RelativeLayout {
             TextView precipProbability = new TextView(context);
             precipProbability.setId(++lastId);
             precipProbability.setText(" " + Utils.DEFIS + " " + forecast.getPrecipProbability() + " %");
-            precipProbability.setTextSize(getResources().getDimension(R.dimen.precipProbability));
+            precipProbability.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.precipProbability));
             params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             params.addRule(RIGHT_OF, smallPrecipImage.getId());
             params.addRule(ALIGN_TOP, smallPrecipImage.getId());
@@ -122,7 +123,7 @@ public class DayView extends RelativeLayout {
             TextView precipIntensity = new TextView(context);
             precipIntensity.setId(++lastId);
             precipIntensity.setText(" " + Utils.DEFIS + " " + Utils.roundToSignificantFigures(forecast.getPrecipIntensity(), 2) + " mm/h");
-            precipIntensity.setTextSize(getResources().getDimension(R.dimen.precipIntencity));
+            precipIntensity.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.precipIntencity));
             params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             params.addRule(RIGHT_OF, smallPrecipImage.getId());
             params.addRule(BELOW, precipProbability.getId());
@@ -139,7 +140,7 @@ public class DayView extends RelativeLayout {
         TextView summary = new TextView(context);
         summary.setId(++lastId);
         summary.setText(forecast.getSummary());
-        summary.setTextSize(getResources().getDimension(R.dimen.daySummary));
+        summary.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.daySummary));
 //        summary.setMaxWidth(getResources().getDimensionPixelSize(R.dimen.daySummaryWidth));
         summary.setLayoutParams(params);
         addView(summary, params);

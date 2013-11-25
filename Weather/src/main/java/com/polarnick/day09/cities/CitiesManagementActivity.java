@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,7 @@ import com.polarnick.day09.R;
 import com.polarnick.day09.Utils;
 import com.polarnick.day09.dao.DatabaseHelperFactory;
 import com.polarnick.day09.entities.City;
+import com.polarnick.day09.weather.WeatherActivity;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -46,6 +48,10 @@ public class CitiesManagementActivity extends Activity {
         citiesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                SharedPreferences settings = getSharedPreferences(WeatherActivity.WEATHER_PREFERENCES, 0);
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putInt(WeatherActivity.SELECTED_CITY_INDEX, position);
+                editor.commit();
                 finish();
             }
         });

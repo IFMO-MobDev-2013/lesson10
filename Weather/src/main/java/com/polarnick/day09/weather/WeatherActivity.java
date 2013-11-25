@@ -5,8 +5,8 @@ import android.content.*;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
@@ -18,6 +18,7 @@ import com.polarnick.day09.dao.DatabaseHelperFactory;
 import com.polarnick.day09.entities.City;
 import com.polarnick.day09.entities.ForecastData;
 import com.polarnick.day09.entities.ForecastForCity;
+import sun.management.counter.Units;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -29,8 +30,8 @@ import java.util.List;
  */
 public class WeatherActivity extends Activity {
 
-    private static final String WEATHER_PREFERENCES = "weatherPreferences";
-    private static final String SELECTED_CITY_INDEX = "selectedCity";
+    public static final String WEATHER_PREFERENCES = "weatherPreferences";
+    public static final String SELECTED_CITY_INDEX = "selectedCity";
 
     private Toast feedWasUpdatedToast;
     private List<City> cities;
@@ -43,8 +44,7 @@ public class WeatherActivity extends Activity {
         feedWasUpdatedToast = Toast.makeText(WeatherActivity.this, "Forecast was updated!", Toast.LENGTH_SHORT);
         setContentView(R.layout.forecast_main);
 
-        SharedPreferences settings = getSharedPreferences(WEATHER_PREFERENCES, 0);
-        selectedCityIndex = settings.getInt(SELECTED_CITY_INDEX, -1);
+        loadSelectedCityFromPreferences();
 
         ImageButton configureCities = (ImageButton) findViewById(R.id.configureCities);
         configureCities.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +75,7 @@ public class WeatherActivity extends Activity {
     protected void onResume() {
         super.onResume();
         DatabaseHelperFactory.setHelper(getApplicationContext());
+        loadSelectedCityFromPreferences();
         loadCities();
         loadCitiesToSpinner();
         startWeatherUpdaterService();
@@ -98,9 +99,53 @@ public class WeatherActivity extends Activity {
         cities = DatabaseHelperFactory.getHelper().getCityDAO().getAllCities();
     }
 
+    private void loadSelectedCityFromPreferences() {
+        SharedPreferences settings = getSharedPreferences(WEATHER_PREFERENCES, 0);
+        selectedCityIndex = settings.getInt(SELECTED_CITY_INDEX, -1);
+    }
+
     private void loadCitiesToSpinner() {
         Spinner citiesSpinner = (Spinner) findViewById(R.id.citiesSpinner);
-        final SimpleCityListAdapter adapter = new SimpleCityListAdapter(this, cities, 16);
+        final SimpleCityListAdapter adapter = new SimpleCityListAdapter(this, cities, 16) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                if (position < cities.size()) {
+                    return super.getView(position, convertView, parent);
+                } else {
+                    LinearLayout view = new LinearLayout(context);
+                    TextView addCities = new TextView(context);
+                    addCities.setText("Add city");
+                    view.addView(addCities);
+                    return view;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                if (position < cities.size()) {
+                    return super.getDropDownView(position, convertView, parent);
+                } else {
+                    LinearLayout view = new LinearLayout(context);
+
+                    TextView addCities = new TextView(context);
+                    addCities.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.citiesNameSize));
+                    addCities.setText("Add city");
+
+                    ImageView image = new ImageView(context);
+                    image.setImageResource(android.R.drawable.ic_menu_preferences);
+
+                    view.addView(image);
+                    view.addView(addCities);
+                    view.setPadding(10, 10, 10, 10);
+                    return view;
+                }
+            }
+
+            @Override
+            public int getCount() {
+                return super.getCount() + 1;
+            }
+        };
         citiesSpinner.setAdapter(adapter);
         if (cities.size() > selectedCityIndex && selectedCityIndex != -1) {
             citiesSpinner.setSelection(selectedCityIndex);
@@ -108,9 +153,13 @@ public class WeatherActivity extends Activity {
         citiesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedCityIndex = position;
-                selectedCity = cities.get(position);
-                showForecastForCity(selectedCity);
+                if (position < cities.size()) {
+                    selectedCityIndex = position;
+                    selectedCity = cities.get(position);
+                    showForecastForCity(selectedCity);
+                } else {
+                    startActivity(new Intent(WeatherActivity.this, CitiesManagementActivity.class));
+                }
             }
 
             @Override
@@ -176,7 +225,7 @@ public class WeatherActivity extends Activity {
         if (System.currentTimeMillis() - forecast.getCurrent().getTime() < 1L * 60 * 60 * 1000) {
             TextView todayHeader = new TextView(this);
             todayHeader.setText("Now:");
-            todayHeader.setTextSize(getResources().getDimension(R.dimen.todayHeader));
+            todayHeader.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.todayHeader));
             params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             params.gravity = Gravity.CENTER_HORIZONTAL;
             todayHeader.setLayoutParams(params);
@@ -194,7 +243,7 @@ public class WeatherActivity extends Activity {
 
         TextView hoursHeader = new TextView(this);
         hoursHeader.setText("Hourly:");
-        hoursHeader.setTextSize(getResources().getDimension(R.dimen.hoursHeader));
+        hoursHeader.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.hoursHeader));
         params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.gravity = Gravity.CENTER_HORIZONTAL;
         hoursHeader.setLayoutParams(params);
@@ -202,7 +251,7 @@ public class WeatherActivity extends Activity {
 
         TextView hoursSummary = new TextView(this);
         hoursSummary.setText(forecast.getHoursSummary());
-        hoursSummary.setTextSize(getResources().getDimension(R.dimen.hoursSummary));
+        hoursSummary.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.hoursSummary));
         params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.gravity = Gravity.CENTER_HORIZONTAL;
         hoursSummary.setLayoutParams(params);
@@ -236,7 +285,7 @@ public class WeatherActivity extends Activity {
 
         TextView daysHeader = new TextView(this);
         daysHeader.setText("Daily:");
-        daysHeader.setTextSize(getResources().getDimension(R.dimen.daysHeader));
+        daysHeader.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.daysHeader));
         params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.gravity = Gravity.CENTER_HORIZONTAL;
         daysHeader.setLayoutParams(params);
@@ -244,7 +293,7 @@ public class WeatherActivity extends Activity {
 
         TextView daysSummary = new TextView(this);
         daysSummary.setText(forecast.getDaysSummary());
-        daysSummary.setTextSize(getResources().getDimension(R.dimen.daysSummary));
+        daysSummary.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.daysSummary));
         params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.gravity = Gravity.CENTER_HORIZONTAL;
         daysSummary.setLayoutParams(params);
@@ -274,30 +323,8 @@ public class WeatherActivity extends Activity {
             }
         }
 
-        scrollView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                daysScroll.getParent().requestDisallowInterceptTouchEvent(false);
-                hoursScroll.getParent().requestDisallowInterceptTouchEvent(false);
-                return false;
-            }
-        });
-
-        daysScroll.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                v.getParent().requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
-
-        hoursScroll.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                v.getParent().requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
+        daysScroll.setOnTouchListener(new Utils.ScrollViewTouchListener(60));
+        hoursScroll.setOnTouchListener(new Utils.ScrollViewTouchListener(60));
     }
 
     private void showRefreshingProgress(String message) {
@@ -306,7 +333,7 @@ public class WeatherActivity extends Activity {
 
         final TextView messageView = new TextView(this);
         messageView.setText(message);
-        messageView.setTextSize(getResources().getDimension(R.dimen.labelsTextSize));
+        messageView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.labelsTextSize));
         final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 0, 1);
         params.gravity = Gravity.CENTER;
         messageView.setLayoutParams(params);
@@ -333,7 +360,7 @@ public class WeatherActivity extends Activity {
 
         final TextView messageView = new TextView(this);
         messageView.setText(message);
-        messageView.setTextSize(getResources().getDimension(R.dimen.labelsTextSize));
+        messageView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.labelsTextSize));
         messageView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         messageView.setGravity(Gravity.CENTER);
         layoutForForecast.addView(messageView);

@@ -18,9 +18,9 @@ import java.util.List;
  * @author Nickolay Polyarniy aka PolarNick
  */
 public class SimpleCityListAdapter extends ArrayAdapter<City> {
-    private final int maxCityNameLength;
-    private final List<City> cities;
-    private final Context context;
+    protected final int maxCityNameLength;
+    protected final List<City> cities;
+    protected final Context context;
 
     public SimpleCityListAdapter(Context context, List<City> cities, int maxNameLength) {
         super(context, R.layout.city_to_choose_view, cities);
@@ -41,9 +41,7 @@ public class SimpleCityListAdapter extends ArrayAdapter<City> {
     }
 
     private View getView(int position, View convertView, int padding) {
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.city_to_choose_view, null);
-        }
+        convertView = LayoutInflater.from(context).inflate(R.layout.city_to_choose_view, null);
         final TextView cityNameTextView = (TextView) convertView.findViewById(R.id.cityName);
         cityNameTextView.setPadding(padding, padding, padding, padding);
         cityNameTextView.setText(Utils.truncateString(cities.get(position).getName(), maxCityNameLength));

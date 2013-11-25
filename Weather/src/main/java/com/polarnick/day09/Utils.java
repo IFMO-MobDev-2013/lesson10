@@ -4,6 +4,8 @@ import android.R;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -76,6 +78,36 @@ public class Utils {
             }
         }
         return result.substring(0, Math.min(index + n, result.length()));
+    }
+
+    public static class ScrollViewTouchListener implements View.OnTouchListener {
+
+        private final double sin;
+        private float lastX;
+        private float lastY;
+
+        public ScrollViewTouchListener(int degreeFromHorizontalToHandle) {
+            this.sin = Math.sin(Math.PI * degreeFromHorizontalToHandle / 180);
+        }
+
+        @Override
+        public boolean onTouch(android.view.View v, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                lastX = event.getX();
+                lastY = event.getY();
+            } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                float newX = event.getX();
+                float newY = event.getY();
+                if (sin > Math.abs((newY - lastY) / (newX - lastX))) {
+                    v.getParent().requestDisallowInterceptTouchEvent(true);
+                } else {
+                    v.getParent().requestDisallowInterceptTouchEvent(false);
+                }
+            } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                v.getParent().requestDisallowInterceptTouchEvent(false);
+            }
+            return false;
+        }
     }
 
 }

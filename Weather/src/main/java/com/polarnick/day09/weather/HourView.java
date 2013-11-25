@@ -1,6 +1,7 @@
 package com.polarnick.day09.weather;
 
 import android.content.Context;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -40,7 +41,7 @@ public class HourView extends RelativeLayout {
         TextView date = new TextView(context);
         date.setId(++lastId);
         date.setText(Utils.formatHoursRange(new Date(forecast.getTime()), hoursRange, HOURS_FORMATTER));
-        date.setTextSize(getResources().getDimension(R.dimen.hourDate));
+        date.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.hourDate));
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         date.setLayoutParams(params);
         date.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -58,7 +59,7 @@ public class HourView extends RelativeLayout {
         TextView temperature = new TextView(context);
         temperature.setId(++lastId);
         temperature.setText(" " + Utils.formatTemperature(forecast.getTemperature()));
-        temperature.setTextSize(getResources().getDimension(R.dimen.hourTemperature));
+        temperature.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.hourTemperature));
         params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.addRule(RIGHT_OF, mainImage.getId());
         params.addRule(ALIGN_TOP, mainImage.getId());
@@ -80,7 +81,7 @@ public class HourView extends RelativeLayout {
             TextView windSpeed = new TextView(context);
             windSpeed.setId(++lastId);
             windSpeed.setText(" " + forecast.getWindSpeed() + " " + getResources().getString(R.string.WIND_SPEED_SUFFIX));
-            windSpeed.setTextSize(getResources().getDimension(R.dimen.hourWindSpeed));
+            windSpeed.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.hourWindSpeed));
             params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             params.addRule(RIGHT_OF, windImage.getId());
             params.addRule(ALIGN_TOP, windImage.getId());
@@ -114,7 +115,7 @@ public class HourView extends RelativeLayout {
             TextView precipProbability = new TextView(context);
             precipProbability.setId(++lastId);
             precipProbability.setText(" " + Utils.DEFIS + " " + forecast.getPrecipProbability() + " %");
-            precipProbability.setTextSize(getResources().getDimension(R.dimen.precipProbability));
+            precipProbability.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.precipProbability));
             params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             params.addRule(RIGHT_OF, smallPrecipImage.getId());
             params.addRule(ALIGN_TOP, smallPrecipImage.getId());
@@ -124,7 +125,7 @@ public class HourView extends RelativeLayout {
             TextView precipIntensity = new TextView(context);
             precipIntensity.setId(++lastId);
             precipIntensity.setText(" " + Utils.DEFIS + " " + Utils.roundToSignificantFigures(forecast.getPrecipIntensity(), 2) + " mm/h");
-            precipIntensity.setTextSize(getResources().getDimension(R.dimen.precipIntencity));
+            precipIntensity.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.precipIntencity));
             params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             params.addRule(RIGHT_OF, smallPrecipImage.getId());
             params.addRule(BELOW, precipProbability.getId());
@@ -141,7 +142,7 @@ public class HourView extends RelativeLayout {
         TextView summary = new TextView(context);
         summary.setId(++lastId);
         summary.setText(forecast.getSummary());
-        summary.setTextSize(getResources().getDimension(R.dimen.hourSummary));
+        summary.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.hourSummary));
 //        summary.setMaxWidth(getResources().getDimensionPixelSize(R.dimen.hourSummaryWidth));
         summary.setLayoutParams(params);
         addView(summary, params);
