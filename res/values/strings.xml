@@ -12,4 +12,7 @@
     <string name="add">Add</string>
     <string name="add_first">Add your first city</string>
     <string name="search_initial">Type your city into the search input</string>
+    <string name="cancel">Cancel</string>
+    <string name="remove">Remove</string>
+    <string name="deletion_confirmation">Remove %s from list?</string>
 </resources>

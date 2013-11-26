@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 import ru.zulyaev.ifmo.zeather.weather.City;
@@ -37,6 +38,8 @@ public class SearchActivity extends Activity {
         initialQuery = intent.getStringExtra(QUERY_INDEX);
 
         setContentView(R.layout.search);
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         progressBar = (ProgressBar) findViewById(R.id.progress);
         listView = (ListView) findViewById(R.id.search_results);
@@ -105,8 +108,15 @@ public class SearchActivity extends Activity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    class SearchTask extends AsyncTask<String, Void, SearchResult> {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
+    class SearchTask extends AsyncTask<String, Void, SearchResult> {
         @Override
         protected SearchResult doInBackground(String... params) {
             try {

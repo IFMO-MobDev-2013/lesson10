@@ -9,11 +9,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 
 public class MainActivity extends Activity {
     private static final IntentFilter UPDATE_FILTER = new IntentFilter(WeatherUpdateService.UPDATE_DONE);
+    private static final String DIALOG = "DIALOG";
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
@@ -24,6 +26,7 @@ public class MainActivity extends Activity {
     private final SearchView.OnQueryTextListener ON_SEARCH_QUERY_LISTENER = new SearchView.OnQueryTextListener() {
         @Override
         public boolean onQueryTextSubmit(String query) {
+            searchItem.collapseActionView();
             Intent intent = new Intent(MainActivity.this, SearchActivity.class);
             intent.putExtra(SearchActivity.QUERY_INDEX, query);
             startActivity(intent);
@@ -35,24 +38,41 @@ public class MainActivity extends Activity {
             return false;
         }
     };
+    private final CityDeletionDialogFragment.CityDeletionListener cityDeletionListener = new CityDeletionDialogFragment.CityDeletionListener() {
+        @Override
+        public void onDelete(WeatherForecast forecast) {
+            table.removeLocation(forecast.getId());
+            refreshWeather();
+        }
+    };
     private WeatherDbOpenHelper helper;
+    private WeatherTable table;
     private WeatherAdapter adapter;
     private View noCities;
-    private SearchView searchView;
+    private MenuItem searchItem;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         helper = new WeatherDbOpenHelper(this);
+        table = new WeatherTable(helper.getWritableDatabase());
 
         setContentView(R.layout.main);
 
         ListView view = (ListView) findViewById(R.id.cities);
         noCities = findViewById(R.id.no_cities);
 
-        adapter = new WeatherAdapter(this, new WeatherTable(helper.getWritableDatabase()));
+        adapter = new WeatherAdapter(this, table);
         view.setAdapter(adapter);
+
+        view.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                new CityDeletionDialogFragment(adapter.getItem(position), cityDeletionListener).show(getFragmentManager(), DIALOG);
+                return true;
+            }
+        });
 
         noCities.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +115,8 @@ public class MainActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-        searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        searchItem = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
         searchView.setOnQueryTextListener(ON_SEARCH_QUERY_LISTENER);
         return super.onCreateOptionsMenu(menu);
     }

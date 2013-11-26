@@ -103,4 +103,8 @@ public class WeatherTable {
         values.put(FIELD_LONGITUDE, longitude);
         db.insertOrThrow(TABLE_NAME, null, values);
     }
+
+    public void removeLocation(long id) {
+        db.delete(TABLE_NAME, "_id = ?", new String[] {Long.toString(id)});
+    }
 }

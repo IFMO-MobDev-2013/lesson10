@@ -12,8 +12,10 @@ public class SearchResult {
 
     SearchResult(SearchResponse response) {
         List<City> temp = new ArrayList<City>();
-        for (SearchResponse.ResultElement result : response.search_api.result) {
-            temp.add(new City(result));
+        if (response.search_api != null) {
+            for (SearchResponse.ResultElement result : response.search_api.result) {
+                temp.add(new City(result));
+            }
         }
         this.cities = Collections.unmodifiableList(temp);
     }
