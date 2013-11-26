@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Zeather</string>
+    <string name="degrees">°C</string>
+    <string name="kmph">km/h</string>
+    <string name="refresh">Refresh</string>
+    <string name="search">Search</string>
+    <string name="search_error">Error occured during search</string>
+    <string name="search_no_results">No results</string>
+
+    <string name="coords" formatted="false">N%.4f° E%.4f°</string>
+    <string name="add">Add</string>
+    <string name="add_first">Add your first city</string>
+    <string name="search_initial">Type your city into the search input</string>
+</resources>
