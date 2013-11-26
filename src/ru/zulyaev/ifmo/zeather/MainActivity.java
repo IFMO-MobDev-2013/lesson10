@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
     private static final IntentFilter UPDATE_FILTER = new IntentFilter(WeatherUpdateService.UPDATE_DONE);
@@ -21,6 +22,7 @@ public class MainActivity extends Activity {
         @Override
         public void onReceive(Context context, Intent intent) {
             adapter.refresh();
+            Toast.makeText(context, R.string.updated, Toast.LENGTH_SHORT).show();
         }
     };
     private final SearchView.OnQueryTextListener ON_SEARCH_QUERY_LISTENER = new SearchView.OnQueryTextListener() {

@@ -88,7 +88,12 @@ class WeatherAdapter extends BaseAdapter {
             holder.temperature.setText("No data to display");
         } else {
             Weather today = forecast.getToday();
-            new IconDownloader(holder.icon, cache).execute(today.getIconUrl());
+            Bitmap cachedIcon = cache.getBitmapFromMemoryCache(today.getIconUrl());
+            if (cachedIcon != null) {
+                holder.icon.setImageBitmap(cachedIcon);
+            } else {
+                new IconDownloader(holder.icon, cache).execute(today.getIconUrl());
+            }
             holder.icon.setContentDescription(today.getDescription());
             holder.temperature.setText(today.getMinTemp() + degrees);
             holder.wind.setText(today.getWindSpeed() + kmph + " " + today.getWindDirection());
@@ -104,7 +109,12 @@ class WeatherAdapter extends BaseAdapter {
                     child = holder.children.get(i);
                 }
                 child.date.setText(DATE_FORMAT.format(weather.getDate()));
-                new IconDownloader(child.icon, cache).execute(weather.getIconUrl());
+                cachedIcon = cache.getBitmapFromMemoryCache(weather.getIconUrl());
+                if (cachedIcon != null) {
+                    child.icon.setImageBitmap(cachedIcon);
+                } else {
+                    new IconDownloader(child.icon, cache).execute(weather.getIconUrl());
+                }
                 child.icon.setContentDescription(weather.getDescription());
                 child.temperature.setText((weather.getMinTemp() + weather.getMaxTemp()) / 2 + degrees);
             }
@@ -183,7 +193,7 @@ class WeatherAdapter extends BaseAdapter {
         @Override
         protected Bitmap doInBackground(String... params) {
             try {
-                return cache.getBitmap(params[0]);
+                return cache.getOrLoadBitmap(params[0]);
             } catch (IOException e) {
                 Log.w(WeatherAdapter.class.toString(), "Unable to download icon " + params[0], e);
             }

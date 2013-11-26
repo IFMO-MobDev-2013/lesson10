@@ -18,6 +18,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class IconCache {
     private final ConcurrentMap<String, ReadWriteLock> lockMap = new ConcurrentHashMap<String, ReadWriteLock>();
+    private final ConcurrentMap<String, Bitmap> cache = new ConcurrentHashMap<String, Bitmap>();
     private final File cacheDir;
 
     public IconCache(Context context) {
@@ -31,7 +32,18 @@ public class IconCache {
         return lockMap.get(url);
     }
 
-    public Bitmap getBitmap(String url) throws IOException {
+    public Bitmap getOrLoadBitmap(String url) throws IOException {
+        Bitmap result = getBitmapFromMemoryCache(url);
+        if (result == null) {
+            result = loadBitmap(url);
+            if (cache.putIfAbsent(url, result) != null) {
+                result.recycle();
+            }
+        }
+        return getBitmapFromMemoryCache(url);
+    }
+
+    private Bitmap loadBitmap(String url) throws IOException {
         ReadWriteLock lock = getLock(url);
 
         lock.readLock().lock();
@@ -54,6 +66,10 @@ public class IconCache {
             lock.writeLock().unlock();
             Log.d("IconCache", "end " + url);
         }
+    }
+
+    public Bitmap getBitmapFromMemoryCache(String url) {
+        return cache.get(url);
     }
 
     private String getFilename(String url) {
