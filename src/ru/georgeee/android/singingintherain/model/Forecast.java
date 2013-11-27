@@ -5,7 +5,6 @@ import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
 
-
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -19,76 +18,81 @@ import java.util.Date;
  * Time: 13:31
  * To change this template use File | Settings | File Templates.
  */
-public class Forecast implements Serializable{
+public class Forecast implements Serializable {
+    static final DateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
     DataBlock daily;
     DataBlock hourly;
     DataBlock minutely;
     DataPoint currently;
 
-
-    public void setDaily(JsonObject dailyObject)  {
-        this.daily = new DataBlock(dailyObject);
-    }
-    public void setHourly(JsonObject hourlyObject)  {
-        this.hourly = new DataBlock(hourlyObject);
-    }
-    public void setMinutely(JsonObject minutelyObject)  {
-        this.minutely = new DataBlock(minutelyObject);
-    }
-    public void setCurrently(JsonObject currentlyObject){
-        this.currently = new DataPoint(currentlyObject);
-    }
-
-    public DataBlock getDaily() {
-        return daily;
-    }
-
-    public DataBlock getHourly() {
-        return hourly;
-    }
-
-    public DataBlock getMinutely() {
-        return minutely;
-    }
-
-    public DataPoint getCurrently() {
-        return currently;
-    }
-
-    static final DateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
-
-    protected static Date getDate(JsonObject jsonObject, String key){
+    protected static Date getDate(JsonObject jsonObject, String key) {
         try {
-            String dateStr = jsonObject.get(key).asString();
-            return timeFormat.parse(dateStr);
+            JsonValue jsonValue = jsonObject.get(key);
+            if (jsonValue.isString()) {
+                String dateStr = jsonValue.asString();
+                return timeFormat.parse(dateStr);
+            } else if (jsonValue.isNumber()) {
+                return new Date(jsonValue.asLong());
+            }
         } catch (NullPointerException e) {
-            Log.e(DataPoint.class.getCanonicalName(), e.toString());
+//            Log.e(DataPoint.class.getCanonicalName(), e.toString());
         } catch (ParseException e) {
             Log.e(DataPoint.class.getCanonicalName(), e.toString());
         }
         return null;
     }
 
-
-    protected static String getString(JsonObject jsonObject, String key){
+    protected static String getString(JsonObject jsonObject, String key) {
         try {
             return jsonObject.get(key).asString();
         } catch (NullPointerException e) {
-            Log.e(DataPoint.class.getCanonicalName(), e.toString());
+//            Log.e(DataPoint.class.getCanonicalName(), e.toString());
         }
         return null;
     }
-    protected static Double getDouble(JsonObject jsonObject, String key){
+
+    protected static Double getDouble(JsonObject jsonObject, String key) {
         try {
             return jsonObject.get(key).asDouble();
         } catch (NullPointerException e) {
-            Log.e(DataPoint.class.getCanonicalName(), e.toString());
+//            Log.e(DataPoint.class.getCanonicalName(), e.toString());
         }
         return null;
     }
 
+    public DataBlock getDaily() {
+        return daily;
+    }
 
-    public static class DataPoint{
+    public void setDaily(JsonObject dailyObject) {
+        this.daily = new DataBlock(dailyObject);
+    }
+
+    public DataBlock getHourly() {
+        return hourly;
+    }
+
+    public void setHourly(JsonObject hourlyObject) {
+        this.hourly = new DataBlock(hourlyObject);
+    }
+
+    public DataBlock getMinutely() {
+        return minutely;
+    }
+
+    public void setMinutely(JsonObject minutelyObject) {
+        this.minutely = new DataBlock(minutelyObject);
+    }
+
+    public DataPoint getCurrently() {
+        return currently;
+    }
+
+    public void setCurrently(JsonObject currentlyObject) {
+        this.currently = new DataPoint(currentlyObject);
+    }
+
+    public static class DataPoint implements Serializable {
 
         protected Date time;
         protected String summary;
@@ -152,29 +156,148 @@ public class Forecast implements Serializable{
             ozone = getDouble(jsonObject, "ozone");
         }
 
+        public Date getTime() {
+            return time;
+        }
+
+        public String getSummary() {
+            return summary;
+        }
+
+        public String getIconId() {
+            return iconId;
+        }
+
+        public Date getSunriseTime() {
+            return sunriseTime;
+        }
+
+        public Date getSunsetTime() {
+            return sunsetTime;
+        }
+
+        public Double getPrecipIntensity() {
+            return precipIntensity;
+        }
+
+        public Double getPrecipIntensityMax() {
+            return precipIntensityMax;
+        }
+
+        public Double getPrecipIntensityMaxTime() {
+            return precipIntensityMaxTime;
+        }
+
+        public Double getPrecipProbability() {
+            return precipProbability;
+        }
+
+        public String getPrecipType() {
+            return precipType;
+        }
+
+        public Double getPrecipAccumulation() {
+            return precipAccumulation;
+        }
+
+        public Double getTemperature() {
+            return temperature;
+        }
+
+        public Double getTemperatureMin() {
+            return temperatureMin;
+        }
+
+        public Double getTemperatureMinTime() {
+            return temperatureMinTime;
+        }
+
+        public Double getTemperatureMax() {
+            return temperatureMax;
+        }
+
+        public Double getTemperatureMaxTime() {
+            return temperatureMaxTime;
+        }
+
+        public Double getApparentTemperature() {
+            return apparentTemperature;
+        }
+
+        public Double getApparentTemperatureMin() {
+            return apparentTemperatureMin;
+        }
+
+        public Double getApparentTemperatureMinTime() {
+            return apparentTemperatureMinTime;
+        }
+
+        public Double getApparentTemperatureMax() {
+            return apparentTemperatureMax;
+        }
+
+        public Double getApparentTemperatureMaxTime() {
+            return apparentTemperatureMaxTime;
+        }
+
+        public Double getDewPoint() {
+            return dewPoint;
+        }
+
+        public Double getWindSpeed() {
+            return windSpeed;
+        }
+
+        public Double getWindBearing() {
+            return windBearing;
+        }
+
+        public Double getCloudCover() {
+            return cloudCover;
+        }
+
+        public Double getHumidity() {
+            return humidity;
+        }
+
+        public Double getPressure() {
+            return pressure;
+        }
+
+        public Double getVisibility() {
+            return visibility;
+        }
+
+        public Double getOzone() {
+            return ozone;
+        }
+
 
     }
 
-    public static class DataBlock{
-
-        public DataBlock(JsonObject jsonObject) {
-            summary = getString(jsonObject, "summary");
-            iconId = getString(jsonObject, "icon");
-            JsonValue _dataPointsValue = jsonObject.get("data");
-            if(!_dataPointsValue.isArray()) dataPoints = new DataPoint[]{};
-            else{
-                JsonArray _dataPoints = _dataPointsValue.asArray();
-                dataPoints = new DataPoint[_dataPoints.size()];
-                for(int i=0; i<_dataPoints.size(); ++i){
-                    dataPoints[i] = new DataPoint(_dataPoints.get(i).asObject());
-                }
-
-            }
-        }
+    public static class DataBlock implements Serializable {
 
         protected String iconId;
         protected String summary;
         protected DataPoint[] dataPoints;
+
+        public DataBlock(JsonObject jsonObject) {
+            summary = getString(jsonObject, "summary");
+            iconId = getString(jsonObject, "icon");
+            try {
+                JsonValue _dataPointsValue = jsonObject.get("data");
+                if (!_dataPointsValue.isArray()) dataPoints = new DataPoint[]{};
+                else {
+                    JsonArray _dataPoints = _dataPointsValue.asArray();
+                    dataPoints = new DataPoint[_dataPoints.size()];
+                    for (int i = 0; i < _dataPoints.size(); ++i) {
+                        dataPoints[i] = new DataPoint(_dataPoints.get(i).asObject());
+                    }
+                }
+            } catch (NullPointerException ex) {
+                dataPoints = new DataPoint[]{};
+            }
+        }
 
         public String getIconId() {
             return iconId;
@@ -188,7 +311,7 @@ public class Forecast implements Serializable{
             return dataPoints;
         }
 
-        public DataPoint get(int i){
+        public DataPoint get(int i) {
             return dataPoints[i];
         }
     }

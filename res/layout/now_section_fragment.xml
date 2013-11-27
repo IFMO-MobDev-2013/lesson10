@@ -6,29 +6,43 @@
               android:layout_height="match_parent">
 
     <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
             android:id="@+id/imageView" android:layout_alignParentLeft="true" android:layout_alignParentTop="true"
-            android:background="@drawable/rain"/>
+            />
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/realTempLabel"
-            android:id="@+id/realTemp"
+            android:text="summary"
+            android:id="@+id/summary"
             android:layout_alignLeft="@+id/imageView" android:layout_below="@+id/imageView"
             android:layout_marginTop="10dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/feelsTempLabel"
-            android:id="@+id/feelsTemp"
+            android:text="@string/realTempLabel"
+            android:id="@+id/realTemp"
+            android:layout_alignLeft="@+id/summary" android:layout_below="@+id/summary"
+            android:layout_marginTop="10dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/apparentTempLabel"
+            android:id="@+id/apparentTemp"
             android:layout_alignLeft="@+id/realTemp" android:layout_below="@+id/realTemp"
             android:layout_marginTop="10dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/windTempLabel"
-            android:id="@+id/windTemp"
-            android:layout_alignLeft="@+id/feelsTemp" android:layout_below="@+id/feelsTemp"
+            android:text="@string/windSpeedLabel"
+            android:id="@+id/windSpeed"
+            android:layout_alignLeft="@+id/apparentTemp" android:layout_below="@+id/apparentTemp"
+            android:layout_marginTop="10dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pressureLabel"
+            android:id="@+id/pressure"
+            android:layout_alignLeft="@+id/windSpeed" android:layout_below="@+id/windSpeed"
             android:layout_marginTop="10dp"/>
 </RelativeLayout>

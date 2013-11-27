@@ -4,7 +4,8 @@
           android:versionCode="1"
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="14"/>
-    <application android:label="@string/app_name" android:icon="@drawable/rain">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application android:label="@string/app_name" android:icon="@drawable/singing_in_the_rain_icon" android:name=".MyApplication">
         <activity android:name=".MainActivity"
                   android:label="@string/app_name">
             <intent-filter>
@@ -12,5 +13,16 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity
+                android:name=".SettingsActivity"
+                android:label="@string/settingsTitle"
+                android:windowSoftInputMode="stateHidden">
+        </activity>
+
+        <service android:name=".UpdateForecastService" android:exported="false">
+        </service>
+        <receiver android:name=".AlarmBroadcastReceiver">
+        </receiver>
     </application>
 </manifest>

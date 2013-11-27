@@ -1,5 +1,14 @@
 package ru.georgeee.android.singingintherain.model;
 
+
+import com.j256.ormlite.field.DataType;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: georgeee
@@ -7,22 +16,68 @@ package ru.georgeee.android.singingintherain.model;
  * Time: 2:30
  * To change this template use File | Settings | File Templates.
  */
-public class City {
-    protected String name;
+@DatabaseTable(tableName = "cities")
+public class City implements Serializable {
 
-    public void setName(String name) {
-        this.name = name;
+    @DatabaseField(generatedId = true)
+    protected int id;
+    @DatabaseField(unique = true)
+    protected String name;
+    @DatabaseField
+    protected String latitude;
+    @DatabaseField
+    protected String longitude;
+    @DatabaseField (dataType= DataType.SERIALIZABLE)
+    protected Forecast forecast;
+
+    protected Date lastUpdated = new Date();
+
+    public Date getLastUpdated() {
+        return lastUpdated;
     }
 
-    protected String latitude = "30.295783333333333";
-    protected String longitude = "59.92545";
+    public void setLastUpdated(Date lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
 
     public City(String name) {
         this.name = name;
     }
 
+    public City() {
+    }
+
+    @Override
+    public int hashCode() {
+        return 0x63abe93f^id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof City)) return false;
+
+        City city = (City) o;
+
+        if (id != city.id) return false;
+
+        return true;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLongitude() {
@@ -39,5 +94,35 @@ public class City {
 
     public void setLatitude(String latitude) {
         this.latitude = latitude;
+    }
+
+
+    public Forecast getForecast() {
+        return forecast;
+    }
+
+    public void setForecast(Forecast forecast) {
+        this.forecast = forecast;
+    }
+
+    public static List<City> loadAllFromDB() {
+        return DatabaseHelperHolder.getHelper().getCitiesDataDao().queryForAll();
+    }
+
+    public void save() {
+        DatabaseHelperHolder.getHelper().getCitiesDataDao().createOrUpdate(this);
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public void delete() {
+        DatabaseHelperHolder.getHelper().getCitiesDataDao().delete(this);
+    }
+
+    public City getUpdated(){
+        return DatabaseHelperHolder.getHelper().getCitiesDataDao().queryForSameId(this);
     }
 }
