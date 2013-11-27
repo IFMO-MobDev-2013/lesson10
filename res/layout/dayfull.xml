@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/space3" android:layout_weight="1"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" android:layout_weight="1">
+        <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/space1" android:layout_weight="1"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewNameFull" android:layout_weight="0" style="@style/TownName"
+                android:text="Name"/>
+        <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/space2" android:layout_weight="1"/>
+    </LinearLayout>
+    <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/space5" android:layout_weight="1"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal"
+                  android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:id="@+id/linearLayout" android:layout_weight="3">
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                   android:id="@+id/imageViewFull"
+                   android:layout_weight="1"/>
+        <LinearLayout android:orientation="vertical" android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" android:layout_weight="1">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="@string/DayDate" android:id="@+id/textViewDateFull" android:layout_weight="1"
+                      style="@style/CodeFont"/>
+            <Space android:layout_width="20px" android:layout_height="20px" android:id="@+id/space"
+                   android:layout_weight="1"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/textViewCloudsFull" android:layout_weight="1" style="@style/NumberFont"
+                      android:text="Clouds"/>
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical" android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" android:layout_weight="1">
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="High: "
+                        android:id="@+id/textView" style="@style/LightFont"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="@string/HighTemperature" android:id="@+id/textViewHighFull"
+                          android:layout_weight="1" style="@style/NumberFont"/>
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent"
+                          android:layout_height="fill_parent" android:id="@+id/linearLayout1">
+                <TextView style="@style/LightFont" android:layout_width="wrap_content"
+                          android:layout_height="wrap_content" android:text="Low: " android:id="@+id/textView1"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="@string/LowTemperature" android:id="@+id/textViewLowFull"
+                          android:layout_weight="1" style="@style/NumberFont"/>
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent"
+                          android:layout_height="fill_parent" android:id="@+id/linearLayout2">
+                <TextView style="@style/LightFont" android:layout_width="wrap_content"
+                          android:layout_height="wrap_content" android:text="Wind: "
+                          android:id="@+id/textViewWindSpeedText"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="@string/WindForce" android:id="@+id/textViewWindFull" android:layout_weight="1"
+                          style="@style/NumberFont"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" android:layout_weight="3">
+        <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/space4" android:layout_weight="1"/>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent" android:layout_weight="1">
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pressure: "
+                        android:id="@+id/textViewPressureText" style="@style/LightFont" android:singleLine="false"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:text="@string/Pressure"
+                        android:id="@+id/textViewPressure" android:layout_weight="1" style="@style/NumberFont"/>
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent"
+                          android:layout_height="wrap_content" android:id="@+id/linearLayout3">
+                <TextView style="@style/LightFont" android:layout_width="wrap_content"
+                          android:layout_height="wrap_content" android:text="Humidity: "
+                          android:id="@+id/textViewHumidityText"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:text="@string/Humidity"
+                        android:id="@+id/textViewHumidity" android:layout_weight="1" style="@style/NumberFont"/>
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent"
+                          android:layout_height="wrap_content" android:id="@+id/linearLayout4">
+                <TextView style="@style/LightFont" android:layout_width="wrap_content"
+                          android:layout_height="wrap_content" android:text="Wind direction: "
+                          android:id="@+id/textViewWindDirectionText"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:text="@string/WindDirection"
+                        android:id="@+id/textViewWindDirection" android:layout_weight="1" style="@style/NumberFont"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

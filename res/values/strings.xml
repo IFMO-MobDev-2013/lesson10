@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="ClearSpace">Some edits have not symbols</string>
+    <string name="ChangeChannelButton">Save</string>
+    <string name="SuccessfulUpdate">Updating was successful</string>
+    <string name="DeleteChannelButton">Delete the town</string>
+    <string name="URLTextView">URL</string>
+    <string name="ChannelNameTextView">Name of the town</string>
+    <string name="NewChannelButton">New town</string>
+    <string name="UpdateButton">Update</string>
+    <string name="LastUpdateTextView">Last update:</string>
+    <string name="UpdateThisChannelButton">Update this town</string>
+    <string name="ErrorWithInternet">Some towns can not be updated</string>
+    <string name="ErrorChannel">Some strange error - town</string>
+    <string name="UpdateOneChannel">Successful update of</string>
+    <string name="HintHttp">Do not forget to type http:// prefix</string>
+    <string name="FindTowns">Find</string>
+    <string name="DayDate">Date:</string>
+    <string name="LowTemperature">Low:</string>
+    <string name="HighTemperature">High:</string>
+    <string name="WindForce">Wind:</string>
+    <string name="Pressure">Pressure:</string>
+    <string name="Humidity">Humidity:</string>
+    <string name="WindDirection">Wind direction:</string>
+    <string name="YesDelete">Yes</string>
+    <string name="NoDelete">No</string>
+    <string name="IfDelete">Delete this town?</string>
+    <string name="TownsDownload">You see all results</string>
+</resources>
