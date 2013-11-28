@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" android:background="@drawable/back">
+
+    <LinearLayout
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent" android:layout_weight="1">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No Current City"
+                    android:id="@+id/cur_city" android:textSize="30dp"
+                    android:textColor="@android:color/holo_orange_dark"/>
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Unknown Country"
+                    android:id="@+id/cur_country" android:textSize="18dp"
+                    android:textColor="@android:color/holo_orange_light"/>
+        </LinearLayout>
+        <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent">
+            <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:id="@+id/progressBar"/>
+            <ImageButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/imageButton" android:background="@null"
+                    android:src="@android:drawable/stat_notify_sync"/>
+        </FrameLayout>
+    </LinearLayout>
+
+
+    <android.support.v4.view.ViewPager
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:id="@+id/myViewPager" android:layout_weight="10"/>
+</LinearLayout>
