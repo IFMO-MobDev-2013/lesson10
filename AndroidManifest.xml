@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.example.lesson10">
+    <uses-sdk android:minSdkVersion="15"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
+        <activity android:name=".Program"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".CityActivity"
+                  android:label="@string/app_name">
+        </activity>
+        <activity android:name=".CityEditActivity"
+                  android:label="@string/app_name">
+        </activity>
+        <activity android:name=".ChooseCityActivity"
+                  android:label="@string/app_name">
+        </activity>
+        <service android:name=".MyService" android:enabled="true">
+
+        </service>
+        <receiver android:name=".Reloader">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>
