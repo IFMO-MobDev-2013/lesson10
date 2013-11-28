@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content">
+    <TextView
+            android:id="@+id/ColCity"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#fffde3" android:textSize="24dp" android:textIsSelectable="false"
+            android:paddingLeft="6dip"
+            android:text="city" android:layout_marginLeft="5dp"/>
+    <TextView
+            android:id="@+id/ColCountry"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#c3f0c7" android:textSize="17dp" android:textIsSelectable="false"
+            android:text="country" android:gravity="right" android:layout_marginTop="1dp"
+            android:layout_marginBottom="7dp" android:layout_marginRight="10dp"/>
+</LinearLayout>
