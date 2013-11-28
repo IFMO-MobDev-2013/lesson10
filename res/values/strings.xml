@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">lesson9</string>
+    <string name="cityname">city_name</string>
+    <string name="cityid">city_id</string>
+</resources>
