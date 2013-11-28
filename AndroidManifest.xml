@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.example.MaWeather"
+          android:versionCode="1"
+          android:versionName="1.0">
+    <uses-sdk android:minSdkVersion="13"/>
+    <uses-permission
+            android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+            />
+    <application android:label="@string/app_name" android:icon="@drawable/start">
+        <activity android:name=".Dispatcher"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".WeatherActivity"
+                  android:label="@string/app_name">
+        </activity>
+        <activity android:name=".AddActivity"
+                  android:label="@string/app_name">
+        </activity>
+        <activity android:name=".StartActivity"
+                  android:label="@string/app_name">
+        </activity>
+        <service android:name=".WeatherGetter" />
+        <service android:name=".CityGetter" />
+        <service android:name=".Refresher" />
+    </application>
+</manifest>
