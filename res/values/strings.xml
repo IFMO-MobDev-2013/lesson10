@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Weatherix</string>
+    <string name="choose">Выберите город:</string>
+    <string name="download">Загружаем...</string>
+    <string name="add_city">Введите название города:</string>
+    <string name="city_hint">Введите название города...</string>
+    <string name="search">Искать</string>
+    <string name="plus">+</string>
+    <string name="remove">Удалить</string>
+</resources>
