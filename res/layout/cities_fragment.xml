@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cityNameInput" android:layout_gravity="left|center_vertical"
+            android:layout_alignParentLeft="true"
+            android:layout_alignWithParentIfMissing="false" android:layout_toLeftOf="@+id/cityAddBtn"
+            android:layout_above="@+id/cityList" android:layout_alignBottom="@+id/cityAddBtn"
+            android:singleLine="true"/>
+    <Button
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/add"
+            android:id="@+id/cityAddBtn"
+            android:layout_alignParentRight="true"
+            android:clickable="true"/>
+    <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="230dp"
+            android:id="@+id/cityList"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/cityAddBtn"/>
+</RelativeLayout>

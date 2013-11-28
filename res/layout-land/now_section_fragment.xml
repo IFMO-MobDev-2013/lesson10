@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <ImageView
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:id="@+id/ns_imageView" android:layout_alignParentLeft="true" android:layout_alignParentTop="true"
+            />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Summary"
+            android:id="@+id/ns_summary"
+            android:layout_toRightOf="@+id/ns_imageView" android:layout_alignTop="@+id/ns_imageView"
+            android:layout_marginLeft="20dp" android:layout_marginTop="10dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/realTempLabel"
+            android:id="@+id/ns_realTemp"
+            android:layout_alignLeft="@+id/ns_summary" android:layout_below="@+id/ns_summary"
+            android:layout_marginTop="10dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/apparentTempLabel"
+            android:id="@+id/ns_apparentTemp"
+            android:layout_alignLeft="@+id/ns_realTemp" android:layout_below="@+id/ns_realTemp"
+            android:layout_marginTop="10dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/windSpeedLabel"
+            android:id="@+id/ns_windSpeed"
+            android:layout_alignLeft="@+id/ns_apparentTemp" android:layout_below="@+id/ns_apparentTemp"
+            android:layout_marginTop="10dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pressureLabel"
+            android:id="@+id/ns_pressure"
+            android:layout_alignLeft="@+id/ns_windSpeed" android:layout_below="@+id/ns_windSpeed"
+            android:layout_marginTop="10dp"/>
+</RelativeLayout>
