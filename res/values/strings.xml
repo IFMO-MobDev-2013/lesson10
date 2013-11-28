@@ -4,7 +4,8 @@
     <string name="txt_weather_now">Now</string>
     <string name="txt_degrees">°C</string>
     <string name="txt_humidity">Humidity: %.0f</string>
-    <string name="txt_pressure">Pressure: %.0f Torr</string>
+    <string name="txt_pressure">%.0f Torr</string>
+    <string name="txt_wind" formatted ="false">Wind: %.0f m/s %s</string>
     <string name="txt_weather_soon">Soon</string>
     <string name="txt_weather_later">Later</string>
 </resources>

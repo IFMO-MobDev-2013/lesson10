@@ -19,6 +19,15 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+    <ScrollView
+            android:id="@+id/sv_scroller"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+    <LinearLayout
+            android:id="@+id/lyt_lists_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,13 +38,15 @@
             android:text="@string/txt_weather_soon"
             android:background="@android:color/holo_blue_dark"
             android:textColor="@android:color/primary_text_dark"/>
-    <ListView
+    <LinearLayout
+            android:orientation="vertical"
             android:id="@+id/lv_weather_soon"
             android:fadingEdge="vertical"
             android:fadingEdgeLength="10dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="@android:drawable/dialog_holo_light_frame"/>
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,11 +57,16 @@
             android:text="@string/txt_weather_later"
             android:background="@android:color/holo_blue_dark"
             android:textColor="@android:color/primary_text_dark"/>
-    <ListView
+    <LinearLayout
+            android:orientation="vertical"
             android:id="@+id/lv_weather_later"
             android:fadingEdge="vertical"
             android:fadingEdgeLength="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:drawable/dialog_holo_light_frame"/>
+    </LinearLayout>
+    </ScrollView>
 </LinearLayout>
 
