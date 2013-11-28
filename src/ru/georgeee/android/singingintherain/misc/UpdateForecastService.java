@@ -7,6 +7,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Looper;
 import dme.forecastiolib.ForecastIO;
 import ru.georgeee.android.singingintherain.R;
 import ru.georgeee.android.singingintherain.model.City;
@@ -52,6 +53,26 @@ public class UpdateForecastService extends IntentService {
             Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             if(location != null){
                 city = City.updateCurrentLocation(location.getLatitude(), location.getLongitude());
+            } else{
+                locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, new LocationListener() {
+                    @Override
+                    public void onLocationChanged(Location location) {
+                        City city = City.updateCurrentLocation(location.getLatitude(), location.getLongitude());
+                        UpdateForecastService.startService(getApplicationContext(), city);
+                    }
+
+                    @Override
+                    public void onStatusChanged(String provider, int status, Bundle extras) {
+                    }
+
+                    @Override
+                    public void onProviderEnabled(String provider) {
+                    }
+
+                    @Override
+                    public void onProviderDisabled(String provider) {
+                    }
+                }, Looper.getMainLooper());
             }
         }
 

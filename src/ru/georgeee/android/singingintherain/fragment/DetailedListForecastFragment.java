@@ -37,8 +37,8 @@ abstract public class DetailedListForecastFragment extends ForecastFragment {
             listAdapter.clear();
             if (forecast != null && (dataPoints = getDataPoints(forecast)) != null) {
                 listAdapter.addAll(dataPoints);
-                listAdapter.notifyDataSetChanged();
             }
+            listAdapter.notifyDataSetChanged();
         }
     }
 
