@@ -3,6 +3,10 @@ package ru.georgeee.android.singingintherain.misc;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
 import dme.forecastiolib.ForecastIO;
 import ru.georgeee.android.singingintherain.R;
 import ru.georgeee.android.singingintherain.model.City;
@@ -43,7 +47,18 @@ public class UpdateForecastService extends IntentService {
         ForecastIO fio = new ForecastIO(getResources().getString(R.string.forecast_io_api_key));
         fio.setUnits(ForecastIO.UNITS_SI);
 
-        if (fio.getForecast(city.getLatitude(), city.getLongitude())) {
+        if(city.getId() == City.CURRENT_LOCATION_ID){
+            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            if(location != null){
+                city = City.updateCurrentLocation(location.getLatitude(), location.getLongitude());
+            }
+        }
+
+        String lng = city.getLongitude();
+        String lat = city.getLatitude();
+
+        if (lng != null && lat != null && fio.getForecast(lat, lng)) {
             Forecast forecast = city.getForecast();
             if (forecast == null) forecast = new Forecast();
             if (fio.hasCurrently())

@@ -19,18 +19,53 @@ import java.util.List;
 @DatabaseTable(tableName = "cities")
 public class City implements Serializable {
 
+    public static final int CURRENT_LOCATION_ID = 1;
     @DatabaseField(generatedId = true)
     protected int id;
     @DatabaseField(unique = true)
     protected String name;
     @DatabaseField
-    protected String latitude;
+    protected String latitude = null;
     @DatabaseField
-    protected String longitude;
-    @DatabaseField (dataType= DataType.SERIALIZABLE)
+    protected String longitude = null;
+    @DatabaseField(dataType = DataType.SERIALIZABLE)
     protected Forecast forecast;
     @DatabaseField
     protected Date forecastLastUpdated;
+
+    public City(String name) {
+        this.name = name;
+    }
+
+    public City() {
+    }
+
+    public static List<City> loadAllFromDB() {
+        return DatabaseHelperHolder.getHelper().getCitiesDataDao().queryForAll();
+    }
+
+    public static City updateCurrentLocation(double lat, double lng) {
+        return updateCurrentLocation(String.valueOf(lat), String.valueOf(lng));
+    }
+
+    public static City updateCurrentLocation(String lat, String lng) {
+        City city = DatabaseHelperHolder.getHelper().getCitiesDataDao().queryForId(CURRENT_LOCATION_ID);
+        city.setLatitude(lat);
+        city.setLongitude(lng);
+        city.save();
+        return city;
+    }
+
+    public static List<City> loadAllEditableFromDB() {
+        List<City> result = loadAllFromDB();
+        for (int i = 0; i < result.size(); ++i) {
+            if (result.get(i).getId() == CURRENT_LOCATION_ID) {
+                result.remove(i);
+                break;
+            }
+        }
+        return result;
+    }
 
     public Date getForecastLastUpdated() {
         return forecastLastUpdated;
@@ -40,16 +75,9 @@ public class City implements Serializable {
         this.forecastLastUpdated = forecastLastUpdated;
     }
 
-    public City(String name) {
-        this.name = name;
-    }
-
-    public City() {
-    }
-
     @Override
     public int hashCode() {
-        return 0x63abe93f^id;
+        return 0x63abe93f ^ id;
     }
 
     @Override
@@ -96,17 +124,12 @@ public class City implements Serializable {
         this.latitude = latitude;
     }
 
-
     public Forecast getForecast() {
         return forecast;
     }
 
     public void setForecast(Forecast forecast) {
         this.forecast = forecast;
-    }
-
-    public static List<City> loadAllFromDB() {
-        return DatabaseHelperHolder.getHelper().getCitiesDataDao().queryForAll();
     }
 
     public void save() {
@@ -122,7 +145,7 @@ public class City implements Serializable {
         DatabaseHelperHolder.getHelper().getCitiesDataDao().delete(this);
     }
 
-    public City getUpdated(){
+    public City getUpdated() {
         return DatabaseHelperHolder.getHelper().getCitiesDataDao().queryForSameId(this);
     }
 }

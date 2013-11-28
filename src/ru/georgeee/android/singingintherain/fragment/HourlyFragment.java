@@ -37,6 +37,7 @@ public class HourlyFragment extends DetailedListForecastFragment {
         }
 
         protected final SimpleDateFormat hliTimeFormat = new SimpleDateFormat(getString(R.string.hliTimeFormat));
+
         @Override
         public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
             View rowView = inflater.inflate(R.layout.hourly_list_item, null, true);

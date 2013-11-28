@@ -80,8 +80,8 @@ public class WeekFragment extends DetailedListForecastFragment {
             imageView = (ImageView) rowView.findViewById(R.id.wliex_imageView);
             Forecast.DataPoint dataPoint = dataPoints.get(groupPosition);
             if (dataPoint != null) {
-                apparentTemp.setText(getString(R.string.apparentTempLabel, dataPoint.getApparentTemperatureMin(), dataPoint.getApparentTemperatureMax()));
-                realTemp.setText(getString(R.string.realTempLabel, dataPoint.getTemperatureMin(), dataPoint.getTemperatureMax()));
+                apparentTemp.setText(getString(R.string.apparentTempLabelRange, dataPoint.getApparentTemperatureMin(), dataPoint.getApparentTemperatureMax()));
+                realTemp.setText(getString(R.string.realTempLabelRangeShort, dataPoint.getTemperatureMin(), dataPoint.getTemperatureMax()));
                 windSpeed.setText(getString(R.string.windSpeedLabel, dataPoint.getWindSpeed()));
                 pressure.setText(getString(R.string.pressureLabel, dataPoint.getPressure()));
                 summary.setText(dataPoint.getSummary());

@@ -8,9 +8,10 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
+import ru.georgeee.android.singingintherain.R;
+import ru.georgeee.android.singingintherain.misc.UpdateForecastService;
 
 import java.sql.SQLException;
-import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,14 +24,17 @@ public class DatabaseHelper  extends OrmLiteSqliteOpenHelper {
 
     private static final String DATABASE_NAME = "database.db";
     // any time you make changes to your database objects, you may have to increase the database version
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 15;
 
     // the DAO object we use to access the SimpleData table
     private Dao<City, Integer> cityDao = null;
     private RuntimeExceptionDao<City, Integer> cityRuntimeDao = null;
 
+    Context parentContext;
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        parentContext = context;
     }
 
     /**
@@ -47,11 +51,12 @@ public class DatabaseHelper  extends OrmLiteSqliteOpenHelper {
             throw new RuntimeException(e);
         }
 
-        City spb = new City();
-        spb.setName("SPB");
-        spb.setLatitude("59.941");
-        spb.setLongitude("30.3570167");
-        spb.save();
+        City city = new City();
+        city.setId(City.CURRENT_LOCATION_ID);
+        city.setName(parentContext.getResources().getString(R.string.currentLocationLabel));
+        city.save();
+
+        UpdateForecastService.startService(parentContext, city);
 //        // here we try inserting data in the on-create as a test
 //        RuntimeExceptionDao<City, Integer> dao = getCitiesDataDao();
 //        // create some entries in the onCreate

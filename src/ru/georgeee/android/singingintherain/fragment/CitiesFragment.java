@@ -135,7 +135,7 @@ public class CitiesFragment extends Fragment {
         cityNameInput = (AutoCompleteTextView) rootView.findViewById(R.id.cityNameInput);
         cityListView = (ListView) rootView.findViewById(R.id.cityList);
         cityNameInput.setAdapter(new AutoCompleteAdapter(inflater.getContext(), R.layout.autocomplete_list_item));
-        cityListAdapter = new ArrayAdapter<City>(inflater.getContext(), R.layout.autocomplete_list_item, City.loadAllFromDB());
+        cityListAdapter = new ArrayAdapter<City>(inflater.getContext(), R.layout.autocomplete_list_item, City.loadAllEditableFromDB());
         cityListView.setAdapter(cityListAdapter);
         registerForContextMenu(cityListView);
         cityAddButton.setOnClickListener(new View.OnClickListener() {

@@ -5,7 +5,12 @@ import android.app.Application;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
 import ru.georgeee.android.singingintherain.misc.AlarmBroadcastReceiver;
+import ru.georgeee.android.singingintherain.model.City;
 import ru.georgeee.android.singingintherain.model.DatabaseHelperHolder;
 
 /**
@@ -32,6 +37,8 @@ public class MyApplication extends Application {
         Intent intent = new Intent(getApplicationContext(), AlarmBroadcastReceiver.class);
         PendingIntent alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), ALARM_INTERVAL * 1000L, alarmIntent);
+
+
     }
 
     @Override
