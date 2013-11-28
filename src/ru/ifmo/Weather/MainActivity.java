@@ -285,7 +285,8 @@ public class MainActivity extends Activity {
                 locations = mDbHelper.getAllTowns();
                 isTownListChanged = true;
             }
-            updateWeather(data.getExtras().getInt("choosedTown", curTown));
+            Object k = data.getIntExtra("choosedTown", curTown);
+            updateWeather(data.getIntExtra("choosedTown", curTown));
         }
     }
 
