@@ -116,6 +116,7 @@ public class TownsActivity extends Activity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
+            intentResponse.putExtra("towns changed", true);
             setResult(RESULT_OK, intentResponse);
             finish();
             return true;
