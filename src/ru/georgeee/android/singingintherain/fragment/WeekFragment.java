@@ -42,20 +42,20 @@ public class WeekFragment extends DetailedListForecastFragment {
             View rowView = inflater.inflate(R.layout.week_list_item, null, true);
             TextView time;
             TextView realTemp;
-            TextView summary;
+//            TextView summary;
             ImageView imageView;
             realTemp = (TextView) rowView.findViewById(R.id.wli_realTemp);
-            summary = (TextView) rowView.findViewById(R.id.wli_summary);
+//            summary = (TextView) rowView.findViewById(R.id.wli_summary);
             time = (TextView) rowView.findViewById(R.id.wli_time);
             imageView = (ImageView) rowView.findViewById(R.id.wli_imageView);
             Forecast.DataPoint dataPoint = dataPoints.get(groupPosition);
             if (dataPoint != null) {
                 realTemp.setText(getString(R.string.realTempLabelRangeShort, dataPoint.getTemperatureMin(), dataPoint.getTemperatureMax()));
-                if(summary != null) summary.setText(dataPoint.getSummary());
+//                if(summary != null) summary.setText(dataPoint.getSummary());
                 time.setText(wliTimeFormat.format(dataPoint.getTime()));
             }   else{
                 realTemp.setText("");
-                if(summary != null) summary.setText("");
+//                if(summary != null) summary.setText("");
                 time.setText("");
             }
             int imageResourceId = IconManager.instance().getDrawable(dataPoint == null? null : dataPoint.getIconId(), IconManager.SIZE_SMALL);
@@ -81,7 +81,7 @@ public class WeekFragment extends DetailedListForecastFragment {
             Forecast.DataPoint dataPoint = dataPoints.get(groupPosition);
             if (dataPoint != null) {
                 apparentTemp.setText(getString(R.string.apparentTempLabelRange, dataPoint.getApparentTemperatureMin(), dataPoint.getApparentTemperatureMax()));
-                realTemp.setText(getString(R.string.realTempLabelRangeShort, dataPoint.getTemperatureMin(), dataPoint.getTemperatureMax()));
+                realTemp.setText(getString(R.string.realTempLabelRange, dataPoint.getTemperatureMin(), dataPoint.getTemperatureMax()));
                 windSpeed.setText(getString(R.string.windSpeedLabel, dataPoint.getWindSpeed()));
                 pressure.setText(getString(R.string.pressureLabel, dataPoint.getPressure()));
                 summary.setText(dataPoint.getSummary());

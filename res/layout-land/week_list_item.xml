@@ -12,12 +12,12 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:id="@+id/wli_imageView" android:layout_gravity="center_horizontal|top"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:text="summary"
-                android:id="@+id/wli_summary"
-                android:layout_marginLeft="5dp" android:gravity="center_vertical"/>
+        <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="fill_parent"-->
+                <!--android:text="summary"-->
+                <!--android:id="@+id/wli_summary"-->
+                <!--android:layout_marginLeft="5dp" android:gravity="center_vertical"/>-->
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
@@ -28,7 +28,7 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hliTimeFormat"
+            android:text="@string/wliTimeFormat"
             android:id="@+id/wli_time"
             android:layout_gravity="center_horizontal|bottom" android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/linearLayout" android:gravity="center_vertical"

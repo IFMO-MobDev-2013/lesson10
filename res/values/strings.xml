@@ -21,7 +21,7 @@
     <string name="hliTimeFormat">HH:mm</string>
     <string name="realTempLabelRange">Real:   %1$.2f °C .. %2$.2f °C</string>
     <string name="realTempLabelRangeShort">%1$.2f °C .. %2$.2f °C</string>
-    <string name="wliTimeFormat">dd.MM.yyyy</string>
+    <string name="wliTimeFormat">EEE dd.MM.yyyy</string>
     <string name="apparentTempLabelRange">Apparent:   %1$.2f °C .. %2$.2f °C</string>
     <string name="currentLocationLabel">Current location</string>
 </resources>
