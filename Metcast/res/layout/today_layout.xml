@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"
+        android:baselineAligned="false">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp" android:layout_weight="1" android:layout_gravity="center">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select city ->"
+                android:id="@+id/txtvDate" android:layout_weight="5" android:textSize="20dp"
+                android:layout_gravity="center" android:gravity="center_vertical|center_horizontal"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp" android:layout_weight="3">
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView" android:layout_weight="5" android:src="@drawable/na"
+                android:background="@null" android:layout_gravity="center"/>
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="0°"
+                android:id="@+id/txtvtemp" android:layout_weight="5" android:textSize="60dp"
+                android:layout_gravity="center" android:gravity="center_vertical|center_horizontal"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp" android:layout_weight="3" android:layout_gravity="top">
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:text="Description"
+                android:id="@+id/txtvDescr" android:layout_weight="1" android:textSize="35dp"
+                />
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:text="Wind"
+                android:id="@+id/txtvWind" android:layout_weight="1" android:textSize="30dp"
+                android:layout_gravity="top"/>
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:text="Pressure"
+                android:id="@+id/txtvPress" android:layout_weight="1" android:textSize="30dp"
+                android:layout_gravity="top"/>
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:text="Humidity"
+                android:id="@+id/txtwHum" android:layout_weight="1" android:textSize="30dp"
+                android:layout_gravity="top"/>
+    </LinearLayout>
+</LinearLayout>
