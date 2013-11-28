@@ -66,12 +66,12 @@ public class HourlyFragment extends ForecastFragment {
             TextView windSpeed;
             TextView pressure;
             ImageView imageView;
-            apparentTemp = (TextView) rowView.findViewById(R.id.apparentTemp);
-            realTemp = (TextView) rowView.findViewById(R.id.realTemp);
-            windSpeed = (TextView) rowView.findViewById(R.id.windSpeed);
-            pressure = (TextView) rowView.findViewById(R.id.pressure);
-            summary = (TextView) rowView.findViewById(R.id.summary);
-            imageView = (ImageView) rowView.findViewById(R.id.imageView);
+            apparentTemp = (TextView) rowView.findViewById(R.id.hli_apparentTemp);
+            realTemp = (TextView) rowView.findViewById(R.id.hli_realTemp);
+            windSpeed = (TextView) rowView.findViewById(R.id.hli_windSpeed);
+            pressure = (TextView) rowView.findViewById(R.id.hli_pressure);
+            summary = (TextView) rowView.findViewById(R.id.hli_summary);
+            imageView = (ImageView) rowView.findViewById(R.id.hli_imageView);
             Forecast.DataPoint dataPoint = getItem(position);
             if (dataPoint != null) {
                 apparentTemp.setText(getString(R.string.apparentTempLabelShort, dataPoint.getApparentTemperature()));

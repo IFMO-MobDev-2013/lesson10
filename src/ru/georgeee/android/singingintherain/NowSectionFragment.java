@@ -55,12 +55,12 @@ public class NowSectionFragment extends ForecastFragment {
     protected void onCreateViewImpl(LayoutInflater inflater, ViewGroup container,
                                     Bundle savedInstanceState) {
         if (rootView != null) {
-            apparentTemp = (TextView) rootView.findViewById(R.id.apparentTemp);
-            realTemp = (TextView) rootView.findViewById(R.id.realTemp);
-            windSpeed = (TextView) rootView.findViewById(R.id.windSpeed);
-            pressure = (TextView) rootView.findViewById(R.id.pressure);
-            summary = (TextView) rootView.findViewById(R.id.summary);
-            imageView = (ImageView) rootView.findViewById(R.id.imageView);
+            apparentTemp = (TextView) rootView.findViewById(R.id.ns_apparentTemp);
+            realTemp = (TextView) rootView.findViewById(R.id.ns_realTemp);
+            windSpeed = (TextView) rootView.findViewById(R.id.ns_windSpeed);
+            pressure = (TextView) rootView.findViewById(R.id.ns_pressure);
+            summary = (TextView) rootView.findViewById(R.id.ns_summary);
+            imageView = (ImageView) rootView.findViewById(R.id.ns_imageView);
             onUpdateViewImpl();
         }
     }
