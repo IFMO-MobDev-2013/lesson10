@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" android:background="#0c1bff">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="Moscow"
+            android:id="@+id/textCity" android:layout_gravity="center_vertical" android:layout_weight="1"
+            android:textSize="70dp" android:gravity="center_horizontal"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" android:layout_gravity="left|center_vertical" android:layout_weight="3">
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="7"
+                android:id="@+id/textTemp" android:layout_weight="2" android:autoText="false" android:gravity="center"
+                android:textSize="150dp"/>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent" android:layout_weight="1">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="New Text"
+                    android:id="@+id/textView" android:layout_weight="1" android:gravity="center"
+                    android:textSize="20dp"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="New Text"
+                    android:id="@+id/textView1" android:layout_weight="1" android:gravity="center"
+                    android:textSize="20dp"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="New Text"
+                    android:id="@+id/textView2" android:layout_weight="1" android:gravity="center"
+                    android:textSize="20dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
