@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MaWeather</string>
+    <string name="forecast">" Прогноз"</string>
+    <string name="today">" Сегодня"</string>
+    <string name="morning">Утром</string>
+    <string name="day">Днем</string>
+    <string name="evening">Вечером</string>
+    <string name="choose_city">Выберите город</string>
+</resources>
