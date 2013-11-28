@@ -211,7 +211,7 @@ public class MainActivity extends FragmentActivity {
         public AppSectionsPagerAdapter(FragmentManager fm) {
             super(fm);
             nowFragment = new NowSectionFragment();
-            hourlyFragment = new HourlyFragment();
+            hourlyFragment = new DummySectionFragment();//HourlyFragment();
             weekFragment = new DummySectionFragment();
             List<Fragment> fragments = fm.getFragments();
             if (fragments != null) {

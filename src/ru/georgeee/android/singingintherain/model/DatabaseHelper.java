@@ -22,7 +22,7 @@ public class DatabaseHelper  extends OrmLiteSqliteOpenHelper {
 
     private static final String DATABASE_NAME = "database.db";
     // any time you make changes to your database objects, you may have to increase the database version
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 4;
 
     // the DAO object we use to access the SimpleData table
     private Dao<City, Integer> cityDao = null;
@@ -46,6 +46,11 @@ public class DatabaseHelper  extends OrmLiteSqliteOpenHelper {
             throw new RuntimeException(e);
         }
 
+        City spb = new City();
+        spb.setName("SPB");
+        spb.setLatitude("59.941");
+        spb.setLongitude("30.3570167");
+        spb.save();
 //        // here we try inserting data in the on-create as a test
 //        RuntimeExceptionDao<City, Integer> dao = getCitiesDataDao();
 //        // create some entries in the onCreate

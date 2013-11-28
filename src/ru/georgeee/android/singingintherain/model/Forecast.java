@@ -9,7 +9,9 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -279,23 +281,23 @@ public class Forecast implements Serializable {
 
         protected String iconId;
         protected String summary;
-        protected DataPoint[] dataPoints;
+        protected List<DataPoint> dataPoints;
 
         public DataBlock(JsonObject jsonObject) {
             summary = getString(jsonObject, "summary");
             iconId = getString(jsonObject, "icon");
             try {
                 JsonValue _dataPointsValue = jsonObject.get("data");
-                if (!_dataPointsValue.isArray()) dataPoints = new DataPoint[]{};
+                if (!_dataPointsValue.isArray()) dataPoints = new ArrayList<DataPoint>();
                 else {
                     JsonArray _dataPoints = _dataPointsValue.asArray();
-                    dataPoints = new DataPoint[_dataPoints.size()];
+                    dataPoints = new ArrayList<DataPoint>(_dataPoints.size());
                     for (int i = 0; i < _dataPoints.size(); ++i) {
-                        dataPoints[i] = new DataPoint(_dataPoints.get(i).asObject());
+                        dataPoints.add(new DataPoint(_dataPoints.get(i).asObject()));
                     }
                 }
             } catch (NullPointerException ex) {
-                dataPoints = new DataPoint[]{};
+                dataPoints = new ArrayList<DataPoint>();
             }
         }
 
@@ -307,12 +309,12 @@ public class Forecast implements Serializable {
             return summary;
         }
 
-        public DataPoint[] getDataPoints() {
+        public List<DataPoint> getDataPoints() {
             return dataPoints;
         }
 
         public DataPoint get(int i) {
-            return dataPoints[i];
+            return dataPoints.get(i);
         }
     }
 

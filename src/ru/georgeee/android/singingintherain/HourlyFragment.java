@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.*;
 import ru.georgeee.android.singingintherain.model.Forecast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,7 +19,7 @@ import ru.georgeee.android.singingintherain.model.Forecast;
  * To change this template use File | Settings | File Templates.
  */
 public class HourlyFragment extends ForecastFragment {
-    ListView hourList;
+    ExpandableListView hourList;
     HourlyListAdapter listAdapter;
 
     @Override
@@ -43,22 +43,59 @@ public class HourlyFragment extends ForecastFragment {
     protected void onCreateViewImpl(LayoutInflater inflater, ViewGroup container,
                                     Bundle savedInstanceState) {
         if (rootView != null) {
-            hourList = (ListView) rootView.findViewById(R.id.hourList);
+            hourList = (ExpandableListView) rootView.findViewById(R.id.hourList);
             listAdapter = new HourlyListAdapter(inflater);
             hourList.setAdapter(listAdapter);
             onUpdateViewImpl();
         }
     }
 
-    protected class HourlyListAdapter extends ArrayAdapter<Forecast.DataPoint>{
+    protected class HourlyListAdapter extends BaseExpandableListAdapter{
+        protected ArrayList<Forecast.DataPoint> dataPoints;
+
         protected LayoutInflater inflator;
         public HourlyListAdapter(LayoutInflater inflator) {
-            super(inflator.getContext(), R.layout.hourly_list_item);
             this.inflator = inflator;
+            dataPoints = new ArrayList<Forecast.DataPoint>();
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public int getGroupCount() {
+            return dataPoints.size();
+        }
+
+        @Override
+        public int getChildrenCount(int groupPosition) {
+            return 1;
+        }
+
+        @Override
+        public Object getGroup(int groupPosition) {
+            return dataPoints.get(groupPosition);
+        }
+
+        @Override
+        public Object getChild(int groupPosition, int childPosition) {
+            return getGroup(groupPosition);
+        }
+
+        @Override
+        public long getGroupId(int groupPosition) {
+            return groupPosition;
+        }
+
+        @Override
+        public long getChildId(int groupPosition, int childPosition) {
+            return childPosition;
+        }
+
+        @Override
+        public boolean hasStableIds() {
+            return true;
+        }
+
+        @Override
+        public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
             View rowView = inflator.inflate(R.layout.hourly_list_item, null, true);
             TextView apparentTemp;
             TextView realTemp;
@@ -72,7 +109,7 @@ public class HourlyFragment extends ForecastFragment {
             pressure = (TextView) rowView.findViewById(R.id.pressure);
             summary = (TextView) rowView.findViewById(R.id.summary);
             imageView = (ImageView) rowView.findViewById(R.id.imageView);
-            Forecast.DataPoint dataPoint = getItem(position);
+            Forecast.DataPoint dataPoint = dataPoints.get(groupPosition);
             if (dataPoint != null) {
                 apparentTemp.setText(getString(R.string.apparentTempLabelShort, dataPoint.getApparentTemperature()));
                 realTemp.setText(getString(R.string.realTempLabelShort, dataPoint.getTemperature()));
@@ -89,6 +126,53 @@ public class HourlyFragment extends ForecastFragment {
             int imageResourceId = MainActivity.getDrawable(dataPoint == null? null : dataPoint.getIconId(), true);
             imageView.setImageResource(imageResourceId);
             return rowView;
+        }
+
+        @Override
+        public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+            View rowView = inflator.inflate(R.layout.hourly_list_item_expanded, null, true);
+            TextView apparentTemp;
+            TextView realTemp;
+            TextView summary;
+            TextView windSpeed;
+            TextView pressure;
+            ImageView imageView;
+            apparentTemp = (TextView) rowView.findViewById(R.id.apparentTemp);
+            realTemp = (TextView) rowView.findViewById(R.id.realTemp);
+            windSpeed = (TextView) rowView.findViewById(R.id.windSpeed);
+            pressure = (TextView) rowView.findViewById(R.id.pressure);
+            summary = (TextView) rowView.findViewById(R.id.summary);
+            imageView = (ImageView) rowView.findViewById(R.id.imageView);
+            Forecast.DataPoint dataPoint = dataPoints.get(groupPosition);
+            if (dataPoint != null) {
+                apparentTemp.setText(getString(R.string.apparentTempLabelShort, dataPoint.getApparentTemperature()));
+                realTemp.setText(getString(R.string.realTempLabelShort, dataPoint.getTemperature()));
+                windSpeed.setText(getString(R.string.windSpeedLabelShort, dataPoint.getWindSpeed()));
+                pressure.setText(getString(R.string.pressureLabelShort, dataPoint.getPressure()));
+                summary.setText(dataPoint.getSummary());
+            }   else{
+                apparentTemp.setText("");
+                realTemp.setText("");
+                windSpeed.setText("");
+                pressure.setText("");
+                summary.setText("");
+            }
+            int imageResourceId = MainActivity.getDrawable(dataPoint == null? null : dataPoint.getIconId(), true);
+            imageView.setImageResource(imageResourceId);
+            return rowView;
+        }
+
+        @Override
+        public boolean isChildSelectable(int groupPosition, int childPosition) {
+            return true;
+        }
+
+        public void clear() {
+            dataPoints.clear();
+        }
+
+        public void addAll(List<Forecast.DataPoint> dataPoints) {
+            this.dataPoints.addAll(dataPoints);
         }
     }
 }
