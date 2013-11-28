@@ -1,7 +1,6 @@
-package ru.georgeee.android.singingintherain;
+package ru.georgeee.android.singingintherain.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.*;
@@ -12,12 +11,11 @@ import com.google.code.geocoder.model.GeocodeResponse;
 import com.google.code.geocoder.model.GeocoderRequest;
 import com.google.code.geocoder.model.GeocoderResult;
 import com.google.code.geocoder.model.LatLng;
+import ru.georgeee.android.singingintherain.R;
+import ru.georgeee.android.singingintherain.misc.UpdateForecastService;
 import ru.georgeee.android.singingintherain.model.City;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -105,7 +103,7 @@ public class CitiesFragment extends Fragment {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        if (v.getId()==R.id.cityList) {
+        if (v.getId()== R.id.cityList) {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
             menu.setHeaderTitle(cityListAdapter.getItem(info.position).getName());
             menu.add(0, MENU_DELETE_ITEM, 0, getString(R.string.deleteBtn));

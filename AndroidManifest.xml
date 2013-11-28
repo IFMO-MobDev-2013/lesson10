@@ -5,8 +5,8 @@
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="14"/>
     <uses-permission android:name="android.permission.INTERNET"/>
-    <application android:label="@string/app_name" android:icon="@drawable/singing_in_the_rain_icon" android:name=".MyApplication">
-        <activity android:name=".MainActivity"
+    <application android:label="@string/app_name" android:icon="@drawable/singing_in_the_rain_icon" android:name=".main.MyApplication">
+        <activity android:name=".main.MainActivity"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -15,14 +15,14 @@
         </activity>
 
         <activity
-                android:name=".SettingsActivity"
+                android:name=".main.SettingsActivity"
                 android:label="@string/settingsTitle"
                 android:windowSoftInputMode="stateHidden">
         </activity>
 
-        <service android:name=".UpdateForecastService" android:exported="false">
+        <service android:name=".misc.UpdateForecastService" android:exported="false">
         </service>
-        <receiver android:name=".AlarmBroadcastReceiver">
+        <receiver android:name=".misc.AlarmBroadcastReceiver">
         </receiver>
     </application>
 </manifest>

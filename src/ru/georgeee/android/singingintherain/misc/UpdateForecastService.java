@@ -1,12 +1,15 @@
-package ru.georgeee.android.singingintherain;
+package ru.georgeee.android.singingintherain.misc;
 
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import dme.forecastiolib.ForecastIO;
+import ru.georgeee.android.singingintherain.R;
 import ru.georgeee.android.singingintherain.model.City;
 import ru.georgeee.android.singingintherain.model.DatabaseHelperHolder;
 import ru.georgeee.android.singingintherain.model.Forecast;
+
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -52,6 +55,7 @@ public class UpdateForecastService extends IntentService {
             if (fio.hasHourly())
                 forecast.setHourly(fio.getHourly());
             city.setForecast(forecast);
+            city.setForecastLastUpdated(new Date());
             DatabaseHelperHolder.getHelper().getCitiesDataDao().update(city);
 
             Intent newIntent = new Intent();

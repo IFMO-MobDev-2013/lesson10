@@ -34,7 +34,7 @@ public class Forecast implements Serializable {
                 String dateStr = jsonValue.asString();
                 return timeFormat.parse(dateStr);
             } else if (jsonValue.isNumber()) {
-                return new Date(jsonValue.asLong());
+                return new Date(jsonValue.asLong()*1000);
             }
         } catch (NullPointerException e) {
 //            Log.e(DataPoint.class.getCanonicalName(), e.toString());

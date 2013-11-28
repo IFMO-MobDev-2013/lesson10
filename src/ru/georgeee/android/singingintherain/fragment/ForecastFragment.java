@@ -1,4 +1,4 @@
-package ru.georgeee.android.singingintherain;
+package ru.georgeee.android.singingintherain.fragment;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -19,10 +19,10 @@ import ru.georgeee.android.singingintherain.model.Forecast;
  * Time: 2:29
  * To change this template use File | Settings | File Templates.
  */
-abstract class ForecastFragment extends Fragment {
+abstract public class ForecastFragment extends Fragment {
 
-    City city;
-    View rootView;
+    protected City city;
+    protected View rootView;
 
     public void setCity(City city) {
         this.city = city;

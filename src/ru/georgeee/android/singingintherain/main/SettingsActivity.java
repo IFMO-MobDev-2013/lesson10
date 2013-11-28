@@ -1,16 +1,13 @@
-package ru.georgeee.android.singingintherain;
+package ru.georgeee.android.singingintherain.main;
 
 import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.*;
 import android.support.v4.view.ViewPager;
-import android.view.ContextMenu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import com.viewpagerindicator.TitlePageIndicator;
-import ru.georgeee.android.singingintherain.model.City;
+import ru.georgeee.android.singingintherain.R;
+import ru.georgeee.android.singingintherain.fragment.CitiesFragment;
 
 /**
  * Created with IntelliJ IDEA.

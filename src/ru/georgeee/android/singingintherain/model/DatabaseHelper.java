@@ -10,6 +10,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,7 +23,7 @@ public class DatabaseHelper  extends OrmLiteSqliteOpenHelper {
 
     private static final String DATABASE_NAME = "database.db";
     // any time you make changes to your database objects, you may have to increase the database version
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 8;
 
     // the DAO object we use to access the SimpleData table
     private Dao<City, Integer> cityDao = null;

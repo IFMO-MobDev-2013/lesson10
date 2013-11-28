@@ -1,4 +1,4 @@
-package ru.georgeee.android.singingintherain;
+package ru.georgeee.android.singingintherain.main;
 
 import android.app.ActionBar;
 import android.content.BroadcastReceiver;
@@ -18,6 +18,12 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import com.viewpagerindicator.TitlePageIndicator;
+import ru.georgeee.android.singingintherain.R;
+import ru.georgeee.android.singingintherain.fragment.ForecastFragment;
+import ru.georgeee.android.singingintherain.fragment.HourlyFragment;
+import ru.georgeee.android.singingintherain.fragment.NowSectionFragment;
+import ru.georgeee.android.singingintherain.fragment.WeekFragment;
+import ru.georgeee.android.singingintherain.misc.UpdateForecastService;
 import ru.georgeee.android.singingintherain.model.City;
 
 import java.text.DateFormat;
@@ -43,23 +49,6 @@ public class MainActivity extends FragmentActivity {
     TextView lastUpdatedTextView;
     DateFormat lastUpdatedFormat;
 
-    public static int getDrawable(String weatherCode){
-        return getDrawable(weatherCode, false);
-    }
-    public static int getDrawable(String weatherCode, boolean small) {
-        if (weatherCode == null) return R.drawable.na;
-        if (weatherCode.equals("clear-day")) return (small ? R.drawable.clear_day_small : R.drawable.clear_day);
-        if (weatherCode.equals("clear-night")) return (small ? R.drawable.clear_night_small : R.drawable.clear_night);
-        if (weatherCode.equals("cloudy")) return (small ? R.drawable.cloudy_small : R.drawable.cloudy);
-        if (weatherCode.equals("fog")) return (small ? R.drawable.fog_small : R.drawable.fog);
-        if (weatherCode.equals("partly-cloudy-day")) return (small ? R.drawable.partly_cloudy_day_small : R.drawable.partly_cloudy_day);
-        if (weatherCode.equals("partly-cloudy-night")) return (small ? R.drawable.partly_cloudy_night_small : R.drawable.partly_cloudy_night);
-        if (weatherCode.equals("rain")) return (small ? R.drawable.rain_small : R.drawable.rain);
-        if (weatherCode.equals("sleet")) return (small ? R.drawable.sleet_small : R.drawable.sleet);
-        if (weatherCode.equals("snow")) return (small ? R.drawable.snow_small : R.drawable.snow);
-        if (weatherCode.equals("wind")) return (small ? R.drawable.wind_small : R.drawable.wind);
-        return R.drawable.na;
-    }
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +56,7 @@ public class MainActivity extends FragmentActivity {
 
         spinnerAdapter = new ArrayAdapter<City>(this, android.R.layout.simple_spinner_dropdown_item, City.loadAllFromDB());
 
-        lastUpdatedTextView = (TextView) findViewById(R.id.lastUpdated);
+        lastUpdatedTextView = (TextView) findViewById(R.id.forecastLastUpdated);
         lastUpdatedFormat = new SimpleDateFormat(getString(R.string.lastUpdatedTimeFormat));
 
         actionBar = getActionBar();
@@ -109,7 +98,7 @@ public class MainActivity extends FragmentActivity {
 
     public void updateCity() {
         pagerAdapter.update(selectedCity = selectedCity.getUpdated());
-        Date lastUpdated = selectedCity==null?null: selectedCity.getLastUpdated();
+        Date lastUpdated = selectedCity==null?null: selectedCity.getForecastLastUpdated();
         if(lastUpdated == null)
             lastUpdatedTextView.setText("");
         else
@@ -211,8 +200,8 @@ public class MainActivity extends FragmentActivity {
         public AppSectionsPagerAdapter(FragmentManager fm) {
             super(fm);
             nowFragment = new NowSectionFragment();
-            hourlyFragment = new DummySectionFragment();//HourlyFragment();
-            weekFragment = new DummySectionFragment();
+            hourlyFragment = new HourlyFragment();
+            weekFragment = new WeekFragment();
             List<Fragment> fragments = fm.getFragments();
             if (fragments != null) {
                 if (NOW_FRAGMENT_ID < fragments.size())

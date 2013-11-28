@@ -1,42 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+<LinearLayout
               android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" android:id="@+id/linearLayout">
 
     <ImageView
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:id="@+id/imageView" android:layout_gravity="center_horizontal|top"/>
+            android:id="@+id/hli_imageView" android:layout_gravity="center_horizontal|top"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:text="summary"
-            android:id="@+id/summary"
-            android:layout_marginLeft="5dp"/>
+            android:id="@+id/hli_summary"
+            android:layout_marginLeft="5dp" android:gravity="center_vertical"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:text="@string/realTempLabelShort"
-            android:id="@+id/realTemp"
-            android:layout_marginLeft="5dp"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:text="@string/apparentTempLabelShort"
-            android:id="@+id/apparentTemp"
-            android:layout_marginLeft="5dp"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:text="@string/windSpeedLabelShort"
-            android:id="@+id/windSpeed"
-            android:layout_marginLeft="5dp"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:text="@string/pressureLabelShort"
-            android:id="@+id/pressure"
-            android:layout_marginLeft="5dp"/>
+            android:id="@+id/hli_realTemp"
+            android:layout_marginLeft="5dp" android:gravity="center_vertical"/>
+    <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:text="@string/apparentTempLabelShort"-->
+            <!--android:id="@+id/hli_apparentTemp"-->
+            <!--android:layout_marginLeft="5dp"/>-->
+    <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:text="@string/windSpeedLabelShort"-->
+            <!--android:id="@+id/hli_windSpeed"-->
+            <!--android:layout_marginLeft="5dp"/>-->
+    <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:text="@string/pressureLabelShort"-->
+            <!--android:id="@+id/hli_pressure"-->
+            <!--android:layout_marginLeft="5dp"/>-->
 </LinearLayout>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hliTimeFormat"
+            android:id="@+id/hli_time"
+            android:layout_gravity="center_horizontal|bottom" android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/linearLayout" android:gravity="center_vertical"
+            android:layout_alignBottom="@+id/linearLayout"/>
+</RelativeLayout>

@@ -1,10 +1,11 @@
-package ru.georgeee.android.singingintherain;
+package ru.georgeee.android.singingintherain.main;
 
 import android.app.AlarmManager;
 import android.app.Application;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import ru.georgeee.android.singingintherain.misc.AlarmBroadcastReceiver;
 import ru.georgeee.android.singingintherain.model.DatabaseHelperHolder;
 
 /**

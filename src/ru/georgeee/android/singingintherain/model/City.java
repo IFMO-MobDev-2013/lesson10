@@ -29,15 +29,15 @@ public class City implements Serializable {
     protected String longitude;
     @DatabaseField (dataType= DataType.SERIALIZABLE)
     protected Forecast forecast;
+    @DatabaseField
+    protected Date forecastLastUpdated;
 
-    protected Date lastUpdated = new Date();
-
-    public Date getLastUpdated() {
-        return lastUpdated;
+    public Date getForecastLastUpdated() {
+        return forecastLastUpdated;
     }
 
-    public void setLastUpdated(Date lastUpdated) {
-        this.lastUpdated = lastUpdated;
+    public void setForecastLastUpdated(Date forecastLastUpdated) {
+        this.forecastLastUpdated = forecastLastUpdated;
     }
 
     public City(String name) {

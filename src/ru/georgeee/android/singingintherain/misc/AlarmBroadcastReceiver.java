@@ -1,9 +1,8 @@
-package ru.georgeee.android.singingintherain;
+package ru.georgeee.android.singingintherain.misc;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import ru.georgeee.android.singingintherain.model.City;
-import ru.georgeee.android.singingintherain.model.DatabaseHelperHolder;
 
 import java.util.List;
 

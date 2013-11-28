@@ -11,7 +11,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lastUpdatedLabel"
-                android:id="@+id/lastUpdated" android:layout_alignParentRight="true" android:layout_alignParentBottom="true"/>
+                android:id="@+id/forecastLastUpdated" android:layout_alignParentRight="true" android:layout_alignParentBottom="true"/>
     </LinearLayout>
     <android.support.v4.view.ViewPager
             android:id="@+id/pager"
