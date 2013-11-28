@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Global Weather 1.0</string>
+    <string name="app_name">Global Weather 1.5</string>
     <string name="tomorrowLabel">Завтра</string>
     <string name="inadayLabel">Послезавтра</string>
     <string name="in2daysLabel">Через 2 дня</string>

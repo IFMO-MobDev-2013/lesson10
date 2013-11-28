@@ -35,7 +35,7 @@ public class MyService extends IntentService
             Console.print("Count "+sth.getCount());
             while (sth.moveToNext())
             {
-                Console.print("Update id = "+sth.getString(0));
+                //Console.print("Update id = "+sth.getString(0));
                 City city = City.findById(Integer.parseInt(sth.getString(0)));
                 city.startUpdate();
             }
