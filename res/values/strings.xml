@@ -8,4 +8,6 @@
     <string name="txt_wind" formatted ="false">Wind: %.0f m/s %s</string>
     <string name="txt_weather_soon">Soon</string>
     <string name="txt_weather_later">Later</string>
+    <string name="mnu_add_title">Cities</string>
+    <string name="tv_search_title">Start typing to add a city</string>
 </resources>

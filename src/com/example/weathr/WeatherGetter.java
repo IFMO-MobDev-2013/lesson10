@@ -7,45 +7,56 @@ import be.hcpl.android.forecast.http.HttpServiceOutput;
 import be.hcpl.android.forecast.http.ResponseListener;
 import be.hcpl.android.forecast.model.ForecastResponse;
 
+import java.util.Date;
+
 /**
  * Created by Sergey on 11/21/13.
  */
-class Location {
-    Double latitude, longitude;
+class City {
+    long id;
     String name;
 
-    public Location(double latitude, double longitude) {
+    Double  latitude, longitude;
+    ForecastResponse weather;
+    Date lastUpdate = new Date(0);
+
+    public City(){}
+
+    public City(double latitude, double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
-    public Location(String name) {
+    public City(String name) {
         this.name = name;
         findLocationByName();
     }
 
-    public void findLocationByName()
-    {
+    public void findLocationByName() {
         latitude = longitude = 0.;
         //not implemented yet
     }
+
+
 }
 
-public class WeatherGetter extends AsyncTask<Location,ForecastResponse, Void> implements ResponseListener {
+public class WeatherGetter extends AsyncTask<City, ForecastResponse, Void> implements ResponseListener {
+
+    protected City mCity = null;
 
     @Override
-    protected Void doInBackground(Location... params) {
+    protected Void doInBackground(City... params) {
         if (params != null || params.length > 0) {
-            Location l = params[0];
-            if (l != null) {
+            mCity = params[0];
+            if (mCity != null) {
                 ForecastCallBuilder builder = ForecastCallBuilder.getInstance();
-                if (l.latitude == null && l.longitude == null)
-                    l.findLocationByName();
+                if (mCity.latitude == null && mCity.longitude == null)
+                    mCity.findLocationByName();
                 final String API_KEY = "8c6764b3dd349af8c42823da13f41bd6";
                 builder.key(API_KEY)
                        .units(Units.SI)
-                       .latitude(l.latitude)
-                       .longitude(l.longitude)
+                       .latitude(mCity.latitude)
+                       .longitude(mCity.longitude)
                        .performCall(this);
             }
         }
@@ -56,6 +67,10 @@ public class WeatherGetter extends AsyncTask<Location,ForecastResponse, Void> im
     public void handleResponse(HttpServiceOutput result) {
         if (result == null) return;
         ForecastResponse response = result.getForecastResponse();
+        synchronized (mCity) {
+            mCity.weather = response;
+            mCity.lastUpdate = new Date(System.currentTimeMillis());
+        }
         publishProgress(response);
     }
 

@@ -1,34 +1,52 @@
 package com.example.weathr;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import be.hcpl.android.forecast.model.DailyWeatherData;
 import be.hcpl.android.forecast.model.ForecastResponse;
 import be.hcpl.android.forecast.model.HourlyWeatherData;
-import be.hcpl.android.forecast.model.WeatherData;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.prefs.Preferences;
 
-public class MainActivity extends Activity implements Weather.UpdateListener {
+public class MainActivity extends Activity implements WeatherManager.UpdateListener {
+    WeatherManager currentWeatherManager;
+
+    WeatherDBAdapter mDb;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        Weather w = new Weather(this, new Location(59.96, 30.30));
-        w.setUpdateListener(this);
+        City c = new City(59.96, 30.30);
+        c.name = "St. Petersburg";
+        mDb = new WeatherDBAdapter(this);
+        mDb.open();
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        long cityId = defaultSharedPreferences.getLong(LAST_CITY, -1);
+        currentWeatherManager = new WeatherManager(this, cityId == -1 ? c : mDb.getCityById(cityId), this);
+        currentWeatherManager.setUpdateListener(this);
     }
 
+    public static final String LAST_CITY = "last city";
+
     @Override
-    public void onViewsUpdate(Weather weather) {
+    public void onViewsUpdate(WeatherManager weather) {
         LinearLayout lyt_weather_now = (LinearLayout) findViewById(R.id.lyt_weather_now);
         lyt_weather_now.removeAllViewsInLayout();
         lyt_weather_now.addView(weather.getWeatherNowView());
@@ -53,10 +71,52 @@ public class MainActivity extends Activity implements Weather.UpdateListener {
         lyt_lists_container.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
 
-    class StupidViewAdapter extends ArrayAdapter<View> {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mnu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if (currentWeatherManager != null && currentWeatherManager.currentCity != null) {
+            final MenuItem item = menu.findItem(R.id.mnu_choose_city);
+            if (item != null)
+                item.setTitle(currentWeatherManager.currentCity.name);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    public static final int REQUEST_CODE_CITY = 153;
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.mnu_choose_city) {
+            Intent i = new Intent(this, CitiesActivity.class);
+            startActivityForResult(i, REQUEST_CODE_CITY);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_CITY && resultCode == RESULT_OK) {
+            final long longExtra = data.getLongExtra(CitiesActivity.EXTRA_ID, -1);
+            if (longExtra != -1) {
+                SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(this).edit();
+                edit.putLong(LAST_CITY, longExtra);
+                edit.commit();
+            }
+            currentWeatherManager = new WeatherManager(this, mDb.getCityById(longExtra), this);
+            invalidateOptionsMenu();
+        }
+    }
+
+    class PlainViewAdapter extends ArrayAdapter<View> {
         List<View> views;
 
-        public StupidViewAdapter(Context context, List<View> objects) {
+        public PlainViewAdapter(Context context, List<View> objects) {
             super(context, 0, 0, objects);
             views = objects;
         }
@@ -75,37 +135,55 @@ public class MainActivity extends Activity implements Weather.UpdateListener {
     }
 }
 
-class Weather {
-    private Location       mCurrentLocation;
+class WeatherManager {
+    private static final long UPDATE_INTERVAL = 300000;
+    public  City           currentCity;
     private Context        mContext;
     private UpdateListener mUpdateListener;
+    WeatherDBAdapter mDb;
 
-    Weather(Context context) {this(context, null);}
+    WeatherManager(Context context) {this(context, null, null);}
 
-    Weather(Context context, Location location) {
+    WeatherManager(Context context, City city, UpdateListener listener) {
         mContext = context;
-        if (location != null) {
-            setLocation(location);
-            getWeather(location);
+        mDb = new WeatherDBAdapter(context);
+        mUpdateListener = listener;
+        mDb.open();
+        if (city != null) {
+            setLocation(city);
+            if (city.weather == null || (System.currentTimeMillis() - city.lastUpdate.getTime()) >= UPDATE_INTERVAL)
+                getWeather(city.id);
+            else
+                updateViews(city.weather);
         }
     }
 
-    private void getWeather(Location location) {
+    private void getWeather(final Long city_id) {
         new WeatherGetter() {
             @Override
             protected void onProgressUpdate(ForecastResponse... values) {
                 super.onProgressUpdate(values);
+
                 if (values != null && values.length > 0 && values[0] != null)
                     updateViews(values[0]);
+                mDb.putCity(mCity);
             }
-        }.execute(location);
+        }.execute(mDb.getCityById(city_id));
+        /*Intent i = new Intent(mContext, WeatherService.class);
+        i.putExtra(WeatherService.CITY_ID, city_id)   ;
+        if (currentCity != null) {
+            SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(mContext).edit();
+            edit.commit();
+        }
+        mContext.startService(i);*/
     }
 
-    public void setLocation(Location location) {mCurrentLocation = location;}
+    public void setLocation(City city) {currentCity = city;}
 
     public void setUpdateListener(UpdateListener listener) {
         mUpdateListener = listener;
     }
+
 
     private void updateViews(ForecastResponse data) {
         HourlyWeatherData current = data.getCurrently();
@@ -118,10 +196,10 @@ class Weather {
         TextView tv_summary = (TextView) weatherNowView.findViewById(R.id.tv_summary);
         tv_summary.setText(current.getSummary() + "\n");
         tv_summary.append(String.format(mContext.getString(R.string.txt_humidity), current.getHumidity() * 100) + "%\n");
-        tv_summary.append(String.format(mContext.getString(R.string.txt_wind), current.getWindSpeed(), Weather.determineWindDirection(current.getWindBearing()) + "\n"));
+        tv_summary.append(String.format(mContext.getString(R.string.txt_wind), current.getWindSpeed(), WeatherManager.determineWindDirection(current.getWindBearing()) + "\n"));
         tv_summary.append(String.format(mContext.getString(R.string.txt_pressure), current.getPressure() * 0.75006));
 
-        ImageView iv_weather_icon = (ImageView)weatherNowView.findViewById(R.id.iv_weather_icon);
+        ImageView iv_weather_icon = (ImageView) weatherNowView.findViewById(R.id.iv_weather_icon);
         iv_weather_icon.setImageDrawable(getWeatherIcon(current.getIcon()));
 
 
@@ -150,16 +228,16 @@ class Weather {
             tv_summary = (TextView) weatherSoonView.findViewById(R.id.tv_summary);
             tv_summary.setText(h.getSummary() + "\n");
             tv_summary.append(String.format(mContext.getString(R.string.txt_humidity), h.getHumidity() * 100) + "%\n");
-            tv_summary.append(String.format(mContext.getString(R.string.txt_wind), h.getWindSpeed(), Weather.determineWindDirection(h.getWindBearing()) + "\n"));
+            tv_summary.append(String.format(mContext.getString(R.string.txt_wind), h.getWindSpeed(), WeatherManager.determineWindDirection(h.getWindBearing()) + "\n"));
             tv_summary.append(String.format(mContext.getString(R.string.txt_pressure), h.getPressure() * 0.75006));
 
-            iv_weather_icon = (ImageView)weatherSoonView.findViewById(R.id.iv_weather_icon);
+            iv_weather_icon = (ImageView) weatherSoonView.findViewById(R.id.iv_weather_icon);
             iv_weather_icon.setImageDrawable(getWeatherIcon(h.getIcon()));
 
             weatherSoonViews.add(weatherSoonView);
         }
 
-        format = new SimpleDateFormat("MMM d', 'E");
+        format = new SimpleDateFormat("E', 'MMM d");
 
         //Weather later
 
@@ -182,15 +260,15 @@ class Weather {
             tv_temperature.setText(Long.toString(Math.round(w.getApparentTemperatureMin())) + mContext.getString(R.string.txt_degrees));
             tv_temperature.append(".." + Long.toString(Math.round(w.getApparentTemperatureMax())) + mContext.getString(R.string.txt_degrees));
 
-            tv_summary = (TextView)weatherLaterView.findViewById(R.id.tv_summary_long);
+            tv_summary = (TextView) weatherLaterView.findViewById(R.id.tv_summary_long);
             tv_summary.setText(w.getSummary() + "\n");
 
             tv_summary = (TextView) weatherLaterView.findViewById(R.id.tv_summary);
             tv_summary.append(String.format(mContext.getString(R.string.txt_humidity), w.getHumidity() * 100) + "%\n");
-            tv_summary.append(String.format(mContext.getString(R.string.txt_wind), w.getWindSpeed(), Weather.determineWindDirection(w.getWindBearing()) + "\n"));
+            tv_summary.append(String.format(mContext.getString(R.string.txt_wind), w.getWindSpeed(), WeatherManager.determineWindDirection(w.getWindBearing()) + "\n"));
             tv_summary.append(String.format(mContext.getString(R.string.txt_pressure), w.getPressure() * 0.75006));
 
-            iv_weather_icon = (ImageView)weatherLaterView.findViewById(R.id.iv_weather_icon);
+            iv_weather_icon = (ImageView) weatherLaterView.findViewById(R.id.iv_weather_icon);
             iv_weather_icon.setImageDrawable(getWeatherIcon(w.getIcon()));
 
             weatherLaterViews.add(weatherLaterView);
@@ -232,6 +310,6 @@ class Weather {
     public List<View> getWeatherLaterViews() { return weatherLaterViews; }
 
     interface UpdateListener {
-        void onViewsUpdate(Weather weather);
+        void onViewsUpdate(WeatherManager weather);
     }
 }
