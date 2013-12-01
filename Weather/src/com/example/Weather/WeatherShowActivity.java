@@ -1,7 +1,10 @@
 package com.example.Weather;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -9,6 +12,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -65,5 +69,24 @@ public class WeatherShowActivity extends Activity {
         fillArray();
     }
 
+    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            fillArray();
+            Toast.makeText(context, (intent.getBooleanExtra(UpdateService.RESULT, false) ? "Successful Update" : "Bad news... Update wasn't successful"), Toast.LENGTH_SHORT).show();
+        }
+    };
 
+    @Override
+    protected void onResume() {
+        super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
+        registerReceiver(mMessageReceiver, new IntentFilter(UpdateService.ACTION));
+        fillArray();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();    //To change body of overridden methods use File | Settings | File Templates.
+        unregisterReceiver(mMessageReceiver);
+    }
 }

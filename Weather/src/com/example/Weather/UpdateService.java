@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 public class UpdateService extends IntentService {
+    public static final String RESULT = "result";
+    public static final String ACTION = "update";
 
     ArrayList<City> arrayList;
 
@@ -48,13 +50,15 @@ public class UpdateService extends IntentService {
                 }
             }
         } else {
-
             DownloadWeather downloadWeather = new DownloadWeather(arrayList.get(id), getApplicationContext());
             if (!downloadWeather.execute()) {
                 done = false;
             }
         }
-
+        Intent intentResp = new Intent();
+        intentResp.putExtra(RESULT, done);
+        intentResp.setAction(ACTION);
+        sendBroadcast(intentResp);
 
     }
 

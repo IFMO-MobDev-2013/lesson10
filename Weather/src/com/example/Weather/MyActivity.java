@@ -22,7 +22,6 @@ public class MyActivity extends Activity {
     public static final String URL_CITY = "http://api.worldweatheronline.com/free/v1/search.ashx";
     public static final String URL_WEATHER = "http://api.worldweatheronline.com/free/v1/weather.ashx";
     public static ListView listView;
-    private static Random random;
     public static final String FLAG = "flag";
     public static final String ID = "id";
     public static final String CITY_NAME = "city_name";
@@ -108,13 +107,26 @@ public class MyActivity extends Activity {
             }
         });
     }
+    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            readArray();
+            Toast.makeText(context, (intent.getBooleanExtra(UpdateService.RESULT, false) ? "Successful Update" : "Bad news... Update wasn't successful"), Toast.LENGTH_SHORT).show();
+        }
+    };
 
     @Override
     protected void onResume() {
-        super.onResume();
+        super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
+        registerReceiver(mMessageReceiver, new IntentFilter(UpdateService.ACTION));
         readArray();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();    //To change body of overridden methods use File | Settings | File Templates.
+        unregisterReceiver(mMessageReceiver);
+    }
     @Override
     protected void onStart() {
         super.onStart();
