@@ -8,6 +8,7 @@
     <string name="forecast">Прогноз</string>
     <string name="hint">Добавьте название места</string>
     <string name="updated">Новый город добавлен</string>
+    <string name="fail">Новый город не добавлен</string>
     <string name="moderate_snow_with_thunder">Местами сильный снег с грозой</string>
     <string name="patchy_snow_with_thunder">Местами небольшой снег с грозой</string>
     <string name="moderate_rain_with_thunder">Местами сильный дождь с грозой</string>

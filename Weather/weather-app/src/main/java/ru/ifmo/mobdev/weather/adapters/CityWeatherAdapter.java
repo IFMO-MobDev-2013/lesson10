@@ -17,7 +17,7 @@ import ru.ifmo.mobdev.weather.database.DataBaseTable;
 import ru.ifmo.mobdev.weather.weather.Forecast;
 
 /**
- * Created by Nick Smelik on 21.11.13.
+ * Created by Nick Smelik.
  */
 public class CityWeatherAdapter extends BaseAdapter {
 
@@ -58,12 +58,18 @@ public class CityWeatherAdapter extends BaseAdapter {
     public View getView(final int position, View view, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
         view = inflater.inflate(R.layout.city_weather, parent, false);
+        CityInformation cityInformation = currentState.get(position);
         TextView location = (TextView) view.findViewById(R.id.Locatiion);
         TextView weather = (TextView) view.findViewById(R.id.Weather);
         ImageView weatherPicture = (ImageView) view.findViewById(R.id.WeatherPicture);
         ImageView delete = (ImageView) view.findViewById(R.id.Delete);
 
-        CityInformation cityInformation = currentState.get(position);
+        if (cityInformation.getId() == 1) {
+        delete.setImageResource(R.drawable.ic_menu_mylocation);
+        } else {
+            delete.setImageResource(R.drawable.ic_menu_delete);
+        }
+
         if (cityInformation.getForecast() != null) {
             Forecast forecast = cityInformation.getForecast();
             pos = cityInformation.getId();
@@ -79,8 +85,10 @@ public class CityWeatherAdapter extends BaseAdapter {
 
             @Override
             public void onClick(View v) {
-                table.deleteCity(currentState.get(position).getId());
-                refresh();
+                if (!(currentState.get(position).getId() == 1)) {
+                    table.deleteCity(currentState.get(position).getId());
+                    refresh();
+                }
             }
 
         });
@@ -353,7 +361,7 @@ public class CityWeatherAdapter extends BaseAdapter {
                         "°C, " +
                         context.getString(R.string.patchy_snow_nearby));
                 break;
-            case "Patchy rain nearby" :
+            case "u" :
                 weatherPicture.setImageResource(R.drawable.patchy_rain);
                 weather.setText(Integer.toString(forecast.getToday().getMaxTemp()) +
                         "°C, " +

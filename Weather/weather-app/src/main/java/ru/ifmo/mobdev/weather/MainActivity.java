@@ -20,10 +20,11 @@ import ru.ifmo.mobdev.weather.database.dbOpenHelper;
 import ru.ifmo.mobdev.weather.fragments.CityWeatherFragment;
 import ru.ifmo.mobdev.weather.fragments.CurrentWeatherFragment;
 import ru.ifmo.mobdev.weather.fragments.ForecastFragment;
+import ru.ifmo.mobdev.weather.service.UpdateCityService;
 import ru.ifmo.mobdev.weather.service.UpdateWeatherService;
 
 /**
- * Created by Nick Smelik on 26.11.13.
+ * Created by Nick Smelik.
  */
 public class MainActivity extends FragmentActivity {
     private static final IntentFilter UPDATE_FILTER = new IntentFilter(UpdateWeatherService.UPDATE_DONE);
@@ -31,6 +32,7 @@ public class MainActivity extends FragmentActivity {
     private ViewPager mViewPager;
     private TabsAdapter mTabsAdapter;
     private dbOpenHelper helper;
+    private static MyLocationListener myLocationListener;
     DataBaseTable table;
     Context ctx;
     ImageView update;
@@ -39,6 +41,7 @@ public class MainActivity extends FragmentActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             dropAnimation();
+
         }
     };
 
@@ -51,6 +54,15 @@ public class MainActivity extends FragmentActivity {
 
         helper = new dbOpenHelper(this);
         table = new DataBaseTable(helper.getWritableDatabase());
+
+        myLocationListener = new MyLocationListener();
+        myLocationListener.SetUpLocationListener(this);
+        Double latitude, longitude;
+        if (myLocationListener.imHere != null) {
+            latitude = MyLocationListener.imHere.getLatitude();
+            longitude = MyLocationListener.imHere.getLongitude();
+            UpdateCityService.locationUpdate(this, latitude + ", " + longitude);
+        }
 
         UpdateWeatherService.ensureUpdating(this, true);
         ctx = this;

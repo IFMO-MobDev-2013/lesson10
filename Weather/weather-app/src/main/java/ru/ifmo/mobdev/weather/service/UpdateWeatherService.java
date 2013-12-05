@@ -16,7 +16,7 @@ import ru.ifmo.mobdev.weather.weather.Forecast;
 import ru.ifmo.mobdev.weather.weather.WeatherProvider;
 
 /**
- * Created by Nick Smelik on 21.11.13.
+ * Created by Nick Smelik.
  */
 public class UpdateWeatherService extends IntentService {
     public static final String TAG = UpdateWeatherService.class.toString();
@@ -85,7 +85,7 @@ public class UpdateWeatherService extends IntentService {
         for (CityInformation forecast : table.getAll()) {
             if (force || now - forecast.getLastUpdate() >= HOUR) {
                 try {
-                    data = api.getForecast(forecast.getCityName(), DAYS);
+                    data = api.getForecast(forecast.getLatitude() + ", " + forecast.getLongitude(), DAYS);
                     if (data != null) {
                         table.updateForecast(forecast.getId(), data, now);
                     }

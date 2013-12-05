@@ -26,6 +26,8 @@ import ru.ifmo.mobdev.weather.database.dbOpenHelper;
 
 public class CityWeatherFragment extends Fragment {
     private static final IntentFilter UPDATE_FILTER = new IntentFilter(UpdateCityService.UPDATE_DONE);
+    private static final IntentFilter LOCATION_FILTER = new IntentFilter(UpdateCityService.LOCATION_UPDATE_DONE);
+    private static final IntentFilter LOCATION_UPDATE_FAIL = new IntentFilter(UpdateCityService.LOCATION_UPDATE_FAIL);
     private dbOpenHelper helper;
     public CityWeatherAdapter adapter;
     DataBaseTable table;
@@ -38,6 +40,20 @@ public class CityWeatherFragment extends Fragment {
         public void onReceive(Context context, Intent intent) {
             adapter.refresh();
             Toast.makeText(ctx, R.string.updated, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private final BroadcastReceiver location_receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+        }
+    };
+
+    private final BroadcastReceiver fail_reciver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Toast.makeText(ctx, getString(R.string.fail), Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -104,12 +120,16 @@ public class CityWeatherFragment extends Fragment {
     public void onResume() {
         super.onResume();
         getActivity().registerReceiver(receiver, UPDATE_FILTER);
+        getActivity().registerReceiver(location_receiver, LOCATION_FILTER);
+        getActivity().registerReceiver(fail_reciver, LOCATION_UPDATE_FAIL);
         refreshWeather();
     }
 
     @Override
     public void onPause() {
         getActivity().unregisterReceiver(receiver);
+        getActivity().unregisterReceiver(location_receiver);
+        getActivity().unregisterReceiver(fail_reciver);
         super.onPause();
     }
 }

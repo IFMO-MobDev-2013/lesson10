@@ -13,7 +13,7 @@ import java.util.List;
 import ru.ifmo.mobdev.weather.weather.Forecast;
 
 /**
- * Created by Nick Smelik on 21.11.13.
+ * Created by Nick Smelik.
  */
 public class DataBaseTable {
     public static final String TABLE_NAME = "weather";
@@ -46,11 +46,6 @@ public class DataBaseTable {
             LONGITUDE
     );
 
-    private static final String[] INITIAL_DATA = {
-            "Saint Petersburg",
-            "Moscow"
-    };
-
     private static final String DROP_TABLE_QUERY = "drop table if exists " + TABLE_NAME;
     private static final String SELECT_ALL_QUERY = "select * from " + TABLE_NAME;
     private static final String SELECT_CITY_QUERY = "select * from " + TABLE_NAME + " todo where _id = ?";
@@ -59,7 +54,7 @@ public class DataBaseTable {
     public static void init(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE);
         ContentValues values = new ContentValues(6);
-        CityInformation cityInformation = new CityInformation(1, "Saint Petersburg", "Russia", null, 0, 1, 59.894, 30.264);
+        CityInformation cityInformation = new CityInformation(1, "Санкт Петербург", "Россия", null, 0, 1, 59.894, 30.264);
         values.put(CITY_NAME, cityInformation.getCityName());
         values.put(COUNTRY, cityInformation.getCountry());
         values.put(DATA, GSON.toJson(cityInformation.getForecast()));
@@ -111,10 +106,6 @@ public class DataBaseTable {
             updateSelection(1, 1);
         }
         db.delete(TABLE_NAME, "_id = ?", new String[]{ Long.toString(id)});
-    }
-
-    public void updateForecast(long id, Forecast forecast) {
-        updateForecast(id, forecast, System.currentTimeMillis());
     }
 
     public CityInformation getSelected() {
@@ -217,10 +208,15 @@ public class DataBaseTable {
 
     }
 
-    private void addLocation(String location) {
-        ContentValues values = new ContentValues(1);
-        values.put(CITY_NAME, location);
-        db.insertOrThrow(TABLE_NAME, null, values);
+    public void updateLocation(CityInformation cityInformation) {
+        ContentValues values = new ContentValues(6);
+        values.put(CITY_NAME, cityInformation.getCityName());
+        values.put(COUNTRY, cityInformation.getCountry());
+        values.put(DATA, GSON.toJson(cityInformation.getForecast()));
+        values.put(LAST_UPDATE, cityInformation.getLastUpdate());
+        values.put(LATITUDE, cityInformation.getLatitude());
+        values.put(LONGITUDE, cityInformation.getLongitude());
+        db.update(TABLE_NAME, values, "_id = ?", new String[]{ "1" });
     }
 
     

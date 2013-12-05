@@ -8,6 +8,7 @@
     <string name="forecast">Forecast</string>
     <string name="hint">Add place name</string>
     <string name="updated">New city added</string>
+    <string name="fail">New city is not added</string>
     <string name="moderate_snow_with_thunder">Moderate or heavy snow in area with thunder</string>
     <string name="patchy_snow_with_thunder">Patchy light snow in area with thunder</string>
     <string name="moderate_rain_with_thunder">Moderate or heavy rain in area with thunder</string>
@@ -87,5 +88,7 @@
     <string name="WNW">WNW</string>
     <string name="NW">NW</string>
     <string name="NNW">NNW</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
