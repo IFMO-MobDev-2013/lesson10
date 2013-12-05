@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="city">City</string>
+    <string name="city_is_not_found">City is not found</string>
+    <string name="fetching_cities">Fetching cities</string>
+    <string name="add_city">Add city</string>
+    <string name="humidity">Humidity:</string>
+    <string name="pressure">Pressure:</string>
+    <string name="hpa">hPa</string>
+    <string name="wind">Wind:</string>
+    <string name="kmph">km/h</string>
+    <string name="weather_now">Weather now</string>
+    <string name="km">km</string>
+    <string name="forecast">Forecast</string>
+    <string name="fetching_weather">Fetching weather</string>
+    <string name="update_weather">Update</string>
+</resources>
