@@ -187,7 +187,7 @@ public class CitiesActivity extends Activity implements TextWatcher, AdapterView
         @Override
         protected void onPostExecute(ArrayList<String> strings) {
             super.onPostExecute(strings);
-            if (this == actual && strings != null) {
+            if (actual == this && strings != null) {
                 lv_cities.setMultiChoiceModeListener(null);
                 lv_cities.setAdapter(new ArrayAdapter<String>(
                         CitiesActivity.this
@@ -195,8 +195,8 @@ public class CitiesActivity extends Activity implements TextWatcher, AdapterView
                         , android.R.id.text1
                         , strings));
                 lv_cities.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+                finishSearch();
             }
-            finishSearch();
         }
     }
 }
