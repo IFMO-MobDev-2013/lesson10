@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Weathr</string>
+    <string name="txt_weather_now">Now</string>
+    <string name="txt_degrees">°C</string>
+    <string name="txt_humidity">Humidity: %.0f</string>
+    <string name="txt_pressure">%.0f Torr</string>
+    <string name="txt_wind" formatted ="false">Wind: %.0f m/s %s</string>
+    <string name="txt_weather_soon">Soon</string>
+    <string name="txt_weather_later">Later</string>
+    <string name="mnu_add_title">Cities</string>
+    <string name="tv_search_title">Type the city\'s name to add it</string>
+    <string name="tst_on_successful_update">Weather info updated</string>
+    <string name="tst_updating_started">Updating weather</string>
+    <string name="time_minutes"> minutes ago</string>
+    <string name="time_an_hour">an hour ago</string>
+    <string name="time_hours"> hours ago</string>
+    <string name="time_more_than_a_day">more than a day ago</string>
+    <string name="amo_title">%d selected</string>
+    <string name="amo_delete_title">Delete</string>
+</resources>
