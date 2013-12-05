@@ -13,7 +13,7 @@ import java.util.Date;
  * Created by Sergey on 11/21/13.
  */
 class City {
-    long id;
+    long id = -1;
     String name;
 
     Double  latitude, longitude;
@@ -26,21 +26,9 @@ class City {
         this.latitude = latitude;
         this.longitude = longitude;
     }
-
-    public City(String name) {
-        this.name = name;
-        findLocationByName();
-    }
-
-    public void findLocationByName() {
-        latitude = longitude = 0.;
-        //not implemented yet
-    }
-
-
 }
 
-public class WeatherGetter extends AsyncTask<City, ForecastResponse, Void> implements ResponseListener {
+public class WeatherGetter extends AsyncTask<City, City, Void> implements ResponseListener {
 
     protected City mCity = null;
 
@@ -50,8 +38,6 @@ public class WeatherGetter extends AsyncTask<City, ForecastResponse, Void> imple
             mCity = params[0];
             if (mCity != null) {
                 ForecastCallBuilder builder = ForecastCallBuilder.getInstance();
-                if (mCity.latitude == null && mCity.longitude == null)
-                    mCity.findLocationByName();
                 final String API_KEY = "8c6764b3dd349af8c42823da13f41bd6";
                 builder.key(API_KEY)
                        .units(Units.SI)
@@ -71,7 +57,7 @@ public class WeatherGetter extends AsyncTask<City, ForecastResponse, Void> imple
             mCity.weather = response;
             mCity.lastUpdate = new Date(System.currentTimeMillis());
         }
-        publishProgress(response);
+        publishProgress(mCity);
     }
 
     @Override

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_height="fill_parent"
+             android:layout_width="match_parent">
+
+    <FrameLayout
+            android:id="@+id/lyt_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:background="#dd000000">
+
+        <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                style="@android:style/Widget.Holo.Light.ProgressBar"/>
+    </FrameLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:id="@+id/lyt_content"
+                  android:orientation="vertical"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:gravity="center"
+                android:textAllCaps="true"
+                android:text="@string/txt_weather_now"
+                android:background="@android:color/holo_blue_dark"
+                android:textColor="@android:color/primary_text_dark"/>
+
+        <LinearLayout
+                android:id="@+id/lyt_weather_now"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <ScrollView
+                    android:id="@+id/sv_scroller"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="fill_parent">
+
+                <LinearLayout
+                        android:id="@+id/lyt_lists_container"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:gravity="center"
+                            android:textAllCaps="true"
+                            android:text="@string/txt_weather_soon"
+                            android:background="@android:color/holo_blue_dark"
+                            android:textColor="@android:color/primary_text_dark"/>
+
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:id="@+id/lv_weather_soon"
+                            android:fadingEdge="vertical"
+                            android:fadingEdgeLength="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:background="@android:drawable/dialog_holo_light_frame"/>
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView
+                    android:id="@+id/sv_scroller_r"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="fill_parent">
+
+                <LinearLayout
+                        android:id="@+id/lyt_lists_container_r"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:gravity="center"
+                            android:textAllCaps="true"
+                            android:text="@string/txt_weather_later"
+                            android:background="@android:color/holo_blue_dark"
+                            android:textColor="@android:color/primary_text_dark"/>
+
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:id="@+id/lv_weather_later"
+                            android:fadingEdge="vertical"
+                            android:fadingEdgeLength="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@android:drawable/dialog_holo_light_frame"/>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</FrameLayout>

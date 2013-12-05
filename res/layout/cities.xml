@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+            android:id="@+id/focus_holder"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:focusable="true"
+            android:orientation="vertical"/>
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <EditText
+                    android:id="@+id/tv_search"
+                    android:textSize="23sp"
+                    android:layout_width="fill_parent"
+                    android:singleLine="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:hint="@string/tv_search_title"
+                    android:fadingEdge="horizontal"
+                    android:imeOptions="actionSearch"/>
+
+            <ImageButton
+                    android:id="@+id/btn_clear_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="6dp"
+                    android:visibility="gone"
+                    android:background="@drawable/transparent_clickable"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+            <ProgressBar
+                    android:id="@+id/pb_progress_indicator"
+                    android:layout_marginTop="-6dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:layout_gravity="top"
+                    android:visibility="gone"
+                    style="@android:style/Widget.Holo.ProgressBar.Horizontal"/>
+
+            <ListView
+                    android:id="@+id/lv_cities"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"/>
+        </FrameLayout>
+    </LinearLayout>
