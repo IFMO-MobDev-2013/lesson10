@@ -1,6 +1,7 @@
 package com.example.lesson10;
 
-import android.app.Activity;
+import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,30 +9,27 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.lesson10.databases.WeatherDatabase;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 
 /**
  * Created with IntelliJ IDEA.
  * User: Genyaz
- * Date: 21.11.13
- * Time: 19:25
+ * Date: 12.12.13
+ * Time: 22:38
  * To change this template use File | Settings | File Templates.
  */
-
-public class CityWeatherActivity extends Activity {
-
+public class CityWeatherFragment extends Fragment {
     private int imageSize;
+    private Context context;
     public TextView cityName;
     public TextView cityTemperature;
     public String name;
@@ -111,23 +109,22 @@ public class CityWeatherActivity extends Activity {
             int curtemp_min = (int) mmainInfo.getDouble("temp_min");
             int curtemp_max = (int) mmainInfo.getDouble("temp_max");
             String curtemp_info = curtemp + "°C:\n" + curtemp_min + "..." + curtemp_max;
-            ((TextView) findViewById(R.id.currentTemperature)).setText(curtemp_info);
+            ((TextView) getView().findViewById(R.id.currentTemperature)).setText(curtemp_info);
             int curpressure = (int) (mmainInfo.getDouble("pressure") * 0.75);
-            ((TextView) findViewById(R.id.currentPressure)).setText("Pressure: " + curpressure + " Hg-mm");
+            ((TextView) getView().findViewById(R.id.currentPressure)).setText("Pressure: " + curpressure + " Hg-mm");
             int curhumidity = (int) mmainInfo.getDouble("humidity");
-            ((TextView) findViewById(R.id.currentHumidity)).setText("Humidity: " + curhumidity + "%");
+            ((TextView) getView().findViewById(R.id.currentHumidity)).setText("Humidity: " + curhumidity + "%");
             double curwind_speed = result.getJSONObject("wind").getDouble("speed");
-            ((TextView) findViewById(R.id.currentWind)).setText("Wind speed: " + curwind_speed + " m/s");
+            ((TextView) getView().findViewById(R.id.currentWind)).setText("Wind speed: " + curwind_speed + " m/s");
             String curicon_path = result.getJSONArray("weather").getJSONObject(0).getString("icon");
-            new DownloadImageTask((ImageView) findViewById(R.id.curWeatherPicture), 200).execute("http://openweathermap.org/img/w/" + curicon_path);
+            new DownloadImageTask((ImageView) getView().findViewById(R.id.curWeatherPicture), 200).execute("http://openweathermap.org/img/w/" + curicon_path);
             String rraw_dt_txt = result.getString("dt_txt");
             String ddt_txt = rraw_dt_txt.split("\\s")[1];
             ddt_txt = ddt_txt.split("\\:")[0];
-            ((TextView) findViewById(R.id.lastUpdated)).setText("Upd: " + (Integer.parseInt(ddt_txt) + d_hours) % 24 + ":00");
+            ((TextView) getView().findViewById(R.id.lastUpdated)).setText("Upd: " + (Integer.parseInt(ddt_txt) + d_hours) % 24 + ":00");
             int mmonth = Integer.parseInt(rraw_dt_txt.split("-")[1]);
             int dday = Integer.parseInt(rraw_dt_txt.split("-")[2].split(" ")[0]);
-            ((TextView) findViewById(R.id.currentTime)).setText(
-                    ((TextView) findViewById(R.id.currentTime)).getText() + " - " + dday + " " + getMonthName(mmonth));
+            ((TextView) getView().findViewById(R.id.currentTime)).setText("Today - " + dday + " " + getMonthName(mmonth));
             for (int i = 1; i < jsonArray.length(); i++) {
                 JSONObject object = jsonArray.getJSONObject(i);
                 JSONObject mainInfo = object.getJSONObject("main");
@@ -148,52 +145,52 @@ public class CityWeatherActivity extends Activity {
                     case 1:
                         switch (hours) {
                             case 9:
-                                ((TextView) findViewById(R.id.tDate)).setText(
-                                        ((TextView) findViewById(R.id.tDate)).getText() + " - " + day + " " + getMonthName(month));
-                                ((TextView) findViewById(R.id.tomMorT)).setText(temp_info);
-                                new DownloadImageTask((ImageView) findViewById(R.id.tomMorI), 100).execute("http://openweathermap.org/img/w/" + iconPath);
+                                ((TextView) getView().findViewById(R.id.tDate)).setText(
+                                         "Tomorrow - " + day + " " + getMonthName(month));
+                                ((TextView) getView().findViewById(R.id.tomMorT)).setText(temp_info);
+                                new DownloadImageTask((ImageView) getView().findViewById(R.id.tomMorI), 100).execute("http://openweathermap.org/img/w/" + iconPath);
                                 break;
                             case 15:
-                                ((TextView) findViewById(R.id.tomDayT)).setText(temp_info);
-                                new DownloadImageTask((ImageView) findViewById(R.id.tomDayI), 100).execute("http://openweathermap.org/img/w/" + iconPath);
+                                ((TextView) getView().findViewById(R.id.tomDayT)).setText(temp_info);
+                                new DownloadImageTask((ImageView) getView().findViewById(R.id.tomDayI), 100).execute("http://openweathermap.org/img/w/" + iconPath);
                                 break;
                             case 21:
-                                ((TextView) findViewById(R.id.tomEveT)).setText(temp_info);
-                                new DownloadImageTask((ImageView) findViewById(R.id.tomEveI), 100).execute("http://openweathermap.org/img/w/" + iconPath);
+                                ((TextView) getView().findViewById(R.id.tomEveT)).setText(temp_info);
+                                new DownloadImageTask((ImageView) getView().findViewById(R.id.tomEveI), 100).execute("http://openweathermap.org/img/w/" + iconPath);
                                 break;
                         }
                         break;
                     case 2:
                         switch (hours) {
                             case 9:
-                                ((TextView) findViewById(R.id.ttDate)).setText(day + " " + getMonthName(month));
-                                ((TextView) findViewById(R.id.ttMorT)).setText(temp_info);
-                                new DownloadImageTask((ImageView) findViewById(R.id.ttMorI), 100).execute("http://openweathermap.org/img/w/" + iconPath);
+                                ((TextView) getView().findViewById(R.id.ttDate)).setText(day + " " + getMonthName(month));
+                                ((TextView) getView().findViewById(R.id.ttMorT)).setText(temp_info);
+                                new DownloadImageTask((ImageView) getView().findViewById(R.id.ttMorI), 100).execute("http://openweathermap.org/img/w/" + iconPath);
                                 break;
                             case 15:
-                                new DownloadImageTask((ImageView) findViewById(R.id.ttDayI), 100).execute("http://openweathermap.org/img/w/" + iconPath);
-                                ((TextView) findViewById(R.id.ttDayT)).setText(temp_info);
+                                new DownloadImageTask((ImageView) getView().findViewById(R.id.ttDayI), 100).execute("http://openweathermap.org/img/w/" + iconPath);
+                                ((TextView) getView().findViewById(R.id.ttDayT)).setText(temp_info);
                                 break;
                             case 21:
-                                new DownloadImageTask((ImageView) findViewById(R.id.ttEveI), 100).execute("http://openweathermap.org/img/w/" + iconPath);
-                                ((TextView) findViewById(R.id.ttEveT)).setText(temp_info);
+                                new DownloadImageTask((ImageView) getView().findViewById(R.id.ttEveI), 100).execute("http://openweathermap.org/img/w/" + iconPath);
+                                ((TextView) getView().findViewById(R.id.ttEveT)).setText(temp_info);
                                 break;
                         }
                         break;
                     case 3:
                         switch (hours) {
                             case 9:
-                                ((TextView) findViewById(R.id.tttDate)).setText(day + " " + getMonthName(month));
-                                new DownloadImageTask((ImageView) findViewById(R.id.tttMorI), 100).execute("http://openweathermap.org/img/w/" + iconPath);
-                                ((TextView) findViewById(R.id.tttMorT)).setText(temp_info);
+                                ((TextView) getView().findViewById(R.id.tttDate)).setText(day + " " + getMonthName(month));
+                                new DownloadImageTask((ImageView) getView().findViewById(R.id.tttMorI), 100).execute("http://openweathermap.org/img/w/" + iconPath);
+                                ((TextView) getView().findViewById(R.id.tttMorT)).setText(temp_info);
                                 break;
                             case 15:
-                                new DownloadImageTask((ImageView) findViewById(R.id.tttDayI), 100).execute("http://openweathermap.org/img/w/" + iconPath);
-                                ((TextView) findViewById(R.id.tttDayT)).setText(temp_info);
+                                new DownloadImageTask((ImageView) getView().findViewById(R.id.tttDayI), 100).execute("http://openweathermap.org/img/w/" + iconPath);
+                                ((TextView) getView().findViewById(R.id.tttDayT)).setText(temp_info);
                                 break;
                             case 21:
-                                new DownloadImageTask((ImageView) findViewById(R.id.tttEveI), 100).execute("http://openweathermap.org/img/w/" + iconPath);
-                                ((TextView) findViewById(R.id.tttEveT)).setText(temp_info);
+                                new DownloadImageTask((ImageView) getView().findViewById(R.id.tttEveI), 100).execute("http://openweathermap.org/img/w/" + iconPath);
+                                ((TextView) getView().findViewById(R.id.tttEveT)).setText(temp_info);
                                 break;
                         }
                         break;
@@ -206,18 +203,24 @@ public class CityWeatherActivity extends Activity {
     }
 
     public void weatherParsingError() {
-        ((TextView) findViewById(R.id.currentTime)).setText("No data has been found.");
+        ((TextView) getView().findViewById(R.id.currentTime)).setText("No data has been found.");
+    }
+
+    @Override
+    public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        return inflater.inflate(R.layout.city_weather, null);
     }
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.city_weather);
-        Intent intent = getIntent();
-        name = intent.getStringExtra(getString(R.string.cityname));
-        id = intent.getIntExtra(getString(R.string.cityid), -1);
-        cityName = (TextView) findViewById(R.id.city_name);
+        //context = this.getActivity();
+    }
+
+    public void loadData(String name, int id) {
+        cityName = (TextView) this.getView().findViewById(R.id.city_name);
         cityName.setText(name);
-        WeatherDatabase weatherDatabase = new WeatherDatabase(this);
+        WeatherDatabase weatherDatabase = new WeatherDatabase(this.context);
         SQLiteDatabase rdb = weatherDatabase.getReadableDatabase();
         Cursor cursor = rdb.query(WeatherDatabase.DATABASE_NAME, null, WeatherDatabase.CITY_ID + " = " + id,
                 null, null, null, null);

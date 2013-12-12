@@ -1,7 +1,7 @@
 package com.example.lesson10;
 
-import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.Fragment;
 import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Context;
@@ -13,6 +13,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
@@ -27,8 +28,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-public class CitiesActivity extends Activity {
-
+/**
+ * Created with IntelliJ IDEA.
+ * User: Genyaz
+ * Date: 12.12.13
+ * Time: 22:28
+ * To change this template use File | Settings | File Templates.
+ */
+public class CitiesListFragment extends Fragment {
     public ListView citiesList;
     public CitiesAdapter citiesAdapter;
     public EditText cityEditText;
@@ -171,23 +178,19 @@ public class CitiesActivity extends Activity {
     }
 
     public void itemClicked(int position) {
-        Intent intent = new Intent(this, CityWeatherActivity.class);
+        Intent intent = new Intent(this.context, CityWeatherActivity.class);
         intent.putExtra(getString(R.string.cityname), citiesAdapter.getName(position));
         intent.putExtra(getString(R.string.cityid), citiesAdapter.getId(position));
         startActivity(intent);
     }
 
     public void itemLongClicked(int position) {
-        /*Intent intent = new Intent(this, CityModificationActivity.class);
-        intent.putExtra(getString(R.string.cityname), citiesAdapter.getName(position));
-        intent.putExtra(getString(R.string.cityid), citiesAdapter.getId(position));
-        startActivity(intent);*/
-        CitiesDatabase citiesDatabase = new CitiesDatabase(this);
+        CitiesDatabase citiesDatabase = new CitiesDatabase(this.context);
         SQLiteDatabase wdb = citiesDatabase.getWritableDatabase();
         wdb.delete(CitiesDatabase.DATABASE_NAME, CitiesDatabase._ID + " = " + citiesAdapter.getId(position), null);
         wdb.close();
         citiesDatabase.close();
-        WeatherDatabase weatherDatabase = new WeatherDatabase(this);
+        WeatherDatabase weatherDatabase = new WeatherDatabase(this.context);
         wdb = weatherDatabase.getWritableDatabase();
         wdb.delete(WeatherDatabase.DATABASE_NAME, WeatherDatabase.CITY_ID + " = " + citiesAdapter.getId(position), null);
         wdb.close();
@@ -195,19 +198,8 @@ public class CitiesActivity extends Activity {
         update();
     }
 
-    public void addCityClicked(View view) {
-        Intent intent = new Intent(this, CityModificationActivity.class);
-        intent.putExtra(getString(R.string.cityname), "");
-        intent.putExtra(getString(R.string.cityid), -1);
-        startActivity(intent);
-    }
-
     public void addCity(String cityName) {
-        /*Intent intent = new Intent(this, CityModificationActivity.class);
-        intent.putExtra(getString(R.string.cityname), s);
-        intent.putExtra(getString(R.string.cityid), -1);
-        startActivity(intent);*/
-        CitiesDatabase citiesDatabase = new CitiesDatabase(this);
+        CitiesDatabase citiesDatabase = new CitiesDatabase(this.context);
         SQLiteDatabase wdb = citiesDatabase.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(CitiesDatabase.CITY_NAME, cityName);
@@ -218,14 +210,21 @@ public class CitiesActivity extends Activity {
     }
 
     public void updateClicked(View view) {
-        startService(serviceIntent);
+        this.context.startService(serviceIntent);
+    }
+
+
+    @Override
+    public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        return inflater.inflate(R.layout.cities_list, null);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cities_list);
-        citiesList = (ListView) findViewById(R.id.citiesListView);
+        //context = this.getActivity();
+        /*citiesList = (ListView) this.getView().findViewById(R.id.citiesListView);
         citiesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -239,7 +238,7 @@ public class CitiesActivity extends Activity {
                 return true;
             }
         });
-        cityEditText = (EditText) findViewById(R.id.cityEditText);
+        cityEditText = (EditText) this.getView().findViewById(R.id.cityEditText);
         cityEditText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -252,15 +251,14 @@ public class CitiesActivity extends Activity {
                 return false;
             }
         });
-        context = this;
-        serviceIntent = new Intent(this, WeatherService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(this, 0, serviceIntent, 0);
-        AlarmManager manager = (AlarmManager) this.getSystemService(ALARM_SERVICE);
-        manager.setRepeating(AlarmManager.ELAPSED_REALTIME, 0, 1800000, pendingIntent);
+        serviceIntent = new Intent(this.context, WeatherService.class);
+        PendingIntent pendingIntent = PendingIntent.getService(this.context, 0, serviceIntent, 0);
+        AlarmManager manager = (AlarmManager) this.context.getSystemService(this.context.ALARM_SERVICE);
+        manager.setRepeating(AlarmManager.ELAPSED_REALTIME, 0, 1800000, pendingIntent);*/
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         update();
     }
@@ -272,7 +270,7 @@ public class CitiesActivity extends Activity {
     public void update() {
         citiesAdapter = new CitiesAdapter();
         citiesList.setAdapter(citiesAdapter);
-        CitiesDatabase citiesdb = new CitiesDatabase(this);
+        CitiesDatabase citiesdb = new CitiesDatabase(this.context);
         SQLiteDatabase rdb = citiesdb.getReadableDatabase();
         Cursor cursor = rdb.query(CitiesDatabase.DATABASE_NAME,
                 null, null, null, null, null, null);
@@ -289,7 +287,7 @@ public class CitiesActivity extends Activity {
         cursor.close();
         rdb.close();
         citiesdb.close();
-        WeatherDatabase weatherdb = new WeatherDatabase(this);
+        WeatherDatabase weatherdb = new WeatherDatabase(this.context);
         rdb = weatherdb.getReadableDatabase();
         CityInfo cityInfo;
         for (int i = 0; i < cityInfos.size(); i++) {
