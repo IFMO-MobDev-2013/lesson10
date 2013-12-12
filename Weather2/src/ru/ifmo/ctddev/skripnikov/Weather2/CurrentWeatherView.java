@@ -45,20 +45,14 @@ public class CurrentWeatherView extends RelativeLayout {
         CurrentWeather weather = city.getCurrentWeather(getContext());
         description.setText(weather.weatherDesc);
         if (weather.temp_C > 0) {
-            temp.setText("+" + Integer.toString(weather.temp_C) + "°");
-            temp.setTextColor(Color.RED);
-        } else if (weather.temp_C < 0) {
-            temp.setText(Integer.toString(weather.temp_C) + "°");
-            temp.setTextColor(Color.BLUE);
+            temp.setText("+" + Integer.toString(weather.temp_C) + "°C");
         } else {
-            temp.setText(Integer.toString(weather.temp_C) + "°");
-            temp.setTextColor(Color.BLACK);
+            temp.setText(Integer.toString(weather.temp_C) + "°C");
         }
         humidity.setText(getResources().getString(R.string.humidity) + " " + Float.toString(weather.humidity) + "%");
-        pressure.setText(getResources().getString(R.string.pressure) + " " +
-                Integer.toString(weather.pressure) + " " + getResources().getString(R.string.hpa));
-        wind.setText(getResources().getString(R.string.wind) + " " +
-                Float.toString(weather.windspeedKmph) + " " + getResources().getString(R.string.kmph));
+        pressure.setText(Integer.toString(weather.pressure) + " " + getResources().getString(R.string.hpa));
+        wind.setText(Float.toString(weather.windspeedKmph) + " " + getResources().getString(R.string.kmph));
         image.setImageBitmap(weather.icon);
+        setBackgroundColor(weather.icon.getPixel(1,1));
     }
 }

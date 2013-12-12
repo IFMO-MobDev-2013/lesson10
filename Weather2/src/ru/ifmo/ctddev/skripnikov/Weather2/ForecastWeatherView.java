@@ -36,13 +36,9 @@ public class ForecastWeatherView extends RelativeLayout {
     public void update(ForecastWeather weather) {
         time.setText(new SimpleDateFormat("dd.MM").format(new Date(weather.date)));
         if (weather.tempMaxC > 0) {
-            temp.setText("+" + Integer.toString(weather.tempMaxC) + "°");
-            temp.setTextColor(Color.RED);
-        } else if (weather.tempMaxC < 0) {
-            temp.setText(Integer.toString(weather.tempMaxC) + "°");
-            temp.setTextColor(Color.BLUE);
+            temp.setText("+" + Integer.toString(weather.tempMaxC) + "°C");
         } else {
-            temp.setText(Integer.toString(weather.tempMaxC) + "°");
+            temp.setText(Integer.toString(weather.tempMaxC) + "°C");
         }
         description.setText(weather.weatherDesc);
         image.setImageBitmap(weather.icon);

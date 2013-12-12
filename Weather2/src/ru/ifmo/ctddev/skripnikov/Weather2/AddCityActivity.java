@@ -11,22 +11,41 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 public class AddCityActivity extends FindLocationActivity {
-    private ListView citiesList;
+
     private ProgressBarView progressBar;
     private CitiesFetcher cf;
+    private ArrayList<City> cities;
+    private CitiesListAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_city_activity);
         getActionBar().setDisplayHomeAsUpEnabled(true);
+
         progressBar = (ProgressBarView) findViewById(R.id.progress_bar);
         progressBar.setText(getResources().getString(R.string.fetching_cities));
-        citiesList = (ListView) findViewById(R.id.list_view_cities);
+        ListView citiesList = (ListView) findViewById(R.id.list_view_cities);
         citiesList.setEmptyView(findViewById(R.id.text_view_message));
+
+        cities = new ArrayList<City>();
+        adapter = new CitiesListAdapter(getBaseContext(), cities);
+        citiesList.setAdapter(adapter);
+        citiesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id) {
+                DBStorage dbs = new DBStorage(getBaseContext());
+                dbs.addCity(cities.get(position));
+                dbs.destroy();
+                finish();
+            }
+        });
+
         EditText cityName = (EditText) findViewById(R.id.edit_text_city);
         cityName.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
@@ -94,17 +113,9 @@ public class AddCityActivity extends FindLocationActivity {
             super.onPostExecute(cities);
             if (isCancelled())
                 return;
-            CitiesListAdapter adapter = new CitiesListAdapter(getBaseContext(), cities);
-            citiesList.setAdapter(adapter);
-            citiesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id) {
-                    DBStorage dbs = new DBStorage(getBaseContext());
-                    dbs.addCity(cities[position]);
-                    dbs.destroy();
-                    finish();
-                }
-            });
+            AddCityActivity.this.cities.clear();
+            AddCityActivity.this.cities.addAll(Arrays.asList(cities));
+            adapter.notifyDataSetChanged();
             progressBar.hide();
         }
     }

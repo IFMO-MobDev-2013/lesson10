@@ -8,10 +8,11 @@ import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class CitiesListAdapter extends ArrayAdapter<City> implements SpinnerAdapter {
 
-
-    public CitiesListAdapter(Context context, City[] cities) {
+    public CitiesListAdapter(Context context, ArrayList<City> cities) {
         super(context, android.R.layout.simple_list_item_2, cities);
     }
 
@@ -25,8 +26,12 @@ public class CitiesListAdapter extends ArrayAdapter<City> implements SpinnerAdap
         } else {
             item = convertView;
         }
-        ((TextView) item.findViewById(android.R.id.text1))
-                .setText(getItem(position).name + ", " + getItem(position).country);
+        if (getItemId(position) == -1)
+            ((TextView) item.findViewById(android.R.id.text1))
+                    .setText(getItem(position).name);
+        else
+            ((TextView) item.findViewById(android.R.id.text1))
+                    .setText(getItem(position).name + ", " + getItem(position).country);
         ((TextView) item.findViewById(android.R.id.text2)).setText(getItem(position).region +
                 getItem(position).getDistance());
         return item;
@@ -41,4 +46,6 @@ public class CitiesListAdapter extends ArrayAdapter<City> implements SpinnerAdap
     public long getItemId(int position) {
         return getItem(position).id;
     }
+
+
 }
