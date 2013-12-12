@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="#ffffff">
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text=""
+            android:id="@+id/textCity" android:gravity="center" android:layout_weight="2" android:textSize="25dp"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" android:layout_weight="8">
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/imageCurBig" android:layout_weight="1"/>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" android:layout_weight="1">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text=""
+                    android:id="@+id/textTempNowBig" android:layout_weight="4" android:gravity="center"
+                    android:textSize="60dp"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text=""
+                    android:id="@+id/textTempBig" android:layout_weight="2" android:gravity="center"
+                    android:textSize="20dp"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text=""
+                    android:id="@+id/textHumidityBig" android:layout_weight="1" android:gravity="center"
+                    android:textSize="15dp"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text=""
+                    android:id="@+id/textPressureBig" android:layout_weight="1" android:gravity="center"
+                    android:textSize="15dp"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text=""
+                    android:id="@+id/textSpeedBig" android:layout_weight="1" android:gravity="center"
+                    android:textSize="15dp"/>
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text=""
+            android:id="@+id/textConditionBig" android:layout_weight="4" android:gravity="center"
+            android:textSize="30dp" android:layout_gravity="center"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" android:layout_weight="5">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent" android:layout_weight="1">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text=""
+                    android:id="@+id/text11" android:layout_gravity="center" android:layout_weight="1"
+                    android:gravity="center" android:textSize="15dp" android:textAlignment="center"
+                    />
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/imageCurSmall" android:layout_gravity="center" android:layout_weight="3"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text=""
+                    android:id="@+id/text12" android:layout_gravity="center" android:layout_weight="1"
+                    android:gravity="center" android:textSize="15dp" android:textAlignment="center"
+                    />
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text=""
+                    android:id="@+id/text13" android:layout_gravity="center" android:layout_weight="1"
+                    android:gravity="center" android:textSize="15dp" android:textAlignment="center"
+                    />
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent" android:layout_weight="1">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text=""
+                    android:id="@+id/text21" android:layout_gravity="center" android:layout_weight="1"
+                    android:gravity="center" android:textSize="15dp" android:textAlignment="center"
+                    />
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/image1" android:layout_gravity="center" android:layout_weight="3"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text=""
+                    android:id="@+id/text22" android:layout_gravity="center" android:layout_weight="1"
+                    android:gravity="center" android:textSize="15dp" android:textAlignment="center"
+                    />
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text=""
+                    android:id="@+id/text23" android:layout_gravity="center" android:layout_weight="1"
+                    android:gravity="center" android:textSize="15dp" android:textAlignment="center"
+                    />
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent" android:layout_weight="1">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text=""
+                    android:id="@+id/text31" android:layout_gravity="center" android:layout_weight="1"
+                    android:gravity="center" android:textSize="15dp" android:textAlignment="center"
+                    />
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/image2" android:layout_gravity="center" android:layout_weight="3"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text=""
+                    android:id="@+id/text32" android:layout_gravity="center" android:layout_weight="1"
+                    android:gravity="center" android:textSize="15dp" android:textAlignment="center"
+                    />
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text=""
+                    android:id="@+id/text33" android:layout_gravity="center" android:layout_weight="1"
+                    android:gravity="center" android:textSize="15dp" android:textAlignment="center"
+                    />
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent" android:layout_weight="1">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text=""
+                    android:id="@+id/text41" android:layout_gravity="center" android:layout_weight="1"
+                    android:gravity="center" android:textSize="15dp" android:textAlignment="center"
+                    />
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/image3" android:layout_gravity="center" android:layout_weight="3"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text=""
+                    android:id="@+id/text42" android:layout_gravity="center" android:layout_weight="1"
+                    android:gravity="center" android:textSize="15dp" android:textAlignment="center"
+                    />
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text=""
+                    android:id="@+id/text43" android:layout_gravity="center" android:layout_weight="1"
+                    android:gravity="center" android:textSize="15dp" android:textAlignment="center"
+                    />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

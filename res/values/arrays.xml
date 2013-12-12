@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="cloud">
+        <item>122</item>
+        <item>119</item>
+    </array>
+
+    <array name="partly_cloud">
+        <item>260</item>
+        <item>248</item>
+        <item>143</item>
+        <item>116</item>
+    </array>
+
+    <array name="rain">
+        <item>353</item>
+        <item>311</item>
+        <item>305</item>
+        <item>302</item>
+        <item>299</item>
+        <item>296</item>
+        <item>293</item>
+        <item>281</item>
+        <item>266</item>
+        <item>263</item>
+        <item>185</item>
+        <item>182</item>
+        <item>176</item>
+    </array>
+
+    <array name="strong_rain">
+        <item>359</item>
+        <item>356</item>
+        <item>320</item>
+        <item>314</item>
+        <item>308</item>
+        <item>284</item>
+    </array>
+
+    <array name="snow">
+        <item>335</item>
+        <item>377</item>
+        <item>374</item>
+        <item>371</item>
+        <item>368</item>
+        <item>365</item>
+        <item>362</item>
+        <item>350</item>
+        <item>338</item>
+        <item>335</item>
+        <item>332</item>
+        <item>329</item>
+        <item>326</item>
+        <item>323</item>
+        <item>317</item>
+        <item>230</item>
+        <item>227</item>
+        <item>179</item>
+    </array>
+
+    <array name="sun">
+        <item>113</item>
+    </array>
+
+    <array name="thunder">
+        <item>392</item>
+        <item>389</item>
+        <item>386</item>
+        <item>200</item>
+    </array>
+
+</resources>
