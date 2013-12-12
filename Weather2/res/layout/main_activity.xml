@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+    <LinearLayout android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent">
+
+        <ru.ifmo.ctddev.skripnikov.Weather2.CurrentWeatherView
+                android:id="@+id/current_weather"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+        <TextView
+                android:paddingLeft="4dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/darker_gray"
+                android:textColor="@android:color/black"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/forecast"/>
+        <ListView
+                android:id="@+id/forecast_weather"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+    </LinearLayout>
+    <ru.ifmo.ctddev.skripnikov.Weather2.ProgressBarView
+            android:id="@+id/progress_bar"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
+</FrameLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/city"
+            android:id="@+id/edit_text_city"/>
+
+    <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="@string/city_is_not_found"
+                android:gravity="center"
+                android:id="@+id/text_view_message"/>
+
+        <ListView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/list_view_cities"/>
+
+        <ru.ifmo.ctddev.skripnikov.Weather2.ProgressBarView
+                android:id="@+id/progress_bar"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"/>
+    </FrameLayout>
+</LinearLayout>
