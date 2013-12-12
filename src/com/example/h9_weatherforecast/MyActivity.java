@@ -18,8 +18,6 @@ public class MyActivity extends Activity {
     /**
      * Called when the activity is first created.
      */
-    ListView list;
-    EditText edit;
     int DIALOG_DELETE = 1;
     int deleted;
     private static final int CM_DELETE_ID = 1;
@@ -27,12 +25,14 @@ public class MyActivity extends Activity {
     SimpleCursorAdapter scAdapter;
     Cursor cursor;
     final String CITY_ENG = "city_eng" ;
+    ListView list;
+    EditText edit;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
+        //initialization
         list = (ListView)findViewById(R.id.listView);
         edit = (EditText)findViewById(R.id.editText);
         db = new DB(this);
@@ -44,7 +44,6 @@ public class MyActivity extends Activity {
         scAdapter = new SimpleCursorAdapter(this, R.layout.item, cursor, from, to);
         list.setAdapter(scAdapter);
         registerForContextMenu(list);
-
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -66,7 +65,7 @@ public class MyActivity extends Activity {
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        menu.add(0, CM_DELETE_ID, 0, "Удалить запись?");
+        menu.add(0, CM_DELETE_ID, 0, "Удалить город?");
     }
 
     public boolean onContextItemSelected(MenuItem item) {
@@ -82,6 +81,5 @@ public class MyActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         db.close();
-
     }
 }

@@ -11,6 +11,6 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
             android:text=""
-            android:textSize="30sp">
+            android:textSize="35sp">
     </TextView>
 </LinearLayout>
