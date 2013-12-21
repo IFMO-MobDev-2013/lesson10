@@ -63,7 +63,7 @@ public class AddTownActivity extends Activity {
             public void afterTextChanged(Editable editable) {
                 if (editable.toString().length() == 0) return;
                 Intent updateServiceIntent = new Intent(AddTownActivity.this, TownLoader.class);
-                startService(updateServiceIntent.putExtra("url", MainActivity.createTownRequest(editable.toString(), 10)));
+                startService(updateServiceIntent.putExtra("url", MainActivity.createTownRequest(editable.toString(), 15)));
             }
         });
 

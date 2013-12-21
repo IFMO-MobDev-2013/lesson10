@@ -127,7 +127,7 @@ public class MainActivity extends Activity {
         }
     }
     static String createWeatherRequest(Location town, int dayNum){
-            return "http://api.worldweatheronline.com/free/v1/weather.ashx?q=" + town.param[Location.LATITUDE] + "%2C" + town.param[Location.LATITUDE] + "&format=xml&num_of_days=" + dayNum + "&key=xphb83vgt4yvbznxu34fxhyu";
+            return "http://api.worldweatheronline.com/free/v1/weather.ashx?q=" + town.param[Location.LATITUDE] + "%2C" + town.param[Location.LONGITUDE] + "&format=xml&num_of_days=" + dayNum + "&key=xphb83vgt4yvbznxu34fxhyu";
     }
 
     @Override
