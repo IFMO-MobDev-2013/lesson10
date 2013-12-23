@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="multiAutoCompleteTextView" type="id">id1</item>
+    <item name="citiesListView" type="id">id2</item>
+    <item name="editText" type="id">id3</item>
+    <item name="foundedCitiesListView" type="id">id4</item>
+    <item name="exitButton" type="id">id5</item>
+    <item name="textView" type="id">id6</item>
+    <item name="cityTitle" type="id">id7</item>
+    <item name="weatherIcon" type="id">id8</item>
+    <item name="windIcon" type="id">id9</item>
+    <item name="weatherDescription" type="id">id10</item>
+    <item name="temperature" type="id">id11</item>
+    <item name="temperatureIcon" type="id">id23</item>
+    <item name="wind" type="id">ud47</item>
+    <item name="scrollView" type="id">id35</item>
+    <item name="textView4" type="id">id44</item>
+    <item name="celsium" type="id">id45</item>
+    <item name="windDegree" type="id">id46</item>
+    <item name="tomorrowWeatherTemperature" type="id">id35</item>
+    <item name="tomorrowWeather" type="id">id39</item>
+    <item name="tomorrowWeatherWind" type="id">id37</item>
+    <item name="tomorrowWeatherDescription" type="id">id38</item>
+    <item name="scrollLayout" type="id">id79</item>
+    <item name="day" type="id">id80</item>
+    <item name="dailyTemperatureAmplitude" type="id">id009</item>
+    <item name="dailyTemperatureFrom" type="id">31</item>
+    <item name="dash" type="id">321</item>
+    <item name="dailyTemperatureTo" type="id">112332</item>
+</resources>

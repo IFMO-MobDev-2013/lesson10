@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WeatherForecast</string>
+    <string name="Search">Поиск</string>
+    <string name="no_connection">Нет соединения</string>
+    <string name="empty_field">Вы ничего не ввели</string>
+    <string name="add_question">Добавить город?</string>
+    <string name="add">Добавить</string>
+    <string name="cancel">Отмена</string>
+    <string name="forecast">Прогноз</string>
+    <string name="last_data">Данные последних наблюдений</string>
+    <string name="daily_forecast">Прогноз на несколько дней</string>
+    <string name="meters_per_second">м/с</string>
+    <string name="celsium_degrees">°C</string>
+    <string name="tomorrow">Завтра</string>
+    <string name="afterTomorrow">Послезавтра</string>
+    <string name="dash">...</string>
+    <string name="yes">Да</string>
+    <string name="dialog_about_message">Удалить город?</string>
+    <string name="no">Нет</string>
+    <string name="wait">Ваше терпение будет вознаграждено</string>
+    <string name="weather_reloaded">Погода обновлена</string>
+</resources>

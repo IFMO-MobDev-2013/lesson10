@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:id="@id/day" android:textSize="25dp" android:layout_marginRight="5dp"
+            android:gravity="center" android:layout_gravity="center_vertical|bottom|left|right|top"
+            android:text="@string/tomorrow"/>
+    <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@id/tomorrowWeather" android:layout_gravity="center|right"
+            android:layout_marginRight="5dp"/>
+    <LinearLayout android:layout_width="0dp" android:layout_height="fill_parent"
+                  android:gravity="center_vertical" android:id="@+id/linearLayout2" android:layout_weight="2.5"
+            >
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:id="@id/dailyTemperatureFrom" android:textIsSelectable="false" android:textSize="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1" android:layout_marginRight="5dp" android:gravity="center"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="@string/dash"
+                android:id="@id/dash" android:layout_weight="1" android:phoneNumber="true"
+                android:gravity="center" android:textSize="20dp"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@id/dailyTemperatureTo" android:layout_weight="1" android:layout_marginLeft="5dp"
+                android:textSize="30dp" android:gravity="center"/>
+    </LinearLayout>
+</LinearLayout>
