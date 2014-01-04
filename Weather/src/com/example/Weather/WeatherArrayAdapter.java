@@ -28,11 +28,18 @@ public class WeatherArrayAdapter extends ArrayAdapter<Weather> {
         TextView tvWeather = (TextView) view.findViewById(R.id.tvWeather);
         TextView tvSummary = (TextView) view.findViewById(R.id.tvSummary);
         ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
-
         imageView.setImageResource(context.getResources().getIdentifier("p" + String.valueOf(array.get(position).weatherCode), "drawable", context.getPackageName()));
-        tvDate.setText(array.get(position).date);
-        tvSummary.setText(array.get(position).weatherDescription);
-        tvWeather.setText(((array.get(position).lowTemp > 0) ? "+" : "") + array.get(position).lowTemp + ".." + ((array.get(position).maxTemp > 0) ? "+" : "") + array.get(position).maxTemp + "\nWind Speed, " + array.get(position).windSpeed + " kmph\nWind Direction " + array.get(position).windDirect);
-        return view;
+
+        if (position != 0) {
+            tvDate.setText(array.get(position).date);
+            tvSummary.setText(array.get(position).weatherDescription);
+            tvWeather.setText(((array.get(position).lowTemp > 0) ? "+" : "") + array.get(position).lowTemp + ".." + ((array.get(position).maxTemp > 0) ? "+" : "") + array.get(position).maxTemp + "\nWind Speed, " + array.get(position).windSpeed + " kmph\nWind Direction " + array.get(position).windDirect);
+            return view;
+        } else {
+            tvDate.setText("Time: " + array.get(position).date);
+            tvSummary.setText(array.get(position).weatherDescription);
+            tvWeather.setText(((array.get(position).lowTemp > 0) ? "+" : "") + array.get(position).lowTemp + "\nWind Speed, " + array.get(position).windSpeed + " kmph\nWind Direction " + array.get(position).windDirect);
+            return view;
+        }
     }
 }

@@ -56,22 +56,42 @@ public class DownloadWeather {
     void parseFromJSON(String source) throws JSONException {
         JSONObject object = (JSONObject) new JSONTokener(source).nextValue();
         object = object.getJSONObject("data");
+        JSONArray jsonArray1 = object.getJSONArray("current_condition");
         JSONArray jsonArray = object.getJSONArray("weather");
         WeatherDataBaseHelper weatherDataBaseHelper = new WeatherDataBaseHelper(context, city.name);
         SQLiteDatabase sqLiteDatabase = weatherDataBaseHelper.getWritableDatabase();
         sqLiteDatabase.execSQL(weatherDataBaseHelper.dropDatabase());
         sqLiteDatabase.execSQL(weatherDataBaseHelper.createDatabase());
+        JSONObject object1 = jsonArray1.getJSONObject(0);
+        String date = object1.getString("observation_time");
+        int lowTemp = object1.getInt("temp_C");
+        int maxTemp = lowTemp;
+        int windSpeed = object1.getInt("windspeedKmph");
+        String windDirect = object1.getString("winddir16Point");
+        int weatherCode = object1.getInt("weatherCode");
+        String weatherDesc = object1.getJSONArray("weatherDesc").getJSONObject(0).getString("value");
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(WeatherDataBaseHelper.DATE, date);
+        contentValues.put(WeatherDataBaseHelper.LOW_TEMPERATURE, lowTemp);
+        contentValues.put(WeatherDataBaseHelper.HIGH_TEMPERATURE, maxTemp);
+        contentValues.put(WeatherDataBaseHelper.LOW_TEMPERATURE, lowTemp);
+        contentValues.put(WeatherDataBaseHelper.WIND_SPEED, windSpeed);
+        contentValues.put(WeatherDataBaseHelper.WIND_DIRECTION, windDirect);
+        contentValues.put(WeatherDataBaseHelper.WEATHER_CODE, weatherCode);
+        contentValues.put(WeatherDataBaseHelper.WEATHER_DESCRIPTION, weatherDesc);
+
+        sqLiteDatabase.insert(weatherDataBaseHelper.dataBaseName(), null, contentValues);
 
         for (int i = 0; i < jsonArray.length(); i++) {
             object = jsonArray.getJSONObject(i);
-            String date = object.getString("date");
-            int lowTemp = object.getInt("tempMinC");
-            int maxTemp = object.getInt("tempMaxC");
-            int windSpeed = object.getInt("windspeedKmph");
-            String windDirect = object.getString("winddirection");
-            int weatherCode = object.getInt("weatherCode");
-            String weatherDesc = object.getJSONArray("weatherDesc").getJSONObject(0).getString("value");
-            ContentValues contentValues = new ContentValues();
+            date = object.getString("date");
+            lowTemp = object.getInt("tempMinC");
+            maxTemp = object.getInt("tempMaxC");
+            windSpeed = object.getInt("windspeedKmph");
+            windDirect = object.getString("winddirection");
+            weatherCode = object.getInt("weatherCode");
+            weatherDesc = object.getJSONArray("weatherDesc").getJSONObject(0).getString("value");
+            contentValues = new ContentValues();
             contentValues.put(WeatherDataBaseHelper.DATE, date);
             contentValues.put(WeatherDataBaseHelper.LOW_TEMPERATURE, lowTemp);
             contentValues.put(WeatherDataBaseHelper.HIGH_TEMPERATURE, maxTemp);
