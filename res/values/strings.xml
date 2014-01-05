@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">weather</string>
+    <string name="picture">picture</string>
+    <string name="del">del</string>
+    <string name="add_city">add</string>
+    <string name="icon">icon</string>
+    <string name="today">today</string>
+    <string name="tomorrow">tomorrow</string>
+    <string name="after">after</string>
+    <string name="tomorrow_text">tomorrow</string>
+    <string name="after_text">after tomorrow</string>
+    <string name="today_text">today</string>
+    <string name="change">Change city</string>
+</resources>
