@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/city"
+            android:textSize="20sp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cur_image"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/city"
+            android:contentDescription="@string/icon"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sum"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/cur_image"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:id="@+id/temperature"
+            android:layout_toRightOf="@+id/cur_image"
+            android:layout_below="@+id/city"/>
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sum"
+            android:orientation="vertical" android:id="@+id/linearLayout">
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id = "@+id/td"
+                    android:text="@string/today_text"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/today"
+                    android:layout_below="@+id/td"
+                    android:contentDescription="@string/today"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/today"
+                    android:layout_below="@+id/td"
+                    android:id="@+id/f_today"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id = "@+id/tm"
+                    android:text="@string/tomorrow_text"/>
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_below="@+id/tm"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tomorrow" android:contentDescription="@string/tomorrow"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_below="@+id/tm"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tomorrow"
+                    android:id="@+id/f_tomorrow"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id = "@+id/a"
+                    android:text="@string/after_text"/>
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_below="@+id/a"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/after" android:contentDescription="@string/after"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_below="@+id/a"
+                    android:layout_toRightOf="@+id/after"
+                    android:id="@+id/f_after"/>
+        </RelativeLayout>
+    </LinearLayout>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change"
+            android:id="@+id/change"
+            android:onClick="startCitiesActivity"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"/>
+</RelativeLayout>
+
