@@ -4,6 +4,8 @@ public class Town {
     int id;
     String woeid;
     String name;
+    String longName;
+
     public static final String NAME = "name";
     public static final String WOEID = "woeid";
     public static final String _ID = "_id";
@@ -12,6 +14,7 @@ public class Town {
         id = 0;
         name = "";
         woeid = "";
+        longName = "";
     }
 
     Town(int _id, String _name, String _woeid) {

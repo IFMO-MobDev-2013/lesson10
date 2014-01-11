@@ -44,7 +44,7 @@
     <Space android:layout_width="wrap_content" android:layout_height="20dp" android:id="@+id/space3"
            android:layout_weight="0"/>
     <ListView
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/listViewAdding" android:layout_gravity="center" android:layout_weight="1"/>
 </LinearLayout>

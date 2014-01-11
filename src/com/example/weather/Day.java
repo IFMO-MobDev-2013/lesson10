@@ -2,6 +2,7 @@ package com.example.weather;
 
 public class Day {
     String date;
+    String week_day;
     String humidity;
     String pressure;
     String wind_direction;

@@ -35,9 +35,7 @@ public class DayActivity extends Activity {
         TextView textViewWindDirectionText = (TextView) findViewById(R.id.textViewWindDirectionText);
         TextView textViewWindSpeedText = (TextView) findViewById(R.id.textViewWindSpeedText);
 
-        Time time = new Time();
-        time.set(Long.parseLong(getIntent().getStringExtra(Day.DATE)));
-        textViewDate.setText(time.format3339(true));
+        textViewDate.setText(getIntent().getStringExtra(Day.DATE));
 
         textViewHumidity.setText(getIntent().getStringExtra(Day.HUMIDITY));
         textViewPressure.setText(getIntent().getStringExtra(Day.PRESSURE));

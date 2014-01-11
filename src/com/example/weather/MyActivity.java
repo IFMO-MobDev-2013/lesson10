@@ -38,9 +38,7 @@ public class MyActivity extends Activity {
 
             Town item = getItem(position);
             TextView itemView = new TextView(context);
-            itemView.setTextSize(30);
-            itemView.setMaxLines(10);
-            itemView.setTextColor(Color.GREEN);
+            itemView.setTextAppearance(context, R.style.TownName);
             if (item != null) {
                 itemView.setText(item.name);
             } else itemView.setText(R.string.ErrorChannel);
@@ -66,7 +64,7 @@ public class MyActivity extends Activity {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-            return new AlertDialog.Builder(getActivity())
+            Dialog dialog = new AlertDialog.Builder(getActivity())
                     .setTitle(R.string.IfDelete)
                     .setPositiveButton(R.string.YesDelete,
                             new DialogInterface.OnClickListener() {
@@ -77,7 +75,6 @@ public class MyActivity extends Activity {
 
                                     MyDataBaseTownHelper myDataBaseTownHelper = new MyDataBaseTownHelper(getApplicationContext(), getIntent().getStringExtra(Town.WOEID));
                                     SQLiteDatabase sqLiteDatabase = myDataBaseTownHelper.getWritableDatabase();
-                                    sqLiteDatabase.execSQL(MyDataBaseTownHelper.DROP_DATABASE_NO_ID + getIntent().getStringExtra(Town.WOEID));
                                     sqLiteDatabase.close();
                                     myDataBaseTownHelper.close();
 
@@ -98,6 +95,8 @@ public class MyActivity extends Activity {
                     )
                     .setCancelable(true)
                     .create();
+            dialog.setCanceledOnTouchOutside(true);
+            return dialog;
         }
     }
 

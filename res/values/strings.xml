@@ -7,7 +7,7 @@
     <string name="DeleteChannelButton">Delete the town</string>
     <string name="URLTextView">URL</string>
     <string name="ChannelNameTextView">Name of the town</string>
-    <string name="NewChannelButton">New town</string>
+    <string name="NewChannelButton">Add</string>
     <string name="UpdateButton">Update</string>
     <string name="LastUpdateTextView">Last update:</string>
     <string name="UpdateThisChannelButton">Update this town</string>
@@ -19,12 +19,14 @@
     <string name="DayDate">Date:</string>
     <string name="LowTemperature">Low:</string>
     <string name="HighTemperature">High:</string>
-    <string name="WindForce">Wind:</string>
-    <string name="Pressure">Pressure:</string>
-    <string name="Humidity">Humidity:</string>
+    <string name="WindForce">m/s</string>
+    <string name="Pressure">mm Hg</string>
+    <string name="Humidity">%</string>
     <string name="WindDirection">Wind direction:</string>
     <string name="YesDelete">Yes</string>
     <string name="NoDelete">No</string>
     <string name="IfDelete">Delete this town?</string>
     <string name="TownsDownload">You see all results</string>
+    <string name="TownsDownloadBad">No one response</string>
+    <string name="TodayDate">Сегодня</string>
 </resources>

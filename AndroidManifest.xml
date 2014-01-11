@@ -13,7 +13,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".AddingTownActivity"/>
+        <activity android:name=".AddingTownActivity" android:screenOrientation="portrait"/>
         <activity android:name=".DayActivity"/>
         <activity android:name=".TownActivity"/>
         <service android:name=".UpdatingService" />

@@ -14,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 
-import java.util.ArrayList;
+import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 public class TownActivity extends Activity {
@@ -45,9 +47,7 @@ public class TownActivity extends Activity {
                 return rowView;
             }
 
-            Time time = new Time();
-            time.set(Long.parseLong(item.date));
-            textViewDate.setText(time.format3339(true));
+            textViewDate.setText(item.date);
             textViewLow.setText(item.low_temperature);
             textViewHigh.setText(item.high_temperature);
             textViewClouds.setText(item.clouds);
@@ -115,7 +115,7 @@ public class TownActivity extends Activity {
         SQLiteDatabase sqLiteDatabase = myDataBaseTownHelper.getWritableDatabase();
 
         boolean sqb = (sqLiteDatabase == null);
-        System.out.println("sq " + sqb) ;
+        System.out.println("sq " + sqb);
 
         Cursor cursor = sqLiteDatabase.query(MyDataBaseTownHelper.DATABASE_NAME_NO_ID + townWOEID, null, null,
                 null, null, null, null);
@@ -138,11 +138,18 @@ public class TownActivity extends Activity {
 
             Time current = new Time();
             current.set(Long.parseLong(cursor.getString(date_column)));
+            SimpleDateFormat month_date = new SimpleDateFormat("MMMMMMMMM");
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(current.toMillis(false));
+            String month_name = month_date.format(calendar.getTime());
+            String niceDay = "" + current.monthDay + " " + month_name;
+            if(current.yearDay == now.yearDay)
+                niceDay = "Today";
             System.out.println(" checking date: " + current.toString());
             if (now.after(current) && (now.yearDay > current.yearDay || now.year > current.year))
                 continue;
             System.out.println(" nice day " + current.toString());
-            array.add(new Day(cursor.getString(date_column), cursor.getString(humidity_column),
+            array.add(new Day(niceDay, cursor.getString(humidity_column),
                     cursor.getString(pressure_column), cursor.getString(wind_direction_column), cursor.getString(wind_speed_column),
                     cursor.getString(low_temperature_column), cursor.getString(high_temperature_column), cursor.getString(clouds_column),
                     cursor.getInt(image_column)));
@@ -152,13 +159,36 @@ public class TownActivity extends Activity {
         sqLiteDatabase.close();
         myDataBaseTownHelper.close();
 
-        adapter = new MyAdapter(getApplicationContext(), R.layout.dayitem, array);   //TODO   norm?
-
+        adapter = new MyAdapter(getApplicationContext(), R.layout.dayitem, new ArrayList<Day>());
+        for(int i = 1; i < array.size(); i++)
+            adapter.add(array.get(i));
         listView = (ListView) findViewById(R.id.listViewTown);
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener(goToDay);
         adapter.notifyDataSetChanged();
+        makeToday();
 
+    }
+
+    public void makeToday() {
+
+        TextView textViewLow = (TextView) findViewById(R.id.textViewLow);
+        TextView textViewHigh = (TextView) findViewById(R.id.textViewHigh);
+        TextView textViewWind = (TextView) findViewById(R.id.textViewWindSpeed);
+        TextView textViewClouds = (TextView) findViewById(R.id.textViewClouds);
+        TextView textViewPressure = (TextView) findViewById(R.id.textViewPressure);
+        TextView textViewHumidity = (TextView) findViewById(R.id.textViewHumidity);
+        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+
+        Day item = array.get(0);
+
+        textViewLow.setText(item.low_temperature);
+        textViewHigh.setText(item.high_temperature);
+        textViewClouds.setText(item.clouds);
+        textViewWind.setText(item.wind_speed + " ");
+        textViewHumidity.setText(item.humidity + " ");
+        textViewPressure.setText( item.pressure + " ");
+
+        imageView.setImageResource(getResources().getIdentifier("w" + item.image, "drawable", getPackageName()));
     }
 
     @Override

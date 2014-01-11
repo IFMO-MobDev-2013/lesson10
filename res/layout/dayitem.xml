@@ -6,12 +6,12 @@
               android:layout_height="wrap_content">
 
     <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/imageView" android:layout_weight="1"/>
     <LinearLayout
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content" android:layout_weight="1">
         <TextView
                 android:layout_width="wrap_content"
@@ -20,27 +20,22 @@
                 android:id="@+id/textViewDate" android:layout_weight="1" style="@style/CodeFont"/>
         <Space
                 android:layout_width="20px"
-                android:layout_height="20px"
+                android:layout_height="10px"
                 android:id="@+id/space" android:layout_weight="1"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textViewClouds" android:layout_weight="1" style="@style/NumberFont"
-                android:text="Clouds"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content" android:layout_weight="1">
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+        <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" android:layout_weight="1" android:id="@+id/linearLayout">
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="High: "
-                    android:id="@+id/textView1" style="@style/LightFont"/>
+                    android:text="@string/LowTemperature"
+                    android:id="@+id/textViewLow" android:layout_weight="1" style="@style/NumberFont"/>
+            <TextView style="@style/NumberFont" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text=" . . " android:id="@+id/textView" android:layout_weight="1"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -48,19 +43,14 @@
                     android:id="@+id/textViewHigh" android:layout_weight="1" style="@style/NumberFont"/>
         </LinearLayout>
         <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="wrap_content">
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Low: "
-                    android:id="@+id/textView" style="@style/LightFont"/>
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/LowTemperature"
-                    android:id="@+id/textViewLow" android:layout_weight="1" style="@style/NumberFont"/>
+                    android:id="@+id/textViewClouds" android:layout_weight="1" style="@style/NumberFont"
+                    android:text="Clouds"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
