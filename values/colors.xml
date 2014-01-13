@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#99C68E</color>
+    <color name="text">#ffffff</color>
+    <color name="title_field">#437C17</color>
+    <color name="item_title_background">#99C68E</color>
+    <color name="item_description_background">#4E9258</color>
+    <color name="day_row_temp_min_color">#a0a0a0</color>
+    <color name="day_row_color">#ffffff</color>
+</resources>

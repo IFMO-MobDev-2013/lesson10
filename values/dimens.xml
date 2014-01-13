@@ -1,0 +1,13 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="day_forecast_text_size">20dp</dimen>
+    <dimen name="title_text_size">18sp</dimen>
+    <dimen name="feed_text_size">22sp</dimen>
+    <dimen name="item_margin">4dp</dimen>
+    <dimen name="day_row_height">48dp</dimen>
+    <dimen name="row_temp_horisontal_margin">6dp</dimen>
+    <dimen name="current_cond_temp_and_icon_size">72dp</dimen>
+    <dimen name="current_cond_weather_desc_text_size">36dp</dimen>
+</resources>
