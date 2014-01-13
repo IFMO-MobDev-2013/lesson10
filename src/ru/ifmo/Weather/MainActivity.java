@@ -6,15 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.example.lesson9.R;
 
 import java.io.UnsupportedEncodingException;
@@ -53,7 +52,8 @@ public class MainActivity extends Activity {
     ImageView[] weatherIconViews;
     final String[] defTempTitleText = new String[]{"Today", "Tomorrow", "Day after tomorrow"};
 
-    TownDatabase mDbHelper;
+    TownDatabase townDb;
+    WeatherDatabase weatherDb;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,10 +65,11 @@ public class MainActivity extends Activity {
         //   Intent updateServiceIntent = new Intent(MainActivity.this, TownLoader.class);
         //   startService(updateServiceIntent.putExtra("url", createTownRequest("Peterburg", 3)));
 
-        mDbHelper = new TownDatabase(this);
-        mDbHelper.open();
-        locations = mDbHelper.getAllTowns();
-
+            townDb = new TownDatabase(this);
+            townDb.open();
+            weatherDb = new WeatherDatabase(this);
+            weatherDb.open();
+            locations = townDb.getAllTowns();
 
 
         // views
@@ -77,8 +78,6 @@ public class MainActivity extends Activity {
         tempNow = (TextView) findViewById(R.id.tempNowText);
         pressureNow = (TextView) findViewById(R.id.pressureNowText);
         weatherIconView = (ImageView) findViewById(R.id.weatherIconView);
-        addButton = (Button) findViewById(R.id.MainAddTownButton);
-
 
         tempTexts = new TextView[]{
                 (TextView) findViewById(R.id.temp1Text),
@@ -95,13 +94,6 @@ public class MainActivity extends Activity {
                 (TextView) findViewById(R.id.tempTitleTextView2),
                 (TextView) findViewById(R.id.tempTitleTextView3)
         };
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, TownsActivity.class);
-                startActivityForResult(intent, 0);
-            }
-        });
 
 
         // service response catching
@@ -115,6 +107,8 @@ public class MainActivity extends Activity {
         updater.start(MainActivity.this);
 
         updateWeather(0);
+        Intent intent = new Intent(MainActivity.this, WeatherUpdater.class);
+        startService(intent);
 
     }
 
@@ -135,6 +129,8 @@ public class MainActivity extends Activity {
         super.onDestroy();
         // un-register BroadcastReceiver
         unregisterReceiver(myBroadcastReceiver);
+        townDb.close();
+        weatherDb.close();
     }
 
 
@@ -148,41 +144,11 @@ public class MainActivity extends Activity {
             }
 
             int type = intent.getExtras().getInt("type");
-            /*if (type == TOWN_LOAD){
-                for (int i = 0; ; i++){
-                    String[] a = intent.getStringArrayExtra("data" + i);
-                    if (a == null) break;
-                    Location l = new Location();
-                    l.param = a;
-                    locations.add(l);
-                    isTownListChanged = true;
-                    //!!
-                    if (firstShow){
-                        updateWeather(0);
-                        firstShow = false;
-                    }
-                    break;
-                }
-            } else*/ if (type == WEATHER_COND){
-                weathers.clear();
-                for (int i = 0; ; i++){
-                    String[] a = intent.getStringArrayExtra("data" + i);
-                    boolean t = intent.getExtras().getBoolean("dataType" + i);
-                    if (a == null) break;
-                    WeatherCond w = new WeatherCond(t);
-                    w.param = a;
-                    weathers.add(w);
-                    weatherIcons.add(Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888));
-                    Intent iconServiceIntent = new Intent(MainActivity.this, IconLoader.class);
-                    startService(iconServiceIntent.putExtra("url", w.param[w.ICON_URL]).putExtra("number", i));
+            if (type == WEATHER_COND){
+                if (intent.getExtras().getInt("updatedCount", 0) > 0) Toast.makeText(MainActivity.this, "Weather updated", Toast.LENGTH_SHORT).show();
+                weathers = weatherDb.getAllItems(locations.get(curTown));
 
-                }
                 showWeather();
-            } else if (type == ICON_LOAD){
-                byte[] data = intent.getByteArrayExtra("data");
-                int number = intent.getExtras().getInt("number");
-                weatherIcons.set(number, BitmapFactory.decodeByteArray(data, 0, data.length));
-                updateIcon(number);
             }
             else {
                 Log.e("MainActivity", "Unrigistered broadcast");
@@ -201,9 +167,9 @@ public class MainActivity extends Activity {
         if (town != -1){
             curTown = town;
         }
-        Intent updateServiceIntent = new Intent(MainActivity.this, WeatherUpdater.class);
-        startService(updateServiceIntent.putExtra("url", createWeatherRequest(locations.get(curTown), 3)));
-   }
+        weathers = weatherDb.getAllItems(locations.get(curTown));
+        showWeather();
+    }
 
     void forceUpdateWeather(int town){
         if (town >= locations.size()){
@@ -213,12 +179,14 @@ public class MainActivity extends Activity {
         if (town != -1){
             curTown = town;
         }
-        Intent updateServiceIntent = new Intent(MainActivity.this, WeatherUpdater.class);
-        startService(updateServiceIntent.putExtra("url", createWeatherRequest(locations.get(curTown), 3)));
+        weathers = weatherDb.getAllItems(locations.get(curTown));
+        showWeather();
     }
 
+
+
     void updateIcon(int day){
-        Bitmap pic = weatherIcons.get(day);
+        Bitmap pic = weathers.get(day).pic;
         int size;
         ImageView curIcon;
         if (day == 0){
@@ -229,7 +197,11 @@ public class MainActivity extends Activity {
             size = curIcon.getHeight();
         }
 
-        curIcon.setImageBitmap(Bitmap.createScaledBitmap(pic, size, size, false));
+        try {
+            curIcon.setImageBitmap(Bitmap.createScaledBitmap(pic, size, size, false));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -238,9 +210,11 @@ public class MainActivity extends Activity {
         countryName.setText(locations.get(curTown).param[Location.COUNTRY]);
         tempNow.setText(weathers.get(0).param[WeatherCond.TEMP_NOW] + "°C");
         pressureNow.setText(Math.round(Integer.parseInt(weathers.get(0).param[WeatherCond.PRESURE_NOW]) * 0.72) + " mm Hg");
+        updateIcon(0);
 
         for (int i = 0; i < weathers.size() - 1; i++){
             tempTexts[i].setText(weathers.get(i + 1).param[WeatherCond.TEMP_MIN] + "°C" + "   -   " + weathers.get(i + 1).param[WeatherCond.TEMP_MAX] + "°C");
+            updateIcon(i + 1);
         }
 
     }
@@ -258,8 +232,10 @@ public class MainActivity extends Activity {
         } else if (item.getItemId() == 100) {
             Intent intent = new Intent(MainActivity.this, TownsActivity.class);
             startActivityForResult(intent, 0);
+        } else if (item.getItemId() == 101) {
+            Intent intent = new Intent(MainActivity.this, WeatherUpdater.class);
+            startService(intent);
         }
-
         return true;
     }
 
@@ -268,6 +244,7 @@ public class MainActivity extends Activity {
         if (isTownListChanged){
             menu.clear();
             menu.add(Menu.NONE, 100, 1, "-- Manage towns --");
+            menu.add(Menu.NONE, 101, 1, "-- Refresh --");
             for (int i = 0; i < locations.size(); i++){
                 menu.add(Menu.NONE, 200 + menu.size(), Menu.NONE, locations.get(i).param[Location.TOWN]);
             }
@@ -282,7 +259,7 @@ public class MainActivity extends Activity {
 
         if (resultCode == RESULT_OK){
             if (data.getBooleanExtra("towns changed", false)){
-                locations = mDbHelper.getAllTowns();
+                locations = townDb.getAllTowns();
                 isTownListChanged = true;
             }
             Object k = data.getIntExtra("choosedTown", curTown);

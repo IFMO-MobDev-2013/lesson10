@@ -29,20 +29,22 @@ import java.util.ArrayList;
 
 class WeatherParser {
     private static RootElement prepare(ArrayList<WeatherCond> a) throws Exception{
-        final WeatherCond currentWeatherCond = new WeatherCond(false);
-        final WeatherCond currentWeatherCondNow = new WeatherCond(true);
+        final WeatherCond currentWeatherCond = new WeatherCond();
+        final WeatherCond currentWeatherCondNow = new WeatherCond();
         final ArrayList<WeatherCond> days = a;
         a.add(currentWeatherCondNow);
         RootElement root = new RootElement("data");
         android.sax.Element cur_item = root.requireChild("current_condition");
 
+        currentWeatherCondNow.param[WeatherCond.NOW] = "1";
         cur_item.setEndElementListener(new EndElementListener() {
             public void end() {
             }
         });
-        for (int i = 0; i < currentWeatherCondNow.tags.length; i++){
+        for (int i = 0; i < currentWeatherCondNow.SqlTags.length; i++){
             final int k = i;
-            cur_item.getChild(currentWeatherCondNow.tags[i]).setEndTextElementListener(new EndTextElementListener() {
+            if (WeatherCond.nowTags[i] == null) continue;
+            cur_item.getChild(WeatherCond.nowTags[i]).setEndTextElementListener(new EndTextElementListener() {
                 public void end(String body) {
                     currentWeatherCondNow.param[k] = body;
                 }
@@ -54,13 +56,15 @@ class WeatherParser {
 
         forecast_item.setEndElementListener(new EndElementListener() {
             public void end() {
+                currentWeatherCond.param[WeatherCond.NOW] = "0";
                 days.add(currentWeatherCond.makeCopy());
                 currentWeatherCond.clear();
             }
         });
-        for (int i = 0; i < currentWeatherCond.tags.length; i++){
+        for (int i = 0; i < currentWeatherCond.SqlTags.length; i++){
             final int k = i;
-            forecast_item.getChild(currentWeatherCond.tags[i]).setEndTextElementListener(new EndTextElementListener() {
+            if (WeatherCond.forecastTags[i] == null) continue;
+            forecast_item.getChild(WeatherCond.forecastTags[i]).setEndTextElementListener(new EndTextElementListener() {
                 public void end(String body) {
                     currentWeatherCond.param[k] = body;
                 }

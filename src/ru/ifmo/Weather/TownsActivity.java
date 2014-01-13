@@ -29,7 +29,8 @@ public class TownsActivity extends Activity {
     ArrayList<Location> wasTownList = new ArrayList<Location>();
     ArrayList<Location> deletedTownList = new ArrayList<Location>();
     TownAdapter adapter;
-    TownDatabase mDbHelper;
+    TownDatabase townDb;
+    WeatherDatabase weatherDb;
     boolean deleteMode = false;
 
     Intent intentResponse;
@@ -43,11 +44,13 @@ public class TownsActivity extends Activity {
         addButton = (Button) findViewById(R.id.TownChoosingAddButton);
         deleteButton = (Button) findViewById(R.id.TownChoosingDeleteButton);
 
-        mDbHelper = new TownDatabase(this);
-        mDbHelper.open();
+        townDb = new TownDatabase(this);
+        townDb.open();
+        weatherDb = new WeatherDatabase(this);
+        weatherDb.open();
         adapter = new TownAdapter(this, townList);
         townListView.setAdapter(adapter);
-        updateList(mDbHelper.getAllTowns());
+        updateList(townDb.getAllTowns());
 
 
         adapter.notifyDataSetChanged();
@@ -71,7 +74,8 @@ public class TownsActivity extends Activity {
                     deleteButton.setText("Delete");
                     deleteButton.setTextColor(0xFFB0FFFF);
                     for (int i = 0; i < deletedTownList.size(); i++) {
-                        mDbHelper.deleteTown(deletedTownList.get(i));
+                        weatherDb.deleteAllItems(deletedTownList.get(i));
+                        townDb.deleteTown(deletedTownList.get(i));
                     }
                     intentResponse.putExtra("towns changed", true);
                 }
@@ -151,5 +155,12 @@ public class TownsActivity extends Activity {
             townList.add(l);
             adapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        townDb.close();
+        weatherDb.close();
     }
 }

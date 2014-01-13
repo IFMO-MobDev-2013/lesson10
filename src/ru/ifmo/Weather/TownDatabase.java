@@ -133,12 +133,5 @@ public class TownDatabase {
         return loc;
     }
 
-    /*public boolean updateSubj(String oldName, String name, int score) {
-        ContentValues args = new ContentValues();
-        args.put(KEY_TOWN, name);
-        args.put(KEY_COUNTRY, score);
-
-        return mDb.update(DATABASE_TABLE, args, KEY_TOWN + "='" + oldName + "'", null) > 0;
-    } */
 
 }

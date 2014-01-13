@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -36,12 +35,10 @@ public class UpdateLauncher extends BroadcastReceiver {
             UpdateLauncher.this.start(context);
         }
 
-        Toast.makeText(context, "Погода обновляется", Toast.LENGTH_LONG).show();
 
-        for (int i = 0; i < townList.size(); i++) {
             Intent updateServiceIntent = new Intent(context, WeatherUpdater.class);
-            context.startService(updateServiceIntent.putExtra("url", MainActivity.createWeatherRequest(townList.get(i), 3)).putExtra("isLast", i == townList.size() - 1));
-        }
+            context.startService(updateServiceIntent);
+
     }
 
     public void start(Context context) {

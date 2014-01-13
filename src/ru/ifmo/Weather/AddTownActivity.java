@@ -70,6 +70,8 @@ public class AddTownActivity extends Activity {
         townListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent updateServiceIntent = new Intent(AddTownActivity.this, WeatherUpdater.class);
+                startService(updateServiceIntent);
                 mDbHelper.addTown(locations.get(i));
                 Intent intent = new Intent(AddTownActivity.this, TownsActivity.class);
                 intent.putExtra("data", locations.get(i).param);
