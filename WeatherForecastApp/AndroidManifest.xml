@@ -6,14 +6,17 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application android:icon="@drawable/icon" android:label="@string/app_name">
-        <activity android:name="com.android.Main">
+        <activity android:name="com.android.Main"
+                android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.android.Settings"/>
-        <activity android:name="com.android.ForecastActivity"/>
+        <activity android:name="com.android.Settings"
+                android:screenOrientation="landscape"/>
+        <activity android:name="com.android.ForecastActivity"
+                android:screenOrientation="landscape"/>
         <service android:name="com.android.Alarm"/>
     </application>
 </manifest>
