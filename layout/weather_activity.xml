@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    >
+    <RelativeLayout
+        android:id="@+id/current_cond_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+
+        >
+        <TextView
+            android:id="@+id/current_cond_weather_desc_text_view"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/current_cond_weather_desc_text_size"
+            android:textColor="@color/text"
+            android:gravity="center"
+            android:layout_alignParentTop="true"
+
+            android:text="@string/no_weather"
+            />
+
+        <TextView
+            android:id="@+id/current_cond_temp_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/current_cond_temp_and_icon_size"
+            android:textColor="@color/text"
+            android:gravity="center"
+
+            android:layout_below="@+id/current_cond_weather_desc_text_view"
+            android:layout_centerHorizontal="true"
+            />
+
+
+
+        <ImageView
+            android:id="@+id/current_cond_icon_image_view"
+            android:layout_width="@dimen/current_cond_temp_and_icon_size"
+            android:layout_height="@dimen/current_cond_temp_and_icon_size"
+            android:layout_toRightOf="@id/current_cond_temp_text_view"
+            android:layout_alignBottom="@id/current_cond_temp_text_view"
+            android:layout_below="@id/current_cond_weather_desc_text_view"
+
+            />
+
+
+
+
+        </RelativeLayout>
+
+
+    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:orientation="horizontal"-->
+
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/day_row_height"-->
+        <!--android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
+
+        <!-->-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/date_text_view"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="@dimen/day_forecast_text_size"-->
+            <!--android:textColor="@color/text"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:text="Today"-->
+
+
+            <!--/>-->
+
+
+        <!--<ImageView-->
+            <!--android:id="@+id/icon_image_view"-->
+            <!--android:layout_height="@dimen/day_row_height"-->
+            <!--android:layout_width="@dimen/day_row_height"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--/>-->
+
+
+        <!--<TextView-->
+            <!--android:id="@+id/mint_text_view"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="@dimen/day_forecast_text_size"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_marginLeft="@dimen/row_temp_horisontal_margin"-->
+            <!--android:layout_marginRight="@dimen/row_temp_horisontal_margin"-->
+            <!--android:textColor="@color/day_row_temp_min_color"-->
+            <!--android:text="-8"-->
+
+
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/maxt_text_view"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="@dimen/day_forecast_text_size"-->
+            <!--android:textColor="@color/day_row_color"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_toStartOf="@id/mint_text_view"-->
+            <!--android:layout_marginLeft="@dimen/row_temp_horisontal_margin"-->
+            <!--android:layout_marginRight="@dimen/row_temp_horisontal_margin"-->
+            <!--android:text="-3"-->
+
+
+            <!--/>-->
+
+    <!--</RelativeLayout>-->
+
+
+    <ListView
+        android:id="@+id/android:list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"/>
+</LinearLayout>

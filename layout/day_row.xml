@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/day_row_height"
+
+    >
+
+    <TextView
+        android:id="@+id/date_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/day_forecast_text_size"
+        android:textColor="@color/day_row_color"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:text="sample_text"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+
+
+        />
+
+
+    <ImageView
+        android:id="@+id/icon_image_view"
+        android:layout_height="@dimen/day_row_height"
+        android:layout_width="@dimen/day_row_height"
+        android:layout_centerInParent="true"
+        />
+
+
+    <TextView
+        android:id="@+id/mint_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/day_forecast_text_size"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="@dimen/row_temp_horisontal_margin"
+        android:layout_marginRight="@dimen/row_temp_horisontal_margin"
+        android:textColor="@color/day_row_temp_min_color"
+        android:text="-8"
+
+
+        />
+
+    <TextView
+        android:id="@+id/maxt_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/day_forecast_text_size"
+        android:textColor="@color/day_row_color"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/mint_text_view"
+        android:layout_marginLeft="@dimen/row_temp_horisontal_margin"
+        android:layout_marginRight="@dimen/row_temp_horisontal_margin"
+        android:text="-3"
+
+
+        />
+
+</RelativeLayout>

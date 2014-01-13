@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Simple Weather</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="no_feeds">No feeds yet</string>
+    <string name="menu_insert">Add City</string>
+    <string name="menu_delete">Delete City</string>
+    <string name="name">City name:</string>
+    <string name="suitable_city_name">Suitable city name:  </string>
+    <string name="confirm">Confirm</string>
+    <string name="edit_feed">Edit</string>
+    <string name="menu_edit">Edit feed</string>
+    <string name="cities_list_title">Cities list</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_add">Add</string>
+    <string name="action_confirm">Confirm</string>
+    <string name="action_refresh_all">Refresh all</string>
+    <string name="edit_city_reminder">City, Country</string>
+    <string name="no_weather">No weather available</string>
+</resources>
