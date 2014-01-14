@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
+              android:layout_width="fill_parent" android:layout_height="fill_parent" android:baselineAligned="false"
+              android:layout_weight="1" android:id="@+id/linearLayout"
+             >
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:scrollbars="vertical" android:layout_gravity="center">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Select city ->"
+                  android:id="@+id/txtvDate" android:layout_weight="5" android:textSize="20dp"
+                  android:layout_gravity="center" android:gravity="center_vertical|center_horizontal"/>
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="0dp"
+                  android:layout_weight="6" android:gravity="center" android:layout_gravity="center">
+        <ImageView android:layout_width="fill_parent" android:layout_height="0dp" android:id="@+id/imageView"
+                   android:layout_weight="1" android:src="@drawable/na" android:background="@null"
+                   android:layout_gravity="center"/>
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="0°"
+                  android:id="@+id/txtvtemp" android:textSize="80dp" android:layout_gravity="center|bottom"
+                  android:gravity="center_vertical|center_horizontal"/>
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="0dp"
+                  android:layout_weight="4" android:layout_gravity="top"
+                  android:scrollbars="vertical" android:gravity="top" android:layout_marginLeft="20dp">
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Description"
+                  android:id="@+id/txtvDescr" android:textSize="35dp" android:gravity="top"
+                  android:layout_gravity="top"/>
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Wind"
+                  android:id="@+id/txtvWind" android:textSize="30dp" android:layout_gravity="top"
+                  android:gravity="top"/>
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Pressure"
+                  android:id="@+id/txtvPress" android:textSize="30dp" android:layout_gravity="top"
+                  android:gravity="top"/>
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Humidity"
+                  android:id="@+id/txtwHum" android:textSize="30dp" android:layout_gravity="top"
+                  android:gravity="top"/>
+    </LinearLayout>
+</LinearLayout>
