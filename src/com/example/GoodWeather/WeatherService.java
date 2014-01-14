@@ -3,6 +3,7 @@ import android.app.AlarmManager;
 import android.app.IntentService;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.os.SystemClock;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -61,7 +62,7 @@ public class WeatherService extends IntentService {
         sendBroadcast(response);
         AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
         PendingIntent pi = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        manager.setRepeating(AlarmManager.ELAPSED_REALTIME, System.currentTimeMillis() + 100000, 100000, pi);
+        manager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 10000, 10000, pi);
     }
 }
 
