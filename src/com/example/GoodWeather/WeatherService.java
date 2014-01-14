@@ -62,7 +62,7 @@ public class WeatherService extends IntentService {
         sendBroadcast(response);
         AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
         PendingIntent pi = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        manager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 10000, 10000, pi);
+        manager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 200000, 200000, pi);
     }
 }
 
