@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" android:baselineAligned="false">
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent" android:orientation="vertical"
+                android:measureWithLargestChild="false" android:layout_weight="0.5">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="City Name"
+                    android:id="@+id/citytext" android:textSize="40dp" android:textAlignment="gravity"
+                    android:gravity="center_horizontal"/>
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Date"
+                    android:id="@+id/daytext" android:textSize="20dp"
+                    android:textAlignment="gravity" android:gravity="center_horizontal"/>
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Weather"
+                    android:id="@+id/weathertext" android:textSize="40dp" android:gravity="center_horizontal"/>
+            <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" android:orientation="horizontal">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:id="@+id/textView" android:layout_gravity="center_vertical|top" android:text="                                                 "/>
+                <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:id="@+id/imageView" android:layout_gravity="center_vertical"/>
+                <TextView android:layout_width="match_parent" android:layout_height="fill_parent"
+                          android:textAppearance="?android:attr/textAppearanceLarge" android:text="Degrees"
+                          android:id="@+id/degreestext" android:clickable="false" android:editable="false"
+                          android:ellipsize="middle" android:enabled="true" android:focusable="false"
+                          android:gravity="center_vertical|center_horizontal" android:height="150dp"
+                          android:textAlignment="center" android:textSize="60dp" android:layout_marginLeft="-63dp"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent" android:layout_weight="1">
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
+                          android:layout_width="match_parent" android:layout_height="fill_parent"
+                          android:id="@+id/linearLayout" android:layout_gravity="bottom" android:layout_weight="1">
+                <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                          android:textAppearance="?android:attr/textAppearanceMedium" android:text="Date"
+                          android:id="@+id/date1" android:gravity="center"/>
+                <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                          android:textAppearance="?android:attr/textAppearanceMedium" android:text="Weather"
+                          android:id="@+id/weatherday1"/>
+                <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                              android:orientation="vertical">
+                    <ImageView android:layout_width="150dp" android:layout_height="150dp" android:id="@+id/imageday1"/>
+                    <TextView android:layout_width="match_parent" android:layout_height="fill_parent"
+                              android:textAppearance="?android:attr/textAppearanceMedium" android:text="degrees"
+                              android:id="@+id/degreesday1" android:layout_gravity="center_vertical"
+                              android:gravity="center_vertical|center_horizontal"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
+                          android:layout_width="match_parent" android:layout_height="fill_parent"
+                          android:id="@+id/linearLayout2" android:layout_gravity="bottom" android:layout_weight="1">
+                <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                          android:textAppearance="?android:attr/textAppearanceMedium" android:text="Date"
+                          android:id="@+id/date2" android:gravity="center"/>
+                <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                          android:textAppearance="?android:attr/textAppearanceMedium" android:text="Weather"
+                          android:id="@+id/weatherday2"/>
+                <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                              android:orientation="vertical">
+                    <ImageView android:layout_width="150dp" android:layout_height="150dp" android:id="@+id/imageday2"/>
+                    <TextView android:layout_width="match_parent" android:layout_height="fill_parent"
+                              android:textAppearance="?android:attr/textAppearanceMedium" android:text="degrees"
+                              android:id="@+id/degreesday2" android:layout_gravity="center_vertical"
+                              android:gravity="center_vertical|center_horizontal"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
+                          android:layout_width="match_parent" android:layout_height="fill_parent"
+                          android:id="@+id/linearLayout3" android:layout_gravity="bottom" android:layout_weight="1">
+                <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                          android:textAppearance="?android:attr/textAppearanceMedium" android:text="Date"
+                          android:id="@+id/date3" android:gravity="center"/>
+                <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                          android:textAppearance="?android:attr/textAppearanceMedium" android:text="Weather"
+                          android:id="@+id/weatherday3"/>
+                <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                              android:orientation="vertical">
+                    <ImageView android:layout_width="150dp" android:layout_height="150dp" android:id="@+id/imageday3"/>
+                    <TextView android:layout_width="match_parent" android:layout_height="fill_parent"
+                              android:textAppearance="?android:attr/textAppearanceMedium" android:text="degrees"
+                              android:id="@+id/degreesday3" android:layout_gravity="center_vertical"
+                              android:gravity="center_vertical|center_horizontal"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
