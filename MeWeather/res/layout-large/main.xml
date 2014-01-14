@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+        android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@drawable/background">
+    <fragment android:layout_width="match_parent"
+              android:layout_height="fill_parent"
+              android:name="com.example.MeWeather.fragmentone" android:id="@+id/fragment"
+              tools:layout="@layout/firstscreen" android:layout_weight="1"/>
+    <fragment android:layout_width="match_parent"
+              android:layout_height="fill_parent"
+              android:name="com.example.MeWeather.fragmenttwo" android:id="@+id/fragment2"
+              tools:layout="@layout/secondscreen" android:layout_weight="1"/>
+    <fragment android:layout_width="match_parent"
+              android:layout_height="fill_parent"
+              android:name="com.example.MeWeather.fragmentthree" android:id="@+id/fragment3"
+              tools:layout="@layout/thirdscreen" android:layout_weight="0.9"/>
+</LinearLayout>
