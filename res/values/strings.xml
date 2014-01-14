@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GoodWeather</string>
+    <string name="addcity">Добавить город</string>
+    <string name="title">Введите название города</string>
+    <string name="ok">Добавить</string>
+    <string name="no">Отмена</string>
+    <string name="entertext"></string>
+    <string name="wurl1">http://api.worldweatheronline.com/free/v1/weather.ashx?q=</string>
+    <string name="wurl2">&amp;format=xml&amp;num_of_days=5&amp;cc=yes&amp;key=6uh9jmakgtpdhtnhz7j7vh7y</string>
+    <string name="curl1">http://api.worldweatheronline.com/free/v1/search.ashx?q=</string>
+    <string name="curl2">&amp;format=xml&amp;popular=yes&amp;num_of_results=2&amp;key=6uh9jmakgtpdhtnhz7j7vh7y</string>
+    <string name="turl1">https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20130922T163909Z.4b80d345f1cf210a.7a19c4e91fc64850938354743ae84c172909c842</string>
+    <string name="turl2">&amp;lang=</string>
+    <string name="turl3">&amp;text=</string>
+    <string name="delete">Удалить город?</string>
+    <string name="yes">Да</string>
+    <string name="nope">Нет</string>
+    <string name="refresh">Обновить</string>
+</resources>
