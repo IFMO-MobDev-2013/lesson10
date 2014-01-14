@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scrollView">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/townNameText"
+                android:layout_gravity="center"
+                android:textSize="40dp"
+                />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/countryNameText"
+                android:layout_gravity="center"
+                android:textSize="25dp"
+                android:textColor="#777777"/>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tempNowText"
+                        android:textSize="60dp"
+                        android:layout_gravity="center"
+                        />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pressureNowText"
+                        android:layout_gravity="center"
+                        android:textSize="25dp"
+                        android:textColor="#AAAAAA"/>
+            </LinearLayout>
+
+            <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/weatherIconView"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:minHeight="30dp"
+                    android:minWidth="30dp"/>
+        </LinearLayout>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Today"
+                android:id="@+id/tempTitleTextView"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"/>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/temp1Text"
+                    android:layout_weight="1"
+                    android:textSize="30dp"
+                    />
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/icon1View"
+                    android:layout_weight="0"/>
+        </LinearLayout>
+
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tomorrow"
+                android:id="@+id/tempTitleTextView2"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:layout_marginTop="30dp"/>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/temp2Text"
+                    android:layout_weight="1"
+                    android:textSize="30dp"
+                    />
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/icon2View"
+                    android:layout_weight="0"/>
+        </LinearLayout>
+
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Day after tomorrow"
+                android:id="@+id/tempTitleTextView3"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:layout_marginTop="30dp"/>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/temp3Text"
+                    android:layout_weight="1"
+                    android:textSize="30dp"
+                    />
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/icon3View"
+                    android:layout_weight="0"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
