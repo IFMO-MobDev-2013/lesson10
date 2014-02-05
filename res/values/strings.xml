@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">forecast</string>
+    <string name="app_name">Weather Forecast</string>
+    <string name="update_failed">Weather update failed</string><string name="no_cities">No cities defined!</string>
+    <string name="try_options">Try options menu.</string>
+    <string name="trn_add_city">Add city...</string>
+    <string name="trn_refresh">Refresh</string><string name="trn_city_hint">City name</string><string name="trn_add">Add</string><string name="tr_today">Today</string>
 </resources>

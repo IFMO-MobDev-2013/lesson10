@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent" android:baselineAligned="true">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent" android:layout_gravity="left">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="unknown..."
+                android:id="@+id/date" android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="unknown..."
+                android:id="@+id/temperature"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent" android:longClickable="false"
+            android:measureWithLargestChild="false" android:gravity="right" android:layout_gravity="right"
+            android:layout_weight="1">
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/forecastImage" android:layout_gravity="right" android:src="@drawable/night"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/forecastText" android:layout_gravity="right"/>
+    </LinearLayout>
+</LinearLayout>
