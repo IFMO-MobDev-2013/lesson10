@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WeatherOnline</string>
+    <string name="update">Обновить</string>
+    <string name="updating">Начинаем обновление...</string>
+    <string name="citiesReloaded">городов обновлено!</string>
+    <string name="updatingSuccess">Обновление закончилось!</string>
+    <string name="enterCity">Введите город:</string>
+    <string name="startTown">Moscow</string>
+    <string name="loadError">Ошибка при загрузке погоды</string>
+    <string name="humidity">Влажность:</string>
+    <string name="degree"> °C</string>
+    <string name="percent"> %</string>
+    <string name="speed"> м/с</string>
+    <string name="outdoor">Сейчас за окном: </string>
+    <string name="windDirection">Направление ветра:</string>
+    <string name="windSpeed">Скорость ветра:</string>
+    <string name="max">Максимальная температура:</string>
+    <string name="min">Минимальная температура:</string>
+    <string name="internetAvailable">Обновление не вожмножно, нет соединения с интернетом!</string>
+    <string name="updatingNow">Извините, происходить обновление базы, надо чуть чуть подождать!</string>
+    <string name="noCities">Нет городов для отображения! Для добавления нажмите ДОБАВИТЬ!</string>
+</resources>
