@@ -1,6 +1,8 @@
 package com.example.WeatherOnline;
 
+import android.app.AlarmManager;
 import android.app.IntentService;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
@@ -35,6 +37,7 @@ public class WeatherIntentService extends IntentService {
     String icon1 = "";
     String[] icons = {"", "" , ""};
     int sup = -1;
+    int reloadTime = 900000;
 
 
     public WeatherIntentService(){
@@ -83,6 +86,9 @@ public class WeatherIntentService extends IntentService {
         Intent finishUpdate = new Intent();
         finishUpdate.setAction(finish);
         sendBroadcast(finishUpdate);
+        AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        manager.setInexactRepeating(AlarmManager.RTC, System.currentTimeMillis() + reloadTime, reloadTime, pendingIntent);
     }
 
 
