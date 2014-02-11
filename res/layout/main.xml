@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="#fff"
+        >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:id="@+id/layout"
+                  android:background="#ebebeb" >
+        <ImageButton android:id="@+id/btn_user"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:padding="8dp"
+                     android:layout_marginTop="5px"
+                     android:layout_marginRight="4px"
+                     android:layout_marginLeft="2px"
+                     android:background="#ebebeb"
+                     android:src="@drawable/user"/>
+        <TextView android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:padding="12dp"
+                  android:textColor="#fff"
+                  android:textSize="12dp"
+                  android:gravity="center_vertical" />
+        <ImageButton android:id="@+id/btn_info"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:padding="8dp"
+                     android:layout_marginTop="5px"
+                     android:layout_marginRight="4px"
+                     android:background="#ebebeb"
+                     android:src="@drawable/info_off"/>
+        <ImageButton android:id="@+id/btn_add"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:padding="8dp"
+                     android:layout_marginTop="5px"
+                     android:background="#ebebeb"
+                     android:src="@drawable/add_on"/>
+        <ImageButton android:id="@+id/btn_update"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:padding="8dp"
+                     android:background="#ebebeb"
+                     android:src="@drawable/update_off"/>
+    </LinearLayout>
+    <ListView android:id="@android:id/list"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:divider="#ccc" >
+              </ListView>
+    <TextView android:id="@+id/empty"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:padding="10dp" />
+</LinearLayout>
+

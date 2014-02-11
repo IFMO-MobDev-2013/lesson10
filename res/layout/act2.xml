@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:background="#fff">
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:background="#FFFFFF"
+            android:id="@+id/scr">
+        <LinearLayout android:orientation="vertical"
+                      xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent">
+                <LinearLayout android:orientation="horizontal"
+                              xmlns:android="http://schemas.android.com/apk/res/android"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:background="#fff">
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:textSize="18sp"
+                              android:textColor="#bbb"
+                              android:text="       С"
+                              android:textStyle="bold">
+                    </TextView>
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_gravity="center_vertical"
+                              android:textSize="18sp"
+                              android:textColor="#000"
+                              android:text="ейчас"
+                              android:textStyle="bold">
+                    </TextView>
+                    <TextView android:id="@+id/title"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:gravity="right"
+                              android:textSize="18sp"
+                              android:textColor="#000"
+                              android:textStyle="bold">
+                    </TextView>
+                </LinearLayout>
+                <LinearLayout android:orientation="horizontal"
+                              xmlns:android="http://schemas.android.com/apk/res/android"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginBottom="10dp"
+                              android:paddingLeft="10dp"
+                              android:paddingRight="10dp"
+                              android:paddingBottom="10dp"
+                              android:paddingTop="5dp"
+                              android:background="#fff">
+                    <LinearLayout android:orientation="vertical"
+                                  xmlns:android="http://schemas.android.com/apk/res/android"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:layout_weight="1"
+                                  android:background="#fff">
+                        <LinearLayout android:orientation="horizontal"
+                                      xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:background="#fff">
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textSize="18sp"
+                                      android:textColor="#bbb"
+                                      android:text="Т">
+                            </TextView>
+                            <TextView android:id="@+id/t1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="17dp"
+                                    android:textColor="#000"
+                                    android:textSize="18sp">
+                            </TextView>
+                        </LinearLayout>
+                        <LinearLayout android:orientation="horizontal"
+                                      xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:background="#fff">
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textSize="18sp"
+                                      android:textColor="#bbb"
+                                      android:text="П">
+                            </TextView>
+                            <TextView
+                                    android:id="@+id/w1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="17dp"
+                                    android:textColor="#000"
+                                    android:textSize="18sp">
+                            </TextView>
+                        </LinearLayout>
+                        <LinearLayout android:orientation="horizontal"
+                                      xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:background="#fff">
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textSize="18sp"
+                                      android:textColor="#bbb"
+                                      android:text="Д">
+                            </TextView>
+                            <TextView android:id="@+id/p1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="17dp"
+                                    android:textColor="#000"
+                                    android:textSize="18sp">
+                            </TextView>
+                        </LinearLayout>
+                        <LinearLayout android:orientation="horizontal"
+                                      xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:background="#fff">
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textSize="18sp"
+                                      android:textColor="#bbb"
+                                      android:text="В">
+                            </TextView>
+                            <TextView android:id="@+id/sr1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="17dp"
+                                    android:textColor="#000"
+                                    android:textSize="18sp">
+                            </TextView>
+                        </LinearLayout>
+                        <LinearLayout android:orientation="horizontal"
+                                      xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:background="#fff">
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textSize="18sp"
+                                      android:textColor="#bbb"
+                                      android:text="З">
+                            </TextView>
+                            <TextView android:id="@+id/ss1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="17dp"
+                                    android:textColor="#000"
+                                    android:textSize="18sp">
+                            </TextView>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <ImageView
+                            android:id="@+id/image1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_launcher">
+                    </ImageView>
+                </LinearLayout>
+
+                <LinearLayout android:orientation="horizontal"
+                              xmlns:android="http://schemas.android.com/apk/res/android"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:background="#fff">
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:textSize="18sp"
+                              android:textColor="#00f"
+                              android:text="       З"
+                              android:textStyle="bold">
+                    </TextView>
+                    <TextView android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_gravity="center_vertical"
+                              android:textSize="18sp"
+                              android:textColor="#000"
+                              android:text="автра"
+                              android:textStyle="bold">
+                    </TextView>
+                </LinearLayout>
+                <LinearLayout android:orientation="horizontal"
+                              xmlns:android="http://schemas.android.com/apk/res/android"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginBottom="10dp"
+                              android:paddingLeft="10dp"
+                              android:paddingRight="10dp"
+                              android:paddingBottom="10dp"
+                              android:paddingTop="5dp"
+                              android:background="#fff">
+                    <LinearLayout android:orientation="vertical"
+                                  xmlns:android="http://schemas.android.com/apk/res/android"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:layout_weight="1"
+                                  android:background="#fff">
+                        <LinearLayout android:orientation="horizontal"
+                                      xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:background="#fff">
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textSize="18sp"
+                                      android:textColor="#00f"
+                                      android:text="Т">
+                            </TextView>
+                            <TextView android:id="@+id/t2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="17dp"
+                                    android:textColor="#000"
+                                    android:textSize="18sp">
+                            </TextView>
+                        </LinearLayout>
+                        <LinearLayout android:orientation="horizontal"
+                                      xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:background="#fff">
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textSize="18sp"
+                                      android:textColor="#00f"
+                                      android:text="П">
+                            </TextView>
+                            <TextView
+                                    android:id="@+id/w2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="17dp"
+                                    android:textColor="#000"
+                                    android:textSize="18sp">
+                            </TextView>
+                        </LinearLayout>
+                        <LinearLayout android:orientation="horizontal"
+                                      xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:background="#fff">
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textSize="18sp"
+                                      android:textColor="#00f"
+                                      android:text="Д">
+                            </TextView>
+                            <TextView android:id="@+id/p2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="17dp"
+                                    android:textColor="#000"
+                                    android:textSize="18sp">
+                            </TextView>
+                        </LinearLayout>
+                        <LinearLayout android:orientation="horizontal"
+                                      xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:background="#fff">
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textSize="18sp"
+                                      android:textColor="#00f"
+                                      android:text="В">
+                            </TextView>
+                            <TextView
+                                    android:id="@+id/sr2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="17dp"
+                                    android:textColor="#000"
+                                    android:textSize="18sp">
+                            </TextView>
+                        </LinearLayout>
+                        <LinearLayout android:orientation="horizontal"
+                                      xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:background="#fff">
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textSize="18sp"
+                                      android:textColor="#00f"
+                                      android:text="З">
+                            </TextView>
+                            <TextView
+                                    android:id="@+id/ss2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="17dp"
+                                    android:textColor="#000"
+                                    android:textSize="18sp">
+                            </TextView>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <ImageView
+                            android:id="@+id/image2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_launcher">
+                    </ImageView>
+                </LinearLayout>
+
+                <LinearLayout android:orientation="horizontal"
+                              xmlns:android="http://schemas.android.com/apk/res/android"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:background="#fff">
+                    <TextView android:id="@+id/current_town"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:textSize="18sp"
+                              android:textColor="#f00"
+                              android:text="       П"
+                              android:textStyle="bold">
+                    </TextView>
+                    <TextView android:id="@+id/current_town"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_gravity="center_vertical"
+                              android:textSize="18sp"
+                              android:textColor="#000"
+                              android:text="ослезавтра"
+                              android:textStyle="bold">
+                    </TextView>
+                </LinearLayout>
+                <LinearLayout android:orientation="horizontal"
+                              xmlns:android="http://schemas.android.com/apk/res/android"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginBottom="10dp"
+                              android:paddingLeft="10dp"
+                              android:paddingRight="10dp"
+                              android:paddingBottom="10dp"
+                              android:paddingTop="5dp"
+                              android:background="#fff">
+                    <LinearLayout android:orientation="vertical"
+                                  xmlns:android="http://schemas.android.com/apk/res/android"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:layout_weight="1"
+                                  android:background="#fff">
+                        <LinearLayout android:orientation="horizontal"
+                                      xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:background="#fff">
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textSize="18sp"
+                                      android:textColor="#f00"
+                                      android:text="Т">
+                            </TextView>
+                            <TextView android:id="@+id/t3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="17dp"
+                                    android:textColor="#000"
+                                    android:textSize="18sp">
+                            </TextView>
+                        </LinearLayout>
+                        <LinearLayout android:orientation="horizontal"
+                                      xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:background="#fff">
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textSize="18sp"
+                                      android:textColor="#f00"
+                                      android:text="П">
+                            </TextView>
+                            <TextView android:id="@+id/w3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="17dp"
+                                    android:textColor="#000"
+                                    android:textSize="18sp">
+                            </TextView>
+                        </LinearLayout>
+                        <LinearLayout android:orientation="horizontal"
+                                      xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:background="#fff">
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textSize="18sp"
+                                      android:textColor="#f00"
+                                      android:text="Д">
+                            </TextView>
+                            <TextView android:id="@+id/p3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="17dp"
+                                    android:textColor="#000"
+                                    android:textSize="18sp">
+                            </TextView>
+                        </LinearLayout>
+                        <LinearLayout android:orientation="horizontal"
+                                      xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:background="#fff">
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textSize="18sp"
+                                      android:textColor="#f00"
+                                      android:text="В">
+                            </TextView>
+                            <TextView android:id="@+id/sr3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="17dp"
+                                    android:textColor="#000"
+                                    android:textSize="18sp">
+                            </TextView>
+                        </LinearLayout>
+                        <LinearLayout android:orientation="horizontal"
+                                      xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:background="#fff">
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:textSize="18sp"
+                                      android:textColor="#f00"
+                                      android:text="З">
+                            </TextView>
+                            <TextView android:id="@+id/ss3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="17dp"
+                                    android:textColor="#000"
+                                    android:textSize="18sp">
+                            </TextView>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <ImageView
+                            android:id="@+id/image3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_launcher">
+                    </ImageView>
+                </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="no_internet">Нет соединения с Интернетом...</string>
+    <string name="no_internet_empty">Нет соединения с Интернетом... База пуста</string>
+    <string name="task_starting">Обновление...</string>
+    <string name="full_update">База \"Список городов\"\nустановлена полностью</string>
+    <string name="task_cancelled">Прервано пользователем</string>
+    <string name="task_completed">Готово</string>
+    <string name="task_working">Загрузка</string>
+    <string name="delete">Удалить</string>
+    <string name="deleteAll">Удалить Все</string>
+    <string name="deleting">Удаление...</string>
+    <string name="cancel">Отмена</string>
+    <string name="base_empty">Добавьте город из списка...</string>
+    <string name="confirm_deleting">Подтвердите удаление</string>
+    <string name="interrupted">Прервано...</string>
+    <string name="interrupted_msg">Список городов загружен\nне полностью.\n</string>
+    <string name="no">Нет</string>
+    <string name="yes">Да</string>
+    <string name="xml_add">Введите название города:</string>
+    <string name="hint">Город...</string>
+    <string name="my_name">Михов Иван Андреевич</string>
+    <string name="repeat">Повторить загрузку</string>
+    <string name="second_chance">Загрузить базу</string>
+    <string name="one_more">Повторная загрузка...</string>
+    <string name="one_more_msg">База \"Список городов\"\nне полная.\nЗагрузить полную базу?</string>
+    <string name="temperature">емпература:</string>
+    <string name="deg">˚C</string>
+    <string name="weather">огода:</string>
+    <string name="pressure">авление:</string>
+    <string name="pressure_letter">мм.рт.ст.</string>
+    <string name="sunrise">осход:</string>
+    <string name="sunset">акат:</string>
+    <string name="oops">(ой, уже есть или в базе отсутствует)</string>
+    <string name="first_launch">Начальный запуск...\n\nДождитесь полной загрузки...</string>
+    <string name="about_me">Студент СПб НИУ ИТМО\n\nФакультет Информационных Технологий и Программирования\n\nКафедра Компьютерных Технологий\n\n2014 год</string>
+</resources>
