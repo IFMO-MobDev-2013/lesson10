@@ -1,6 +1,9 @@
 package com.example.lesson10;
 
+import android.app.AlarmManager;
 import android.app.IntentService;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,7 +29,7 @@ import java.util.Scanner;
  * To change this template use File | Settings | File Templates.
  */
 public class MyIntentServ extends IntentService {
-
+    private static final int REFRESH = 10 * 60 * 1000; //10 minutes
     private String linkWeather = "http://api.worldweatheronline.com/free/v1/weather.ashx?key=8medbha55pyuzwusucmad53b&q=%s,%s&cc=no&date=%s&format=xml";
     private String linkFind = "http://api.worldweatheronline.com/free/v1/search.ashx?query=%s&popular=yes&format=xml&key=8medbha55pyuzwusucmad53b";
 
@@ -68,6 +71,7 @@ public class MyIntentServ extends IntentService {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            setAlarm(intent);
         }
         if ("find".equals(task)){
             String name = intent.getStringExtra("name");
@@ -89,6 +93,12 @@ public class MyIntentServ extends IntentService {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void setAlarm(Intent intent){
+        PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC, System.currentTimeMillis() + REFRESH, pendingIntent);
     }
 
     public class MySAXAppWeather extends DefaultHandler {
