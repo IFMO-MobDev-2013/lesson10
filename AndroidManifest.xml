@@ -6,15 +6,15 @@
     <uses-sdk android:minSdkVersion="16"/>
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
         <service android:name=".MyIntentServ" />
-        <activity android:name="MyActivity" android:label="@string/app_name">
+        <activity android:name="MyActivity" android:label="@string/app_name" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".CityList" android:label="@string/citylist"></activity>
-        <activity android:name=".FindCity" android:label="@string/findcity"></activity>
-        <activity android:name=".ResultFind" android:label="@string/resultfind"></activity>
+        <activity android:name=".CityList" android:label="@string/citylist" android:screenOrientation="portrait"></activity>
+        <activity android:name=".FindCity" android:label="@string/findcity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".ResultFind" android:label="@string/resultfind" android:screenOrientation="portrait"></activity>
         <receiver android:name=".MyReceiver">
             <intent-filter>
                 <action android:name="com.example.lesson10.RESULT_FIND" />
