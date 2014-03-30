@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">weather</string>
+    <string name="sure">Delete city?</string>
+    <string name="City_string">City</string>
+    <string name="update_string">update</string>
+    <string name="input">City, Country</string>
+    <string name="addcity">addcity</string>
+    <string name="select_city">Select City! (swipe right twice)</string>
+    <string name="zero">0°</string>
+    <string name="description_string">Description</string>
+    <string name="wind_string">Wind</string>
+    <string name="pressure_string">Pressure</string>
+    <string name="humidity">Humidity</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="refresh_string">refresh</string>
+    <string name="add_string">add</string>
+</resources>
