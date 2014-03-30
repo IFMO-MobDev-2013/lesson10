@@ -53,9 +53,6 @@ public class WeatherPicture {
 				case 353 :
 					id = R.drawable.rain;
 					break;
-				case 350 :
-					id = R.drawable.hail;
-					break;
 				case 338 :
 					id = R.drawable.snow;
 					break;
@@ -79,12 +76,6 @@ public class WeatherPicture {
 					break;
 				case 317 :
 					id = R.drawable.snow_rain_3;
-					break;
-				case 314 :
-					id = R.drawable.hail;
-					break;
-				case 311 :
-					id = R.drawable.hail;
 					break;
 				case 308 :
 					id = R.drawable.rain;
@@ -117,7 +108,7 @@ public class WeatherPicture {
 					id = R.drawable.sosulki;
 					break;
 				case 260 :
-					id = R.drawable.fog2;
+					id = R.drawable.fog;
 					break;
 				case 248 :
 					id = R.drawable.fog;
@@ -127,9 +118,6 @@ public class WeatherPicture {
 					break;
 				case 227 :
 					id = R.drawable.snow;
-					break;
-				case 200 :
-					id = R.drawable.lightning;
 					break;
 				case 185 :
 					id = R.drawable.sosulki;
@@ -144,7 +132,7 @@ public class WeatherPicture {
 					id = R.drawable.rain_sun;
 					break;
 				case 143 :
-					id = R.drawable.fog3;
+					id = R.drawable.fog;
 					break;
 				case 122 :
 					id = R.drawable.overcast;
